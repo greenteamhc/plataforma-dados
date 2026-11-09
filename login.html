@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Entrar - Plataforma de Estudos</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- CABEÇALHO -->
+    <header class="navbar">
+
+        <div class="container navbar-content">
+
+            <a href="index.html" class="logo">
+                Plataforma de Estudos
+            </a>
+
+            <nav>
+                <a href="index.html">Início</a>
+                <a href="cadastro.html">Criar conta</a>
+            </nav>
+
+        </div>
+
+    </header>
+
+
+    <!-- ÁREA DE LOGIN -->
+    <main class="auth-page">
+
+        <div class="auth-card">
+
+            <h1>Entrar</h1>
+
+            <p class="auth-subtitle">
+                Entre com seu e-mail para acessar seus estudos.
+            </p>
+
+
+            <!-- FORMULÁRIO -->
+            <form id="loginForm">
+
+                <div class="form-group">
+
+                    <label for="email">
+                        E-mail
+                    </label>
+
+                    <input
+                        type="email"
+                        id="email"
+                        placeholder="seu.email@universidade.edu.br"
+                        required
+                    >
+
+                </div>
+
+
+                <button
+                    type="submit"
+                    class="btn-primary"
+                >
+                    Enviar link de acesso
+                </button>
+
+            </form>
+
+
+            <!-- MENSAGEM -->
+            <p
+                id="mensagem"
+                class="form-message"
+            ></p>
+
+
+            <!-- CADASTRO -->
+            <p class="auth-footer">
+
+                Ainda não possui uma conta?
+
+                <a href="cadastro.html">
+                    Criar conta
+                </a>
+
+            </p>
+
+        </div>
+
+    </main>
+
+
+    <!-- BIBLIOTECA DO SUPABASE -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+
+    <!-- NOSSA CONFIGURAÇÃO DO SUPABASE -->
+    <script src="supabase.js"></script>
+
+
+    <!-- LOGIN -->
+    <script>
+
+        const form = document.getElementById("loginForm");
+        const mensagem = document.getElementById("mensagem");
+
+
+        form.addEventListener("submit", async function(event) {
+
+            event.preventDefault();
+
+
+            const email = document
+                .getElementById("email")
+                .value
+                .trim();
+
+
+            // Mensagem enquanto envia
+            mensagem.textContent =
+                "Enviando link de acesso...";
+
+            mensagem.style.color = "#666";
+
+
+            try {
+
+                // Tenta enviar o link de acesso
+                const { data, error } =
+                    await window.supabaseClient.auth.signInWithOtp({
+
+                        email: email,
+
+                        options: {
+                            shouldCreateUser: false,
+                            emailRedirecTo: window.location.origin + "/area-aluno.html"
+
+                        }
+
+                    });
+
+
+                // Se o Supabase retornar erro
+                if (error) {
+
+                    throw error;
+
+                }
+
+
+                // Login solicitado com sucesso
+                mensagem.textContent =
+                    "Link de acesso enviado! Verifique seu e-mail.";
+
+                mensagem.style.color = "green";
+
+
+            } catch (error) {
+
+                console.error(
+                    "Erro no login:",
+                    error
+                );
+
+
+                mensagem.textContent =
+                    "Não foi possível entrar: " +
+                    error.message;
+
+                mensagem.style.color = "red";
+
+            }
+
+        });
+
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,1433 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background: #f7f8fc;
+    color: #222;
+}
+
+
+/* NAVBAR */
+
+.navbar {
+    height: 70px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 0 8%;
+
+    background: white;
+
+    border-bottom: 1px solid #e5e5e5;
+}
+
+.logo {
+    font-size: 21px;
+    font-weight: bold;
+}
+
+.menu {
+    display: flex;
+    align-items: center;
+    gap: 25px;
+}
+
+.menu a {
+    text-decoration: none;
+    color: #444;
+}
+
+.menu button {
+    padding: 10px 20px;
+
+    border: none;
+    border-radius: 8px;
+
+    background: #222;
+    color: white;
+
+    cursor: pointer;
+}
+
+
+/* HERO */
+
+.hero {
+    padding: 90px 8%;
+
+    background: white;
+}
+
+.hero-text {
+    max-width: 700px;
+}
+
+.hero h1 {
+    font-size: 48px;
+    margin-bottom: 20px;
+}
+
+.hero p {
+    font-size: 19px;
+    line-height: 1.6;
+
+    color: #666;
+
+    margin-bottom: 30px;
+}
+
+.primary-button {
+    padding: 14px 25px;
+
+    border: none;
+    border-radius: 8px;
+
+    background: #222;
+    color: white;
+
+    font-size: 16px;
+
+    cursor: pointer;
+}
+
+
+/* TRILHAS */
+
+.trilhas {
+    padding: 70px 8%;
+}
+
+.trilhas h2 {
+    font-size: 32px;
+
+    margin-bottom: 10px;
+}
+
+.subtitle {
+    color: #666;
+
+    margin-bottom: 35px;
+}
+
+.trilhas-container {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, 1fr);
+
+    gap: 25px;
+}
+
+
+/* CARD */
+
+.trilha-card {
+
+    background: white;
+
+    padding: 30px;
+
+    border-radius: 12px;
+
+    border: 1px solid #e5e5e5;
+
+    transition: 0.2s;
+}
+
+.trilha-card:hover {
+
+    transform: translateY(-4px);
+
+    box-shadow:
+        0 10px 30px
+        rgba(0, 0, 0, 0.08);
+}
+
+.icon {
+
+    font-size: 35px;
+
+    margin-bottom: 20px;
+}
+
+.trilha-card h3 {
+
+    font-size: 23px;
+
+    margin-bottom: 12px;
+}
+
+.trilha-card p {
+
+    color: #666;
+
+    line-height: 1.5;
+
+    margin-bottom: 25px;
+}
+
+.trilha-card button {
+
+    padding: 10px 18px;
+
+    border: 1px solid #ddd;
+
+    border-radius: 7px;
+
+    background: white;
+
+    cursor: pointer;
+}
+
+
+/* FOOTER */
+
+footer {
+
+    padding: 30px;
+
+    text-align: center;
+
+    color: #777;
+
+    border-top: 1px solid #e5e5e5;
+}
+
+
+/* RESPONSIVO */
+
+@media (max-width: 800px) {
+
+    .trilhas-container {
+
+        grid-template-columns: 1fr;
+
+    }
+
+    .hero h1 {
+
+        font-size: 36px;
+
+    }
+
+    .menu a {
+
+        display: none;
+
+    }
+
+}
+
+/* =========================
+   PÁGINA DA TRILHA
+========================= */
+
+.trilha-header {
+
+    padding: 60px 8%;
+
+    background: white;
+
+    display: flex;
+
+    justify-content: space-between;
+
+    gap: 60px;
+
+    border-bottom: 1px solid #e5e5e5;
+}
+
+
+.trilha-icon {
+
+    font-size: 45px;
+
+    margin-bottom: 15px;
+}
+
+
+.trilha-header h1 {
+
+    font-size: 42px;
+
+    margin-bottom: 15px;
+}
+
+
+.trilha-header p {
+
+    color: #666;
+
+    font-size: 18px;
+
+    max-width: 600px;
+
+    line-height: 1.5;
+}
+
+
+/* PROGRESSO */
+
+.progresso {
+
+    width: 300px;
+
+    align-self: center;
+}
+
+
+.progresso-info {
+
+    display: flex;
+
+    justify-content: space-between;
+
+    margin-bottom: 10px;
+
+    font-size: 14px;
+}
+
+
+.progresso-info strong {
+
+    font-size: 18px;
+}
+
+
+.barra {
+
+    height: 10px;
+
+    background: #e5e5e5;
+
+    border-radius: 10px;
+
+    overflow: hidden;
+}
+
+
+.barra-preenchida {
+
+    width: 0%;
+
+    height: 100%;
+}
+
+
+/* AULAS */
+
+.aulas {
+
+    padding: 60px 8%;
+
+    max-width: 1000px;
+
+    margin: auto;
+}
+
+
+.aulas h2 {
+
+    font-size: 30px;
+
+    margin-bottom: 8px;
+}
+
+
+.aula-card {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 25px;
+
+    background: white;
+
+    border: 1px solid #e5e5e5;
+
+    border-radius: 12px;
+
+    padding: 25px;
+
+    margin-bottom: 18px;
+}
+
+
+.aula-numero {
+
+    font-size: 24px;
+
+    font-weight: bold;
+
+    min-width: 50px;
+
+    color: #888;
+}
+
+
+.aula-info {
+
+    flex: 1;
+}
+
+
+.aula-info h3 {
+
+    font-size: 20px;
+
+    margin-bottom: 7px;
+}
+
+
+.aula-info p {
+
+    color: #666;
+
+    margin-bottom: 10px;
+}
+
+
+.status {
+
+    font-size: 13px;
+
+    font-weight: bold;
+}
+
+
+.liberada {
+
+    color: #333;
+}
+
+
+.bloqueado {
+
+    color: #999;
+}
+
+
+.aula-button {
+
+    padding: 10px 18px;
+
+    border-radius: 7px;
+
+    border: 1px solid #ddd;
+
+    background: white;
+
+    text-decoration: none;
+
+    color: #222;
+
+    white-space: nowrap;
+}
+
+
+.bloqueada {
+
+    opacity: 0.65;
+}
+
+
+.aula-button:disabled {
+
+    cursor: not-allowed;
+}
+
+.trilha-button {
+
+    display: inline-block;
+
+    padding: 10px 18px;
+
+    border: 1px solid #ddd;
+
+    border-radius: 7px;
+
+    background: white;
+
+    color: #222;
+
+    text-decoration: none;
+
+}
+
+/* =========================
+   CONTEÚDO DAS AULAS
+========================= */
+
+.aula-info ul {
+
+    margin: 15px 0;
+
+    padding-left: 20px;
+
+    color: #555;
+
+    line-height: 1.8;
+}
+
+
+.aula-info li {
+
+    margin-bottom: 2px;
+}
+
+
+.em-breve {
+
+    color: #888;
+}
+
+
+.projeto {
+
+    margin-top: 35px;
+
+    border-style: dashed;
+}
+
+
+/* RESPONSIVO DA TRILHA */
+
+@media (max-width: 800px) {
+
+    .trilha-header {
+
+        flex-direction: column;
+
+        gap: 30px;
+
+    }
+
+
+    .progresso {
+
+        width: 100%;
+
+    }
+
+
+    .aula-card {
+
+        flex-direction: column;
+
+        align-items: flex-start;
+
+    }
+
+
+    .aula-button {
+
+        margin-top: 10px;
+
+    }
+
+}
+
+/* =========================
+   PÁGINA DA AULA
+========================= */
+
+.aula-header {
+
+    padding: 70px 8%;
+
+    background: white;
+
+    border-bottom: 1px solid #e5e5e5;
+}
+
+
+.aula-label {
+
+    font-size: 13px;
+
+    font-weight: bold;
+
+    letter-spacing: 1px;
+
+    color: #777;
+}
+
+
+.aula-header h1 {
+
+    font-size: 42px;
+
+    margin: 15px 0;
+}
+
+
+.aula-header p {
+
+    max-width: 700px;
+
+    color: #666;
+
+    font-size: 18px;
+
+    line-height: 1.6;
+}
+
+
+/* CONTEÚDO */
+
+.conteudo-aula {
+
+    max-width: 1000px;
+
+    margin: auto;
+
+    padding: 55px 8%;
+}
+
+
+.conteudo-aula h2 {
+
+    font-size: 28px;
+
+    margin-bottom: 25px;
+}
+
+
+.topicos {
+
+    display: flex;
+
+    flex-wrap: wrap;
+
+    gap: 10px;
+}
+
+
+.topicos span {
+
+    padding: 9px 14px;
+
+    background: white;
+
+    border: 1px solid #ddd;
+
+    border-radius: 20px;
+
+    font-size: 14px;
+
+    color: #555;
+}
+
+
+/* MATERIAIS */
+
+.materiais {
+
+    max-width: 1000px;
+
+    margin: auto;
+
+    padding: 0 8% 60px;
+}
+
+
+.materiais h2 {
+
+    font-size: 28px;
+
+    margin-bottom: 8px;
+}
+
+
+.material-card {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 20px;
+
+    background: white;
+
+    border: 1px solid #e5e5e5;
+
+    border-radius: 12px;
+
+    padding: 22px;
+
+    margin-top: 15px;
+}
+
+
+.material-icon {
+
+    font-size: 32px;
+
+    min-width: 45px;
+}
+
+
+.material-info {
+
+    flex: 1;
+}
+
+
+.material-info h3 {
+
+    margin-bottom: 6px;
+
+    font-size: 18px;
+}
+
+
+.material-info p {
+
+    color: #666;
+
+    font-size: 14px;
+
+    line-height: 1.5;
+}
+
+
+.material-button {
+
+    padding: 9px 16px;
+
+    border-radius: 7px;
+
+    border: 1px solid #ddd;
+
+    background: #f5f5f5;
+
+    color: #888;
+
+    white-space: nowrap;
+
+    cursor: not-allowed;
+}
+
+
+/* CONCLUSÃO */
+
+.conclusao {
+
+    max-width: 1000px;
+
+    margin: 0 auto 50px;
+
+    padding: 35px;
+
+    background: white;
+
+    border: 1px solid #e5e5e5;
+
+    border-radius: 12px;
+
+    text-align: center;
+}
+
+
+.conclusao h2 {
+
+    margin-bottom: 10px;
+}
+
+
+.conclusao p {
+
+    color: #666;
+
+    margin-bottom: 20px;
+}
+
+
+.concluir-button {
+
+    padding: 12px 22px;
+
+    border: none;
+
+    border-radius: 8px;
+
+    background: #222;
+
+    color: white;
+
+    cursor: pointer;
+
+    font-size: 15px;
+}
+
+
+/* VOLTAR */
+
+.voltar {
+
+    max-width: 1000px;
+
+    margin: 0 auto 60px;
+
+    padding: 0 8%;
+}
+
+
+.voltar a {
+
+    color: #333;
+
+    text-decoration: none;
+
+    font-weight: bold;
+}
+
+
+/* RESPONSIVO */
+
+@media (max-width: 700px) {
+
+    .aula-header h1 {
+
+        font-size: 32px;
+
+    }
+
+
+    .material-card {
+
+        flex-direction: column;
+
+        align-items: flex-start;
+
+    }
+
+
+    .material-button {
+
+        width: 100%;
+
+    }
+
+
+}
+
+/* =========================
+   CADASTRO
+========================= */
+
+.cadastro-page {
+
+    min-height: calc(100vh - 130px);
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    padding: 60px 20px;
+
+}
+
+
+.cadastro-container {
+
+    width: 100%;
+
+    max-width: 480px;
+
+    background: white;
+
+    border: 1px solid #e5e5e5;
+
+    border-radius: 14px;
+
+    padding: 40px;
+
+}
+
+
+.cadastro-header {
+
+    text-align: center;
+
+    margin-bottom: 30px;
+
+}
+
+
+.cadastro-icon {
+
+    font-size: 42px;
+
+    margin-bottom: 15px;
+
+}
+
+
+.cadastro-header h1 {
+
+    font-size: 30px;
+
+    margin-bottom: 10px;
+
+}
+
+
+.cadastro-header p {
+
+    color: #666;
+
+    line-height: 1.5;
+
+}
+
+
+/* FORMULÁRIO */
+
+.form-group {
+
+    margin-bottom: 20px;
+
+}
+
+
+.form-group label {
+
+    display: block;
+
+    font-weight: bold;
+
+    margin-bottom: 8px;
+
+    font-size: 14px;
+
+}
+
+
+.form-group input {
+
+    width: 100%;
+
+    padding: 13px 14px;
+
+    border: 1px solid #d5d5d5;
+
+    border-radius: 8px;
+
+    font-size: 15px;
+
+    outline: none;
+
+}
+
+
+.form-group input:focus {
+
+    border-color: #555;
+
+}
+
+
+.form-group small {
+
+    display: block;
+
+    margin-top: 6px;
+
+    color: #888;
+
+    font-size: 12px;
+
+}
+
+
+/* BOTÃO */
+
+.cadastro-button {
+
+    width: 100%;
+
+    padding: 14px;
+
+    border: none;
+
+    border-radius: 8px;
+
+    background: #222;
+
+    color: white;
+
+    font-size: 15px;
+
+    font-weight: bold;
+
+    cursor: pointer;
+
+}
+
+
+.cadastro-button:hover {
+
+    opacity: 0.9;
+
+}
+
+
+/* MENSAGEM */
+
+.mensagem-cadastro {
+
+    margin-top: 20px;
+
+    text-align: center;
+
+    font-size: 14px;
+
+}
+
+
+/* RODAPÉ DO CADASTRO */
+
+.cadastro-footer {
+
+    margin-top: 30px;
+
+    padding-top: 25px;
+
+    border-top: 1px solid #eee;
+
+    text-align: center;
+
+}
+
+
+.cadastro-footer p {
+
+    display: inline;
+
+    color: #666;
+
+}
+
+
+.cadastro-footer a {
+
+    margin-left: 5px;
+
+    color: #222;
+
+    font-weight: bold;
+
+    text-decoration: none;
+
+}
+
+.botao-cadastro {
+
+    padding: 10px 20px;
+
+    border-radius: 8px;
+
+    background: #222;
+
+    color: white;
+
+    text-decoration: none;
+
+    font-size: 14px;
+
+}
+
+/* =========================
+   LOGIN
+========================= */
+
+.login-page {
+
+    min-height: calc(100vh - 130px);
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    padding: 60px 20px;
+
+}
+
+
+.login-container {
+
+    width: 100%;
+
+    max-width: 480px;
+
+    background: white;
+
+    border: 1px solid #e5e5e5;
+
+    border-radius: 14px;
+
+    padding: 40px;
+
+}
+
+
+.login-header {
+
+    text-align: center;
+
+    margin-bottom: 30px;
+
+}
+
+
+.login-icon {
+
+    font-size: 42px;
+
+    margin-bottom: 15px;
+
+}
+
+
+.login-header h1 {
+
+    font-size: 30px;
+
+    margin-bottom: 10px;
+
+}
+
+
+.login-header p {
+
+    color: #666;
+
+    line-height: 1.5;
+
+}
+
+
+.login-button {
+
+    width: 100%;
+
+    padding: 14px;
+
+    border: none;
+
+    border-radius: 8px;
+
+    background: #222;
+
+    color: white;
+
+    font-size: 15px;
+
+    font-weight: bold;
+
+    cursor: pointer;
+
+}
+
+
+.login-button:hover {
+
+    opacity: 0.9;
+
+}
+
+
+.mensagem-login {
+
+    margin-top: 20px;
+
+    text-align: center;
+
+    font-size: 14px;
+
+}
+
+
+.login-footer {
+
+    margin-top: 30px;
+
+    padding-top: 25px;
+
+    border-top: 1px solid #eee;
+
+    text-align: center;
+
+}
+
+
+.login-footer p {
+
+    display: inline;
+
+    color: #666;
+
+}
+
+
+.login-footer a {
+
+    margin-left: 5px;
+
+    color: #222;
+
+    font-weight: bold;
+
+    text-decoration: none;
+
+
+    /* ==========================================
+   PÁGINA DE AUTENTICAÇÃO
+   ========================================== */
+
+.auth-container {
+    min-height: calc(100vh - 70px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 40px 20px;
+    background: #f5f7fb;
+}
+
+.auth-card {
+    width: 100%;
+    max-width: 450px;
+    background: white;
+    padding: 40px;
+    border-radius: 12px;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+}
+
+.auth-card h1 {
+    margin-top: 0;
+    margin-bottom: 10px;
+    font-size: 32px;
+}
+
+.auth-card > p {
+    color: #666;
+    margin-bottom: 30px;
+}
+
+.auth-card form {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.auth-card label {
+    font-weight: 600;
+    margin-top: 10px;
+}
+
+.auth-card input {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 12px 14px;
+    border: 1px solid #d5d9e0;
+    border-radius: 7px;
+    font-size: 15px;
+    outline: none;
+}
+
+.auth-card input:focus {
+    border-color: #555;
+}
+
+.auth-card button {
+    margin-top: 20px;
+    padding: 13px;
+    border: none;
+    border-radius: 7px;
+    background: #222;
+    color: white;
+    font-size: 15px;
+    cursor: pointer;
+}
+
+.auth-card button:hover {
+    background: #333;
+}
+
+#mensagem {
+    margin-top: 20px;
+    color: #555;
+    text-align: center;
+}
+
+.auth-link {
+    text-align: center;
+    margin-top: 25px;
+}
+
+.auth-link a {
+    color: #222;
+    font-weight: 600;
+}
+}
+
+/* =========================
+   AUTENTICAÇÃO
+========================= */
+
+.auth-container {
+    min-height: calc(100vh - 60px);
+
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+
+    padding: 60px 20px;
+
+    background: #f5f7fb;
+}
+
+
+.auth-card {
+    width: 100%;
+    max-width: 450px;
+
+    background: white;
+
+    padding: 40px;
+
+    border-radius: 12px;
+
+    border: 1px solid #e5e7eb;
+
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.05);
+}
+
+
+.auth-card h1 {
+    margin-top: 0;
+
+    margin-bottom: 10px;
+}
+
+
+.auth-description {
+    color: #64748b;
+
+    margin-bottom: 30px;
+}
+
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+
+.form-group label {
+    display: block;
+
+    margin-bottom: 7px;
+
+    font-weight: 600;
+}
+
+
+.form-group input {
+    width: 100%;
+
+    box-sizing: border-box;
+
+    padding: 12px 14px;
+
+    border: 1px solid #cbd5e1;
+
+    border-radius: 7px;
+
+    font-size: 15px;
+}
+
+
+.form-group input:focus {
+    outline: none;
+
+    border-color: #64748b;
+}
+
+
+.btn-primary {
+    width: 100%;
+
+    padding: 13px;
+
+    border: none;
+
+    border-radius: 7px;
+
+    background: #222;
+
+    color: white;
+
+    font-size: 15px;
+
+    cursor: pointer;
+}
+
+
+.btn-primary:hover {
+    background: #000;
+}
+
+
+.btn-primary:disabled {
+    opacity: 0.6;
+
+    cursor: not-allowed;
+}
+
+
+.auth-footer {
+    text-align: center;
+
+    margin-top: 25px;
+
+    color: #64748b;
+}
+
+
+.auth-footer a {
+    color: #222;
+
+    font-weight: 600;
+}
+
+
+.form-message {
+    margin-top: 18px;
+
+    font-size: 14px;
+
+    line-height: 1.5;
+}
+
+
+.form-message.success {
+    color: #15803d;
+}
+
+
+.form-message.error {
+    color: #dc2626;
+}

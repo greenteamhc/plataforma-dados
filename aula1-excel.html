@@ -1,0 +1,929 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Aula 1 - Fundamentos | Plataforma de Estudos</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <!-- Supabase -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+    <!-- Seu arquivo de configuração do Supabase -->
+    <script src="supabase.js"></script>
+
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, Helvetica, sans-serif;
+            background: #f5f7fb;
+            color: #222;
+        }
+
+        header {
+            background: white;
+            border-bottom: 1px solid #ddd;
+            padding: 18px 30px;
+        }
+
+        header .container {
+            max-width: 1100px;
+            margin: auto;
+        }
+
+        header h1 {
+            margin: 0 0 8px 0;
+            font-size: 22px;
+        }
+
+        header a {
+            color: #4b4b4b;
+            text-decoration: none;
+            margin-right: 15px;
+        }
+
+        header a:hover {
+            text-decoration: underline;
+        }
+
+        main {
+            max-width: 1100px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+
+        .breadcrumb {
+            color: #666;
+            font-size: 14px;
+            margin-bottom: 10px;
+        }
+
+        .titulo {
+            background: white;
+            border-radius: 12px;
+            padding: 30px;
+            margin-bottom: 30px;
+            border: 1px solid #ddd;
+        }
+
+        .titulo h2 {
+            margin-top: 0;
+            font-size: 32px;
+        }
+
+        .titulo p {
+            color: #666;
+            line-height: 1.6;
+        }
+
+        .topicos {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        .topico {
+            background: #f1f1f1;
+            border: 1px solid #ddd;
+            border-radius: 20px;
+            padding: 8px 14px;
+            font-size: 14px;
+        }
+
+        .secao {
+            margin-bottom: 35px;
+        }
+
+        .secao h3 {
+            font-size: 24px;
+            margin-bottom: 8px;
+        }
+
+        .secao-subtitulo {
+            color: #666;
+            margin-bottom: 20px;
+        }
+
+        .materiais {
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+        }
+
+        .material {
+            background: white;
+            border: 1px solid #ddd;
+            border-radius: 12px;
+            padding: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+        }
+
+        .material-info {
+            display: flex;
+            align-items: center;
+            gap: 18px;
+        }
+
+        .material-icone {
+            font-size: 28px;
+            width: 40px;
+            text-align: center;
+        }
+
+        .material h4 {
+            margin: 0 0 5px 0;
+            font-size: 17px;
+        }
+
+        .material p {
+            margin: 0;
+            color: #666;
+            font-size: 14px;
+        }
+
+        .botao-indisponivel {
+            background: #f1f1f1;
+            border: 1px solid #ddd;
+            color: #888;
+            padding: 9px 18px;
+            border-radius: 8px;
+            cursor: not-allowed;
+        }
+
+        .conclusao {
+            background: white;
+            border: 1px solid #ddd;
+            border-radius: 12px;
+            padding: 35px;
+            text-align: center;
+            margin-top: 40px;
+        }
+
+        .conclusao h3 {
+            margin-top: 0;
+            font-size: 24px;
+        }
+
+        .conclusao p {
+            color: #666;
+        }
+
+        #btnConcluir {
+            width: 100%;
+            max-width: 600px;
+            padding: 15px;
+            border: none;
+            border-radius: 8px;
+            background: #222;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+
+        #btnConcluir:hover {
+            background: #000;
+        }
+
+        #btnConcluir:disabled {
+            background: #888;
+            cursor: not-allowed;
+        }
+
+        #mensagem {
+            margin-top: 18px;
+            font-size: 14px;
+        }
+
+        .sucesso {
+            color: #168534;
+        }
+
+        .erro {
+            color: red;
+        }
+
+        .voltar {
+            margin-top: 30px;
+        }
+
+        .voltar a {
+            color: #222;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .voltar a:hover {
+            text-decoration: underline;
+        }
+
+        footer {
+            text-align: center;
+            color: #777;
+            padding: 30px;
+            margin-top: 50px;
+            border-top: 1px solid #ddd;
+        }
+
+        @media (max-width: 700px) {
+
+            main {
+                margin-top: 20px;
+            }
+
+            .material {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .material button {
+                width: 100%;
+            }
+
+            .titulo h2 {
+                font-size: 26px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <div class="container">
+
+            <h1>
+                <a href="index.html">
+                    Plataforma de Estudos
+                </a>
+            </h1>
+
+            <nav>
+                <a href="area-aluno.html">Meu espaço</a>
+                <a href="#" id="btnSair">Sair</a>
+            </nav>
+
+        </div>
+    </header>
+
+
+    <main>
+
+        <!-- CABEÇALHO DA AULA -->
+
+        <div class="breadcrumb">
+            TRILHA 1 — EXCEL
+        </div>
+
+        <section class="titulo">
+
+            <h2>
+                Aula 1 - Fundamentos
+            </h2>
+
+            <p>
+                Nesta aula, você aprenderá os fundamentos necessários
+                para começar a trabalhar com planilhas no Excel.
+            </p>
+
+            <div class="topicos">
+
+                <span class="topico">
+                    Estrutura de uma planilha
+                </span>
+
+                <span class="topico">
+                    Linhas, colunas e células
+                </span>
+
+                <span class="topico">
+                    Tipos de dados
+                </span>
+
+                <span class="topico">
+                    Referências
+                </span>
+
+                <span class="topico">
+                    Filtros e ordenação
+                </span>
+
+                <span class="topico">
+                    Formatação
+                </span>
+
+                <span class="topico">
+                    Tabelas
+                </span>
+
+            </div>
+
+        </section>
+
+
+        <!-- MATERIAIS -->
+
+        <section class="secao">
+
+            <h3>
+                Materiais da aula
+            </h3>
+
+            <p class="secao-subtitulo">
+                Acesse os materiais utilizados nesta aula.
+            </p>
+
+
+            <div class="materiais">
+
+
+                <!-- SLIDES -->
+
+                <div class="material">
+
+                    <div class="material-info">
+
+                        <div class="material-icone">
+                            📊
+                        </div>
+
+                        <div>
+
+                            <h4>
+                                Slides da aula
+                            </h4>
+
+                            <p>
+                                Apresentação utilizada durante a aula.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                    <button
+                        class="botao-indisponivel"
+                        disabled>
+                        Em breve
+                    </button>
+
+                </div>
+
+
+                <!-- MATERIAL DE APOIO -->
+
+                <div class="material">
+
+                    <div class="material-info">
+
+                        <div class="material-icone">
+                            📖
+                        </div>
+
+                        <div>
+
+                            <h4>
+                                Material de apoio
+                            </h4>
+
+                            <p>
+                                Livro ou material complementar para aprofundamento.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                    <button
+                        class="botao-indisponivel"
+                        disabled>
+                        Em breve
+                    </button>
+
+                </div>
+
+
+                <!-- VIDEO -->
+
+                <div class="material">
+
+                    <div class="material-info">
+
+                        <div class="material-icone">
+                            🎥
+                        </div>
+
+                        <div>
+
+                            <h4>
+                                Videoaula
+                            </h4>
+
+                            <p>
+                                Vídeo complementar para acompanhar o conteúdo.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                    <button
+                        class="botao-indisponivel"
+                        disabled>
+                        Em breve
+                    </button>
+
+                </div>
+
+
+                <!-- ARQUIVO EXCEL -->
+
+                <div class="material">
+
+                    <div class="material-info">
+
+                        <div class="material-icone">
+                            📁
+                        </div>
+
+                        <div>
+
+                            <h4>
+                                Arquivo Excel
+                            </h4>
+
+                            <p>
+                                Arquivo utilizado para acompanhar os exemplos
+                                e realizar as atividades.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                    <button
+                        class="botao-indisponivel"
+                        disabled>
+                        Em breve
+                    </button>
+
+                </div>
+
+
+                <!-- EXERCÍCIOS -->
+
+                <div class="material">
+
+                    <div class="material-info">
+
+                        <div class="material-icone">
+                            📝
+                        </div>
+
+                        <div>
+
+                            <h4>
+                                Exercícios
+                            </h4>
+
+                            <p>
+                                Exercícios para praticar o conteúdo aprendido.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                    <button
+                        class="botao-indisponivel"
+                        disabled>
+                        Em breve
+                    </button>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- CONCLUSÃO -->
+
+        <section class="conclusao">
+
+            <h3>
+                Terminou a aula?
+            </h3>
+
+            <p>
+                Depois de estudar os materiais e realizar as atividades,
+                marque a aula como concluída.
+            </p>
+
+            <button id="btnConcluir">
+                ✓ Marcar aula como concluída
+            </button>
+
+            <div id="mensagem"></div>
+
+        </section>
+
+
+        <!-- VOLTAR -->
+
+        <div class="voltar">
+
+            <a href="excel.html">
+                ← Voltar para a trilha de Excel
+            </a>
+
+        </div>
+
+    </main>
+
+
+    <footer>
+
+        © 2026 Plataforma de Estudos
+
+    </footer>
+
+
+    <script>
+
+        // =====================================================
+        // CONFIGURAÇÃO
+        // =====================================================
+
+        const LESSON_ID = "aula1-excel";
+
+
+        // =====================================================
+        // ELEMENTOS
+        // =====================================================
+
+        const btnConcluir =
+            document.getElementById("btnConcluir");
+
+        const mensagem =
+            document.getElementById("mensagem");
+
+        const btnSair =
+            document.getElementById("btnSair");
+
+
+        // =====================================================
+        // VERIFICAR LOGIN
+        // =====================================================
+
+        async function verificarLogin() {
+
+            const {
+                data,
+                error
+            } = await supabaseClient.auth.getSession();
+
+
+            if (error) {
+
+                console.error(
+                    "Erro ao verificar sessão:",
+                    error
+                );
+
+                mostrarErro(
+                    "Não foi possível verificar seu login."
+                );
+
+                return null;
+            }
+
+
+            const session = data.session;
+
+
+            if (!session) {
+
+                window.location.href = "login.html";
+
+                return null;
+            }
+
+
+            return session.user;
+        }
+
+
+        // =====================================================
+        // VERIFICAR SE A AULA JÁ FOI CONCLUÍDA
+        // =====================================================
+
+        async function verificarProgresso(user) {
+
+            const {
+                data,
+                error
+            } = await supabaseClient
+                .from("progress")
+                .select("completed")
+                .eq("user_id", user.id)
+                .eq("lesson_id", LESSON_ID)
+                .maybeSingle();
+
+
+            if (error) {
+
+                console.error(
+                    "Erro ao consultar progresso:",
+                    error
+                );
+
+                /*
+                 * Não vamos bloquear a página caso a consulta
+                 * tenha algum problema.
+                 */
+
+                return;
+            }
+
+
+            if (data && data.completed === true) {
+
+                aulaConcluida();
+
+            }
+
+        }
+
+
+        // =====================================================
+        // MARCAR AULA COMO CONCLUÍDA
+        // =====================================================
+
+        async function marcarComoConcluida() {
+
+            btnConcluir.disabled = true;
+
+            btnConcluir.textContent =
+                "Salvando...";
+
+            limparMensagem();
+
+
+            // Pegar usuário logado
+
+            const {
+                data: sessionData,
+                error: sessionError
+            } = await supabaseClient.auth.getSession();
+
+
+            if (sessionError) {
+
+                console.error(sessionError);
+
+                mostrarErro(
+                    "Não foi possível verificar seu login."
+                );
+
+                btnConcluir.disabled = false;
+
+                btnConcluir.textContent =
+                    "✓ Marcar aula como concluída";
+
+                return;
+            }
+
+
+            const session =
+                sessionData.session;
+
+
+            if (!session) {
+
+                window.location.href =
+                    "login.html";
+
+                return;
+            }
+
+
+            const user =
+                session.user;
+
+
+            // =================================================
+            // SALVAR NO BANCO
+            // =================================================
+
+            const {
+                data,
+                error
+            } = await supabaseClient
+                .from("progress")
+                .upsert(
+                    {
+                        user_id: user.id,
+                        lesson_id: LESSON_ID,
+                        completed: true,
+                        completed_at: new Date().toISOString(),
+                        updated_at: new Date().toISOString()
+                    },
+                    {
+                        onConflict:
+                            "user_id,lesson_id"
+                    }
+                )
+                .select();
+
+
+            // =================================================
+            // TRATAR ERRO
+            // =================================================
+
+            if (error) {
+
+                console.error(
+                    "Erro completo ao salvar progresso:",
+                    error
+                );
+
+                console.error(
+                    "Mensagem:",
+                    error.message
+                );
+
+                console.error(
+                    "Detalhes:",
+                    error.details
+                );
+
+                console.error(
+                    "Hint:",
+                    error.hint
+                );
+
+
+                mostrarErro(
+                    "Não foi possível salvar o progresso: "
+                    + error.message
+                );
+
+
+                btnConcluir.disabled = false;
+
+                btnConcluir.textContent =
+                    "✓ Marcar aula como concluída";
+
+                return;
+            }
+
+
+            // =================================================
+            // SUCESSO
+            // =================================================
+
+            console.log(
+                "Progresso salvo:",
+                data
+            );
+
+
+            aulaConcluida();
+
+        }
+
+
+        // =====================================================
+        // MOSTRAR AULA CONCLUÍDA
+        // =====================================================
+
+        function aulaConcluida() {
+
+            btnConcluir.disabled = true;
+
+            btnConcluir.textContent =
+                "✓ Aula concluída";
+
+            btnConcluir.style.background =
+                "#777";
+
+
+            mensagem.textContent =
+                "Aula concluída e progresso salvo!";
+
+            mensagem.className =
+                "sucesso";
+
+        }
+
+
+        // =====================================================
+        // MENSAGENS
+        // =====================================================
+
+        function mostrarErro(texto) {
+
+            mensagem.textContent =
+                texto;
+
+            mensagem.className =
+                "erro";
+
+        }
+
+
+        function limparMensagem() {
+
+            mensagem.textContent = "";
+
+            mensagem.className = "";
+
+        }
+
+
+        // =====================================================
+        // SAIR
+        // =====================================================
+
+        btnSair.addEventListener(
+            "click",
+            async function(event) {
+
+                event.preventDefault();
+
+
+                const {
+                    error
+                } = await supabaseClient.auth.signOut();
+
+
+                if (error) {
+
+                    console.error(
+                        "Erro ao sair:",
+                        error
+                    );
+
+                    return;
+                }
+
+
+                window.location.href =
+                    "login.html";
+
+            }
+        );
+
+
+        // =====================================================
+        // BOTÃO CONCLUIR
+        // =====================================================
+
+        btnConcluir.addEventListener(
+            "click",
+            marcarComoConcluida
+        );
+
+
+        // =====================================================
+        // INICIALIZAÇÃO
+        // =====================================================
+
+        async function iniciarPagina() {
+
+            const user =
+                await verificarLogin();
+
+
+            if (!user) {
+
+                return;
+            }
+
+
+            console.log(
+                "Aluno logado:",
+                user.email
+            );
+
+
+            await verificarProgresso(user);
+
+        }
+
+
+        iniciarPagina();
+
+    </script>
+
+</body>
+
+</html>

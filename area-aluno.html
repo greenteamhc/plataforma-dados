@@ -1,0 +1,744 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0">
+
+    <title>Área do Aluno - Plataforma de Estudos</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+
+        /* =========================
+           PÁGINA
+        ========================= */
+
+        .student-page {
+            padding: 40px 20px 60px;
+        }
+
+        .student-container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+
+        /* =========================
+           CABEÇALHO
+        ========================= */
+
+        .welcome {
+            margin-bottom: 35px;
+        }
+
+        .welcome h1 {
+            font-size: 32px;
+            margin-bottom: 8px;
+        }
+
+        .welcome p {
+            color: #666;
+            font-size: 16px;
+        }
+
+
+        /* =========================
+           TRILHAS
+        ========================= */
+
+        .section-title {
+            margin-bottom: 20px;
+        }
+
+        .track-card {
+            background: white;
+            border: 1px solid #ddd;
+            border-radius: 12px;
+            padding: 25px;
+            margin-bottom: 20px;
+        }
+
+        .track-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 20px;
+        }
+
+        .track-header h3 {
+            margin: 0 0 8px;
+            font-size: 22px;
+        }
+
+        .track-header p {
+            margin: 0;
+            color: #666;
+        }
+
+        .status {
+            font-size: 13px;
+            font-weight: bold;
+            padding: 7px 12px;
+            border-radius: 20px;
+            background: #eee;
+            white-space: nowrap;
+        }
+
+
+        /* =========================
+           PROGRESSO
+        ========================= */
+
+        .progress-area {
+            margin-top: 25px;
+        }
+
+        .progress-info {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 8px;
+            font-size: 14px;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 12px;
+            background: #e5e5e5;
+            border-radius: 20px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            width: 0%;
+            background: #222;
+            border-radius: 20px;
+            transition: width 0.4s ease;
+        }
+
+
+        /* =========================
+           AULAS
+        ========================= */
+
+        .lessons {
+            margin-top: 25px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .lesson-item {
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 14px 16px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 15px;
+        }
+
+        .lesson-name {
+            font-weight: 600;
+        }
+
+        .lesson-status {
+            font-size: 14px;
+        }
+
+        .completed {
+            color: green;
+            font-weight: bold;
+        }
+
+        .not-completed {
+            color: #777;
+        }
+
+
+        /* =========================
+           BOTÃO
+        ========================= */
+
+        .track-button {
+            display: inline-block;
+            margin-top: 20px;
+            background: #222;
+            color: white;
+            text-decoration: none;
+            padding: 11px 18px;
+            border-radius: 7px;
+            font-size: 14px;
+        }
+
+        .track-button:hover {
+            background: #000;
+        }
+
+
+        /* =========================
+           EM BREVE
+        ========================= */
+
+        .coming-soon {
+            background: #f5f5f5;
+            border: 1px solid #ddd;
+            border-radius: 12px;
+            padding: 25px;
+            margin-top: 20px;
+        }
+
+        .coming-soon h3 {
+            margin-bottom: 8px;
+        }
+
+        .coming-soon p {
+            color: #666;
+            margin: 0;
+        }
+
+
+        /* =========================
+           RESPONSIVO
+        ========================= */
+
+        @media (max-width: 700px) {
+
+            .track-header {
+                flex-direction: column;
+            }
+
+            .lesson-item {
+                align-items: flex-start;
+                flex-direction: column;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <!-- =========================
+         CABEÇALHO
+    ========================= -->
+
+    <header class="navbar">
+
+        <div class="container navbar-content">
+
+            <a
+                href="index.html"
+                class="logo">
+
+                Plataforma de Estudos
+
+            </a>
+
+
+            <nav>
+
+                <a href="area-aluno.html">
+                    Área do Aluno
+                </a>
+
+                <a
+                    href="#"
+                    id="logoutButton">
+
+                    Sair
+
+                </a>
+
+            </nav>
+
+        </div>
+
+    </header>
+
+
+
+    <!-- =========================
+         CONTEÚDO
+    ========================= -->
+
+    <main class="student-page">
+
+        <div class="student-container">
+
+
+            <!-- BOAS-VINDAS -->
+
+            <section class="welcome">
+
+                <h1 id="welcomeMessage">
+                    Olá, Aluno! 👋
+                </h1>
+
+                <p>
+                    Continue seus estudos de onde parou.
+                </p>
+
+            </section>
+
+
+
+            <!-- TRILHAS -->
+
+            <h2 class="section-title">
+                Minhas trilhas
+            </h2>
+
+
+
+            <!-- =========================
+                 EXCEL
+            ========================= -->
+
+            <section class="track-card">
+
+
+                <div class="track-header">
+
+                    <div>
+
+                        <h3>
+                            Trilha 1 — Excel
+                        </h3>
+
+                        <p>
+                            Aprenda os fundamentos do Excel,
+                            funções, tabelas dinâmicas e gráficos.
+                        </p>
+
+                    </div>
+
+
+                    <span class="status">
+                        Disponível
+                    </span>
+
+                </div>
+
+
+
+                <!-- PROGRESSO -->
+
+                <div class="progress-area">
+
+                    <div class="progress-info">
+
+                        <span>
+                            Progresso
+                        </span>
+
+                        <strong id="progressText">
+                            0%
+                        </strong>
+
+                    </div>
+
+
+                    <div class="progress-bar">
+
+                        <div
+                            id="progressFill"
+                            class="progress-fill">
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- AULAS -->
+
+                <div class="lessons">
+
+
+                    <!-- AULA 1 -->
+
+                    <div class="lesson-item">
+
+                        <span class="lesson-name">
+
+                            Aula 1 — Fundamentos
+
+                        </span>
+
+                        <span
+                            id="lesson1Status"
+                            class="lesson-status not-completed">
+
+                            Não concluída
+
+                        </span>
+
+                    </div>
+
+
+                    <!-- AULA 2 -->
+
+                    <div class="lesson-item">
+
+                        <span class="lesson-name">
+
+                            Aula 2 — Funções
+
+                        </span>
+
+                        <span class="lesson-status not-completed">
+
+                            Em breve
+
+                        </span>
+
+                    </div>
+
+
+                    <!-- AULA 3 -->
+
+                    <div class="lesson-item">
+
+                        <span class="lesson-name">
+
+                            Aula 3 — Tabela dinâmica + gráficos
+
+                        </span>
+
+                        <span class="lesson-status not-completed">
+
+                            Em breve
+
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+
+                <a
+                    href="excel.html"
+                    class="track-button">
+
+                    Acessar trilha
+
+                </a>
+
+
+            </section>
+
+
+
+            <!-- =========================
+                 PYTHON
+            ========================= -->
+
+            <section class="coming-soon">
+
+                <h3>
+                    Trilha 2 — Python
+                </h3>
+
+                <p>
+                    Conteúdo em preparação.
+                </p>
+
+            </section>
+
+
+
+            <!-- =========================
+                 SQL
+            ========================= -->
+
+            <section class="coming-soon">
+
+                <h3>
+                    Trilha 3 — SQL
+                </h3>
+
+                <p>
+                    Conteúdo em preparação.
+                </p>
+
+            </section>
+
+
+        </div>
+
+    </main>
+
+
+
+    <!-- =========================
+         SUPABASE
+    ========================= -->
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+    <script src="supabase.js"></script>
+
+
+
+    <!-- =========================
+         JAVASCRIPT
+    ========================= -->
+
+    <script>
+
+        const welcomeMessage =
+            document.getElementById("welcomeMessage");
+
+        const progressText =
+            document.getElementById("progressText");
+
+        const progressFill =
+            document.getElementById("progressFill");
+
+        const lesson1Status =
+            document.getElementById("lesson1Status");
+
+        const logoutButton =
+            document.getElementById("logoutButton");
+
+
+        /*
+         * Quantidade total de aulas
+         * atualmente previstas na trilha Excel.
+         */
+
+        const totalLessons = 3;
+
+
+        /*
+         * Carregar informações do aluno
+         */
+
+        async function carregarAreaDoAluno() {
+
+            try {
+
+                /*
+                 * Verificar usuário logado
+                 */
+
+                const {
+                    data: {
+                        user
+                    },
+                    error: userError
+                } = await supabaseClient.auth.getUser();
+
+
+                if (userError) {
+                    throw userError;
+                }
+
+
+                /*
+                 * Se não estiver logado,
+                 * volta para o login.
+                 */
+
+                if (!user) {
+
+                    window.location.href =
+                        "login.html";
+
+                    return;
+
+                }
+
+
+                /*
+                 * Buscar informações do aluno
+                 */
+
+                const {
+                    data: profile,
+                    error: profileError
+                } = await supabaseClient
+                    .from("profiles")
+                    .select("nome")
+                    .eq("id", user.id)
+                    .maybeSingle();
+
+
+                if (profileError) {
+                    throw profileError;
+                }
+
+
+                /*
+                 * Mostrar nome
+                 */
+
+                if (profile && profile.nome) {
+
+                    welcomeMessage.textContent =
+                        "Olá, "
+                        + profile.nome
+                        + "! 👋";
+
+                }
+
+
+                /*
+                 * Buscar aulas concluídas
+                 */
+
+                const {
+                    data: progresso,
+                    error: progressoError
+                } = await supabaseClient
+                    .from("progresso")
+                    .select("lesson_id, completed")
+                    .eq("user_id", user.id)
+                    .eq("completed", true);
+
+
+                if (progressoError) {
+                    throw progressoError;
+                }
+
+
+                /*
+                 * Quantidade de aulas concluídas
+                 */
+
+                const completedLessons =
+                    progresso
+                        ? progresso.length
+                        : 0;
+
+
+                /*
+                 * Calcular porcentagem
+                 */
+
+                const percentage =
+                    Math.round(
+                        (completedLessons / totalLessons) * 100
+                    );
+
+
+                /*
+                 * Atualizar texto
+                 */
+
+                progressText.textContent =
+                    percentage + "%";
+
+
+                /*
+                 * Atualizar barra
+                 */
+
+                progressFill.style.width =
+                    percentage + "%";
+
+
+                /*
+                 * Verificar especificamente
+                 * a Aula 1.
+                 */
+
+                const aula1Concluida =
+                    progresso &&
+                    progresso.some(
+                        item =>
+                            item.lesson_id === "aula1-excel"
+                    );
+
+
+                if (aula1Concluida) {
+
+                    lesson1Status.textContent =
+                        "✓ Concluída";
+
+                    lesson1Status.className =
+                        "lesson-status completed";
+
+                } else {
+
+                    lesson1Status.textContent =
+                        "Não concluída";
+
+                    lesson1Status.className =
+                        "lesson-status not-completed";
+
+                }
+
+
+            } catch (error) {
+
+                console.error(
+                    "Erro ao carregar área do aluno:",
+                    error
+                );
+
+            }
+
+        }
+
+
+
+        /*
+         * Sair da conta
+         */
+
+        logoutButton.addEventListener(
+            "click",
+            async function(event) {
+
+                event.preventDefault();
+
+                const {
+                    error
+                } = await supabaseClient.auth.signOut();
+
+
+                if (error) {
+
+                    console.error(
+                        "Erro ao sair:",
+                        error
+                    );
+
+                    return;
+
+                }
+
+
+                window.location.href =
+                    "login.html";
+
+            }
+        );
+
+
+
+        /*
+         * Executar ao abrir a página
+         */
+
+        carregarAreaDoAluno();
+
+    </script>
+
+</body>
+
+</html>
