@@ -1,3 +1,4 @@
+```html
 <!DOCTYPE html>
 <html lang="pt-BR">
 
@@ -7,216 +8,625 @@
 
     <meta
         name="viewport"
-        content="width=device-width, initial-scale=1.0">
+        content="width=device-width, initial-scale=1.0"
+    >
 
-    <title>Área do Aluno - Plataforma de Estudos</title>
+    <title>Meu Espaço | Plataforma de Estudos</title>
 
     <link rel="stylesheet" href="style.css">
 
+    <!-- Supabase -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="supabase.js"></script>
+
     <style>
 
-        /* =========================
-           PÁGINA
-        ========================= */
+        /* =====================================================
+           CONFIGURAÇÃO GERAL
+        ===================================================== */
 
-        .student-page {
-            padding: 40px 20px 60px;
+        * {
+            box-sizing: border-box;
         }
 
-        .student-container {
-            max-width: 1000px;
-            margin: 0 auto;
+        body {
+            margin: 0;
+
+            font-family:
+                Arial,
+                Helvetica,
+                sans-serif;
+
+            background: #F5F8FC;
+
+            color: #07111F;
         }
 
 
-        /* =========================
+        /* =====================================================
            CABEÇALHO
-        ========================= */
+        ===================================================== */
 
-        .welcome {
-            margin-bottom: 35px;
+        header {
+            background: #07111F;
+
+            border-bottom:
+                1px solid #15263A;
+
+            padding: 18px 30px;
+
+            box-shadow:
+                0 2px 10px rgba(7, 17, 31, 0.08);
         }
 
-        .welcome h1 {
-            font-size: 32px;
-            margin-bottom: 8px;
+        header .container {
+            max-width: 1100px;
+
+            margin: auto;
+
+            display: flex;
+
+            justify-content: space-between;
+
+            align-items: center;
+
+            gap: 20px;
         }
 
-        .welcome p {
-            color: #666;
+        header h1 {
+            margin: 0;
+
+            font-size: 22px;
+        }
+
+        header h1 a {
+            color: #FFFFFF;
+
+            text-decoration: none;
+
+            transition: 0.2s;
+        }
+
+        header h1 a:hover {
+            color: #00A86B;
+        }
+
+        nav {
+            display: flex;
+
+            align-items: center;
+
+            gap: 20px;
+        }
+
+        nav a {
+            color: #CBD5E1;
+
+            text-decoration: none;
+
+            font-size: 14px;
+
+            transition: 0.2s;
+        }
+
+        nav a:hover {
+            color: #FFFFFF;
+        }
+
+        #btnSair {
+            color: #FFFFFF;
+
+            background: rgba(255, 255, 255, 0.08);
+
+            border:
+                1px solid rgba(255, 255, 255, 0.12);
+
+            padding: 8px 14px;
+
+            border-radius: 7px;
+        }
+
+        #btnSair:hover {
+            background: rgba(255, 255, 255, 0.15);
+
+            color: #FFFFFF;
+        }
+
+
+        /* =====================================================
+           CONTEÚDO PRINCIPAL
+        ===================================================== */
+
+        main {
+            max-width: 1100px;
+
+            margin: 40px auto;
+
+            padding: 0 20px;
+        }
+
+
+        /* =====================================================
+           CARREGANDO
+        ===================================================== */
+
+        #carregando {
+            text-align: center;
+
+            padding: 60px 20px;
+
+            color: #64748B;
+
             font-size: 16px;
         }
 
 
-        /* =========================
+        /* =====================================================
+           ERRO
+        ===================================================== */
+
+        #erro {
+            display: none;
+
+            background: #FFF1F2;
+
+            border:
+                1px solid #FECDD3;
+
+            color: #B00020;
+
+            padding: 15px 18px;
+
+            border-radius: 10px;
+
+            margin-bottom: 20px;
+        }
+
+
+        /* =====================================================
+           BOAS-VINDAS
+        ===================================================== */
+
+        .boas-vindas {
+            position: relative;
+
+            overflow: hidden;
+
+            background: #FFFFFF;
+
+            border:
+                1px solid #DCE4EE;
+
+            border-radius: 16px;
+
+            padding: 32px;
+
+            margin-bottom: 32px;
+
+            box-shadow:
+                0 5px 20px
+                rgba(7, 17, 31, 0.06);
+        }
+
+        .boas-vindas::before {
+            content: "";
+
+            position: absolute;
+
+            left: 0;
+
+            top: 0;
+
+            width: 5px;
+
+            height: 100%;
+
+            background: #007BFF;
+        }
+
+        .boas-vindas h2 {
+            margin: 0 0 8px 0;
+
+            font-size: 30px;
+
+            color: #07111F;
+        }
+
+        .boas-vindas p {
+            margin: 0;
+
+            color: #64748B;
+
+            font-size: 16px;
+        }
+
+
+        /* =====================================================
+           SEÇÃO
+        ===================================================== */
+
+        .secao h3 {
+            font-size: 24px;
+
+            margin:
+                0 0 20px 0;
+
+            color: #07111F;
+        }
+
+
+        /* =====================================================
            TRILHAS
-        ========================= */
+        ===================================================== */
 
-        .section-title {
+        .trilha {
+            background: #FFFFFF;
+
+            border:
+                1px solid #DCE4EE;
+
+            border-radius: 14px;
+
+            padding: 26px;
+
             margin-bottom: 20px;
+
+            box-shadow:
+                0 4px 15px
+                rgba(7, 17, 31, 0.04);
+
+            transition:
+                transform 0.2s,
+                box-shadow 0.2s;
         }
 
-        .track-card {
-            background: white;
-            border: 1px solid #ddd;
-            border-radius: 12px;
-            padding: 25px;
-            margin-bottom: 20px;
+        .trilha:not(.em-breve):hover {
+            transform: translateY(-2px);
+
+            box-shadow:
+                0 7px 22px
+                rgba(7, 17, 31, 0.08);
         }
 
-        .track-header {
+        .trilha-cabecalho {
             display: flex;
+
             justify-content: space-between;
-            align-items: flex-start;
+
+            align-items: center;
+
             gap: 20px;
         }
 
-        .track-header h3 {
-            margin: 0 0 8px;
-            font-size: 22px;
+        .trilha h4 {
+            margin: 0 0 8px 0;
+
+            font-size: 21px;
+
+            color: #07111F;
         }
 
-        .track-header p {
+        .trilha-descricao {
             margin: 0;
-            color: #666;
+
+            color: #64748B;
+
+            line-height: 1.5;
         }
 
-        .status {
-            font-size: 13px;
+        .porcentagem {
+            font-size: 24px;
+
             font-weight: bold;
-            padding: 7px 12px;
-            border-radius: 20px;
-            background: #eee;
-            white-space: nowrap;
+
+            color: #007BFF;
+
+            min-width: 70px;
+
+            text-align: right;
         }
 
 
-        /* =========================
-           PROGRESSO
-        ========================= */
+        /* =====================================================
+           BARRA DE PROGRESSO
+        ===================================================== */
 
-        .progress-area {
-            margin-top: 25px;
+        .barra-container {
+            margin-top: 22px;
         }
 
-        .progress-info {
-            display: flex;
-            justify-content: space-between;
-            margin-bottom: 8px;
-            font-size: 14px;
-        }
-
-        .progress-bar {
+        .barra-fundo {
             width: 100%;
+
             height: 12px;
-            background: #e5e5e5;
+
+            background: #E8EEF5;
+
             border-radius: 20px;
+
             overflow: hidden;
         }
 
-        .progress-fill {
+        .barra-progresso {
             height: 100%;
+
             width: 0%;
-            background: #222;
+
+            background: #00A86B;
+
             border-radius: 20px;
-            transition: width 0.4s ease;
+
+            transition:
+                width 0.5s ease;
+        }
+
+        .texto-progresso {
+            margin-top: 9px;
+
+            font-size: 14px;
+
+            color: #64748B;
         }
 
 
-        /* =========================
+        /* =====================================================
            AULAS
-        ========================= */
+        ===================================================== */
 
-        .lessons {
+        .aulas {
             margin-top: 25px;
+
             display: flex;
+
             flex-direction: column;
+
             gap: 10px;
         }
 
-        .lesson-item {
-            border: 1px solid #ddd;
-            border-radius: 8px;
-            padding: 14px 16px;
+        .aula {
             display: flex;
-            align-items: center;
+
             justify-content: space-between;
-            gap: 15px;
+
+            align-items: center;
+
+            padding: 16px;
+
+            border:
+                1px solid #DCE4EE;
+
+            border-radius: 10px;
+
+            background: #F8FAFC;
+
+            transition:
+                background 0.2s,
+                border-color 0.2s;
         }
 
-        .lesson-name {
-            font-weight: 600;
+        .aula:hover {
+            background: #F1F7FF;
+
+            border-color: #B9DBFF;
         }
 
-        .lesson-status {
+        .aula-info {
+            display: flex;
+
+            align-items: center;
+
+            gap: 13px;
+        }
+
+
+        /* =====================================================
+           STATUS
+        ===================================================== */
+
+        .status {
+            width: 30px;
+
+            height: 30px;
+
+            flex-shrink: 0;
+
+            border-radius: 50%;
+
+            display: flex;
+
+            justify-content: center;
+
+            align-items: center;
+
             font-size: 14px;
-        }
 
-        .completed {
-            color: green;
             font-weight: bold;
         }
 
-        .not-completed {
-            color: #777;
+        .status.concluida {
+            background: #00A86B;
+
+            color: #FFFFFF;
+
+            box-shadow:
+                0 2px 7px
+                rgba(0, 168, 107, 0.25);
+        }
+
+        .status.pendente {
+            background: #E8EEF5;
+
+            color: #94A3B8;
         }
 
 
-        /* =========================
-           BOTÃO
-        ========================= */
+        /* =====================================================
+           NOME DA AULA
+        ===================================================== */
 
-        .track-button {
-            display: inline-block;
-            margin-top: 20px;
-            background: #222;
-            color: white;
-            text-decoration: none;
-            padding: 11px 18px;
+        .aula-nome {
+            font-weight: bold;
+
+            color: #07111F;
+
+            margin-bottom: 4px;
+        }
+
+        .aula-status {
+            font-size: 13px;
+
+            color: #64748B;
+        }
+
+
+        /* =====================================================
+           BOTÃO DA AULA
+        ===================================================== */
+
+        .botao-aula {
+            background: #007BFF;
+
+            color: #FFFFFF;
+
+            border: none;
+
+            padding: 9px 16px;
+
             border-radius: 7px;
+
+            text-decoration: none;
+
             font-size: 14px;
+
+            font-weight: bold;
+
+            transition:
+                background 0.2s,
+                transform 0.2s;
         }
 
-        .track-button:hover {
-            background: #000;
-        }
+        .botao-aula:hover {
+            background: #0069D9;
 
-
-        /* =========================
-           EM BREVE
-        ========================= */
-
-        .coming-soon {
-            background: #f5f5f5;
-            border: 1px solid #ddd;
-            border-radius: 12px;
-            padding: 25px;
-            margin-top: 20px;
-        }
-
-        .coming-soon h3 {
-            margin-bottom: 8px;
-        }
-
-        .coming-soon p {
-            color: #666;
-            margin: 0;
+            transform: translateY(-1px);
         }
 
 
-        /* =========================
+        /* =====================================================
+           TRILHAS FUTURAS
+        ===================================================== */
+
+        .em-breve {
+            background: #F8FAFC;
+
+            border:
+                1px dashed #CBD5E1;
+
+            box-shadow: none;
+        }
+
+        .em-breve h4 {
+            color: #475569;
+        }
+
+        .botao-desativado {
+            background: #E2E8F0;
+
+            color: #94A3B8;
+
+            border: none;
+
+            padding: 9px 16px;
+
+            border-radius: 7px;
+
+            font-size: 14px;
+
+            cursor: not-allowed;
+        }
+
+
+        /* =====================================================
+           FOOTER
+        ===================================================== */
+
+        footer {
+            text-align: center;
+
+            color: #64748B;
+
+            padding: 30px;
+
+            margin-top: 50px;
+
+            border-top:
+                1px solid #DCE4EE;
+        }
+
+
+        /* =====================================================
            RESPONSIVO
-        ========================= */
+        ===================================================== */
 
         @media (max-width: 700px) {
 
-            .track-header {
-                flex-direction: column;
+            header {
+                padding: 18px 20px;
             }
 
-            .lesson-item {
-                align-items: flex-start;
+            header .container {
                 flex-direction: column;
+
+                align-items: flex-start;
+            }
+
+            nav {
+                width: 100%;
+
+                justify-content: space-between;
+            }
+
+            main {
+                margin-top: 20px;
+            }
+
+            .boas-vindas {
+                padding: 25px;
+            }
+
+            .boas-vindas h2 {
+                font-size: 25px;
+            }
+
+            .trilha {
+                padding: 20px;
+            }
+
+            .trilha-cabecalho {
+                flex-direction: column;
+
+                align-items: flex-start;
+            }
+
+            .porcentagem {
+                text-align: left;
+            }
+
+            .aula {
+                flex-direction: column;
+
+                align-items: flex-start;
+
+                gap: 13px;
+            }
+
+            .botao-aula,
+            .botao-desativado {
+                width: 100%;
+
+                text-align: center;
+
+                display: block;
             }
 
         }
@@ -229,35 +639,28 @@
 <body>
 
 
-    <!-- =========================
+    <!-- =====================================================
          CABEÇALHO
-    ========================= -->
+    ===================================================== -->
 
-    <header class="navbar">
+    <header>
 
-        <div class="container navbar-content">
+        <div class="container">
 
-            <a
-                href="index.html"
-                class="logo">
-
-                Plataforma de Estudos
-
-            </a>
-
+            <h1>
+                <a href="index.html">
+                    Plataforma de Estudos
+                </a>
+            </h1>
 
             <nav>
 
                 <a href="area-aluno.html">
-                    Área do Aluno
+                    Meu espaço
                 </a>
 
-                <a
-                    href="#"
-                    id="logoutButton">
-
+                <a href="#" id="btnSair">
                     Sair
-
                 </a>
 
             </nav>
@@ -267,23 +670,31 @@
     </header>
 
 
-
-    <!-- =========================
+    <!-- =====================================================
          CONTEÚDO
-    ========================= -->
+    ===================================================== -->
 
-    <main class="student-page">
+    <main>
 
-        <div class="student-container">
+        <div id="carregando">
+            Carregando seu espaço...
+        </div>
+
+        <div id="erro"></div>
 
 
-            <!-- BOAS-VINDAS -->
+        <div id="conteudo" style="display: none;">
 
-            <section class="welcome">
 
-                <h1 id="welcomeMessage">
+            <!-- =================================================
+                 BOAS-VINDAS
+            ================================================= -->
+
+            <section class="boas-vindas">
+
+                <h2>
                     Olá, Aluno! 👋
-                </h1>
+                </h2>
 
                 <p>
                     Continue seus estudos de onde parou.
@@ -292,402 +703,637 @@
             </section>
 
 
+            <!-- =================================================
+                 TRILHAS
+            ================================================= -->
 
-            <!-- TRILHAS -->
+            <section class="secao">
 
-            <h2 class="section-title">
-                Minhas trilhas
-            </h2>
-
-
-
-            <!-- =========================
-                 EXCEL
-            ========================= -->
-
-            <section class="track-card">
+                <h3>
+                    Minhas trilhas
+                </h3>
 
 
-                <div class="track-header">
+                <!-- =================================================
+                     EXCEL
+                ================================================= -->
 
-                    <div>
+                <div class="trilha">
 
-                        <h3>
-                            Trilha 1 — Excel
-                        </h3>
+                    <div class="trilha-cabecalho">
 
-                        <p>
-                            Aprenda os fundamentos do Excel,
-                            funções, tabelas dinâmicas e gráficos.
-                        </p>
+                        <div>
 
-                    </div>
+                            <h4>
+                                Trilha 1 — Excel
+                            </h4>
 
+                            <p class="trilha-descricao">
+                                Aprenda os fundamentos do Excel,
+                                funções, tabelas dinâmicas e gráficos.
+                            </p>
 
-                    <span class="status">
-                        Disponível
-                    </span>
-
-                </div>
-
-
-
-                <!-- PROGRESSO -->
-
-                <div class="progress-area">
-
-                    <div class="progress-info">
-
-                        <span>
-                            Progresso
-                        </span>
-
-                        <strong id="progressText">
-                            0%
-                        </strong>
-
-                    </div>
-
-
-                    <div class="progress-bar">
+                        </div>
 
                         <div
-                            id="progressFill"
-                            class="progress-fill">
+                            class="porcentagem"
+                            id="porcentagemExcel"
+                        >
+                            0%
                         </div>
 
                     </div>
 
+
+                    <!-- BARRA -->
+
+                    <div class="barra-container">
+
+                        <div class="barra-fundo">
+
+                            <div
+                                class="barra-progresso"
+                                id="barraExcel"
+                            >
+                            </div>
+
+                        </div>
+
+                        <div
+                            class="texto-progresso"
+                            id="textoExcel"
+                        >
+                            0 de 4 aulas concluídas
+                        </div>
+
+                    </div>
+
+
+                    <!-- AULAS -->
+
+                    <div class="aulas">
+
+
+                        <!-- AULA 1 -->
+
+                        <div class="aula">
+
+                            <div class="aula-info">
+
+                                <div
+                                    class="status pendente"
+                                    id="statusAula1"
+                                >
+                                    ○
+                                </div>
+
+                                <div>
+
+                                    <div class="aula-nome">
+                                        Aula 1 — Fundamentos
+                                    </div>
+
+                                    <div
+                                        class="aula-status"
+                                        id="textoAula1"
+                                    >
+                                        Não concluída
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                            <a
+                                href="aula1-excel.html"
+                                class="botao-aula"
+                            >
+                                Acessar aula
+                            </a>
+
+                        </div>
+
+
+                        <!-- AULA 2 -->
+
+                        <div class="aula">
+
+                            <div class="aula-info">
+
+                                <div class="status pendente">
+                                    ○
+                                </div>
+
+                                <div>
+
+                                    <div class="aula-nome">
+                                        Aula 2 — Funções
+                                    </div>
+
+                                    <div class="aula-status">
+                                        Em breve
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                            <button
+                                class="botao-desativado"
+                                disabled
+                            >
+                                Em breve
+                            </button>
+
+                        </div>
+
+
+                        <!-- AULA 3 -->
+
+                        <div class="aula">
+
+                            <div class="aula-info">
+
+                                <div class="status pendente">
+                                    ○
+                                </div>
+
+                                <div>
+
+                                    <div class="aula-nome">
+                                        Aula 3 — Tabela dinâmica + gráficos
+                                    </div>
+
+                                    <div class="aula-status">
+                                        Em breve
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                            <button
+                                class="botao-desativado"
+                                disabled
+                            >
+                                Em breve
+                            </button>
+
+                        </div>
+
+
+                        <!-- PROJETO -->
+
+                        <div class="aula">
+
+                            <div class="aula-info">
+
+                                <div class="status pendente">
+                                    ○
+                                </div>
+
+                                <div>
+
+                                    <div class="aula-nome">
+                                        Projeto
+                                    </div>
+
+                                    <div class="aula-status">
+                                        Em breve
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                            <button
+                                class="botao-desativado"
+                                disabled
+                            >
+                                Em breve
+                            </button>
+
+                        </div>
+
+
+                    </div>
+
                 </div>
 
 
+                <!-- =================================================
+                     PYTHON
+                ================================================= -->
 
-                <!-- AULAS -->
+                <div class="trilha em-breve">
 
-                <div class="lessons">
+                    <div class="trilha-cabecalho">
 
+                        <div>
 
-                    <!-- AULA 1 -->
+                            <h4>
+                                Trilha 2 — Python
+                            </h4>
 
-                    <div class="lesson-item">
+                            <p class="trilha-descricao">
+                                Conteúdo em preparação.
+                            </p>
 
-                        <span class="lesson-name">
+                        </div>
 
-                            Aula 1 — Fundamentos
-
-                        </span>
-
-                        <span
-                            id="lesson1Status"
-                            class="lesson-status not-completed">
-
-                            Não concluída
-
-                        </span>
-
-                    </div>
-
-
-                    <!-- AULA 2 -->
-
-                    <div class="lesson-item">
-
-                        <span class="lesson-name">
-
-                            Aula 2 — Funções
-
-                        </span>
-
-                        <span class="lesson-status not-completed">
-
+                        <button
+                            class="botao-desativado"
+                            disabled
+                        >
                             Em breve
-
-                        </span>
-
-                    </div>
-
-
-                    <!-- AULA 3 -->
-
-                    <div class="lesson-item">
-
-                        <span class="lesson-name">
-
-                            Aula 3 — Tabela dinâmica + gráficos
-
-                        </span>
-
-                        <span class="lesson-status not-completed">
-
-                            Em breve
-
-                        </span>
+                        </button>
 
                     </div>
 
                 </div>
 
 
+                <!-- =================================================
+                     SQL
+                ================================================= -->
 
-                <a
-                    href="excel.html"
-                    class="track-button">
+                <div class="trilha em-breve">
 
-                    Acessar trilha
+                    <div class="trilha-cabecalho">
 
-                </a>
+                        <div>
 
+                            <h4>
+                                Trilha 3 — SQL
+                            </h4>
 
-            </section>
+                            <p class="trilha-descricao">
+                                Conteúdo em preparação.
+                            </p>
 
+                        </div>
 
+                        <button
+                            class="botao-desativado"
+                            disabled
+                        >
+                            Em breve
+                        </button>
 
-            <!-- =========================
-                 PYTHON
-            ========================= -->
+                    </div>
 
-            <section class="coming-soon">
+                </div>
 
-                <h3>
-                    Trilha 2 — Python
-                </h3>
-
-                <p>
-                    Conteúdo em preparação.
-                </p>
-
-            </section>
-
-
-
-            <!-- =========================
-                 SQL
-            ========================= -->
-
-            <section class="coming-soon">
-
-                <h3>
-                    Trilha 3 — SQL
-                </h3>
-
-                <p>
-                    Conteúdo em preparação.
-                </p>
 
             </section>
-
 
         </div>
 
     </main>
 
 
+    <footer>
 
-    <!-- =========================
-         SUPABASE
-    ========================= -->
+        © 2026 Plataforma de Estudos
 
-    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-
-    <script src="supabase.js"></script>
+    </footer>
 
 
-
-    <!-- =========================
+    <!-- =====================================================
          JAVASCRIPT
-    ========================= -->
+    ===================================================== -->
 
     <script>
 
-        const welcomeMessage =
-            document.getElementById("welcomeMessage");
+        // =====================================================
+        // CONFIGURAÇÃO DA TRILHA
+        // =====================================================
 
-        const progressText =
-            document.getElementById("progressText");
-
-        const progressFill =
-            document.getElementById("progressFill");
-
-        const lesson1Status =
-            document.getElementById("lesson1Status");
-
-        const logoutButton =
-            document.getElementById("logoutButton");
+        const AULAS_EXCEL = [
+            "aula1-excel",
+            "aula2-excel",
+            "aula3-excel",
+            "projeto-excel"
+        ];
 
 
-        /*
-         * Quantidade total de aulas
-         * atualmente previstas na trilha Excel.
-         */
+        // =====================================================
+        // ELEMENTOS
+        // =====================================================
 
-        const totalLessons = 3;
+        const carregando =
+            document.getElementById("carregando");
+
+        const conteudo =
+            document.getElementById("conteudo");
+
+        const erro =
+            document.getElementById("erro");
+
+        const btnSair =
+            document.getElementById("btnSair");
 
 
-        /*
-         * Carregar informações do aluno
-         */
+        // =====================================================
+        // MOSTRAR ERRO
+        // =====================================================
 
-        async function carregarAreaDoAluno() {
+        function mostrarErro(mensagem) {
+
+            carregando.style.display = "none";
+
+            erro.style.display = "block";
+
+            erro.textContent = mensagem;
+
+        }
+
+
+        // =====================================================
+        // CARREGAR ESPAÇO DO ALUNO
+        // =====================================================
+
+        async function carregarEspaco() {
 
             try {
 
-                /*
-                 * Verificar usuário logado
-                 */
+                // ---------------------------------------------
+                // VERIFICAR USUÁRIO LOGADO
+                // ---------------------------------------------
 
                 const {
-                    data: {
-                        user
-                    },
-                    error: userError
-                } = await supabaseClient.auth.getUser();
+                    data: sessionData,
+                    error: sessionError
+                } =
+                    await supabaseClient.auth.getSession();
 
 
-                if (userError) {
-                    throw userError;
+                if (sessionError) {
+
+                    console.error(sessionError);
+
+                    mostrarErro(
+                        "Não foi possível verificar seu login."
+                    );
+
+                    return;
                 }
 
 
-                /*
-                 * Se não estiver logado,
-                 * volta para o login.
-                 */
+                const session =
+                    sessionData.session;
 
-                if (!user) {
+
+                if (!session) {
 
                     window.location.href =
                         "login.html";
 
                     return;
-
                 }
 
 
-                /*
-                 * Buscar informações do aluno
-                 */
+                const user =
+                    session.user;
+
+
+                console.log(
+                    "Aluno logado:",
+                    user.email
+                );
+
+
+                // ---------------------------------------------
+                // REGISTRAR ÚLTIMO ACESSO
+                // ---------------------------------------------
 
                 const {
-                    data: profile,
-                    error: profileError
-                } = await supabaseClient
-                    .from("profiles")
-                    .select("nome")
-                    .eq("id", user.id)
-                    .maybeSingle();
+                    error: acessoError
+                } =
+                    await supabaseClient.rpc(
+                        "registrar_acesso"
+                    );
 
 
-                if (profileError) {
-                    throw profileError;
-                }
+                if (acessoError) {
 
-
-                /*
-                 * Mostrar nome
-                 */
-
-                if (profile && profile.nome) {
-
-                    welcomeMessage.textContent =
-                        "Olá, "
-                        + profile.nome
-                        + "! 👋";
+                    console.error(
+                        "Erro ao registrar último acesso:",
+                        acessoError
+                    );
 
                 }
 
 
-                /*
-                 * Buscar aulas concluídas
-                 */
+                // ---------------------------------------------
+                // BUSCAR PROGRESSO
+                // ---------------------------------------------
 
                 const {
                     data: progresso,
                     error: progressoError
-                } = await supabaseClient
-                    .from("progresso")
-                    .select("lesson_id, completed")
-                    .eq("user_id", user.id)
-                    .eq("completed", true);
+                } =
+                    await supabaseClient
+                        .from("progress")
+                        .select(
+                            "lesson_id, completed"
+                        )
+                        .eq(
+                            "user_id",
+                            user.id
+                        )
+                        .eq(
+                            "completed",
+                            true
+                        );
 
 
                 if (progressoError) {
-                    throw progressoError;
+
+                    console.error(
+                        "Erro ao buscar progresso:",
+                        progressoError
+                    );
+
+                    mostrarErro(
+                        "Não foi possível carregar seu progresso: "
+                        + progressoError.message
+                    );
+
+                    return;
                 }
 
 
-                /*
-                 * Quantidade de aulas concluídas
-                 */
-
-                const completedLessons =
+                console.log(
+                    "Progresso encontrado:",
                     progresso
-                        ? progresso.length
-                        : 0;
+                );
 
 
-                /*
-                 * Calcular porcentagem
-                 */
+                // ---------------------------------------------
+                // IDENTIFICAR AULAS CONCLUÍDAS
+                // ---------------------------------------------
 
-                const percentage =
+                const aulasConcluidas =
+                    progresso
+                        .map(
+                            item =>
+                                item.lesson_id
+                        );
+
+
+                console.log(
+                    "Aulas concluídas:",
+                    aulasConcluidas
+                );
+
+
+                // ---------------------------------------------
+                // CONTAR PROGRESSO
+                // ---------------------------------------------
+
+                let quantidadeConcluida = 0;
+
+
+                AULAS_EXCEL.forEach(
+                    function(lessonId) {
+
+                        if (
+                            aulasConcluidas.includes(
+                                lessonId
+                            )
+                        ) {
+
+                            quantidadeConcluida++;
+
+                        }
+
+                    }
+                );
+
+
+                // ---------------------------------------------
+                // CALCULAR PORCENTAGEM
+                // ---------------------------------------------
+
+                const totalAulas =
+                    AULAS_EXCEL.length;
+
+
+                const porcentagem =
                     Math.round(
-                        (completedLessons / totalLessons) * 100
+                        (
+                            quantidadeConcluida /
+                            totalAulas
+                        ) * 100
                     );
 
 
-                /*
-                 * Atualizar texto
-                 */
-
-                progressText.textContent =
-                    percentage + "%";
+                console.log(
+                    "Porcentagem:",
+                    porcentagem
+                );
 
 
-                /*
-                 * Atualizar barra
-                 */
+                // ---------------------------------------------
+                // ATUALIZAR INTERFACE
+                // ---------------------------------------------
 
-                progressFill.style.width =
-                    percentage + "%";
+                document.getElementById(
+                    "porcentagemExcel"
+                ).textContent =
+                    porcentagem + "%";
 
 
-                /*
-                 * Verificar especificamente
-                 * a Aula 1.
-                 */
+                document.getElementById(
+                    "barraExcel"
+                ).style.width =
+                    porcentagem + "%";
 
-                const aula1Concluida =
-                    progresso &&
-                    progresso.some(
-                        item =>
-                            item.lesson_id === "aula1-excel"
+
+                document.getElementById(
+                    "textoExcel"
+                ).textContent =
+                    quantidadeConcluida
+                    + " de "
+                    + totalAulas
+                    + " aulas concluídas";
+
+
+                // ---------------------------------------------
+                // STATUS DA AULA 1
+                // ---------------------------------------------
+
+                const statusAula1 =
+                    document.getElementById(
+                        "statusAula1"
+                    );
+
+                const textoAula1 =
+                    document.getElementById(
+                        "textoAula1"
                     );
 
 
-                if (aula1Concluida) {
+                if (
+                    aulasConcluidas.includes(
+                        "aula1-excel"
+                    )
+                ) {
 
-                    lesson1Status.textContent =
-                        "✓ Concluída";
+                    statusAula1.textContent =
+                        "✓";
 
-                    lesson1Status.className =
-                        "lesson-status completed";
+                    statusAula1.classList.remove(
+                        "pendente"
+                    );
+
+                    statusAula1.classList.add(
+                        "concluida"
+                    );
+
+                    textoAula1.textContent =
+                        "Concluída";
 
                 } else {
 
-                    lesson1Status.textContent =
+                    statusAula1.textContent =
+                        "○";
+
+                    statusAula1.classList.remove(
+                        "concluida"
+                    );
+
+                    statusAula1.classList.add(
+                        "pendente"
+                    );
+
+                    textoAula1.textContent =
                         "Não concluída";
 
-                    lesson1Status.className =
-                        "lesson-status not-completed";
-
                 }
+
+
+                // ---------------------------------------------
+                // MOSTRAR PÁGINA
+                // ---------------------------------------------
+
+                carregando.style.display =
+                    "none";
+
+                conteudo.style.display =
+                    "block";
 
 
             } catch (error) {
 
                 console.error(
-                    "Erro ao carregar área do aluno:",
+                    "Erro inesperado:",
                     error
+                );
+
+                mostrarErro(
+                    "Ocorreu um erro inesperado."
                 );
 
             }
@@ -695,20 +1341,23 @@
         }
 
 
+        // =====================================================
+        // SAIR
+        // =====================================================
 
-        /*
-         * Sair da conta
-         */
-
-        logoutButton.addEventListener(
+        btnSair.addEventListener(
             "click",
             async function(event) {
 
                 event.preventDefault();
 
+
                 const {
                     error
-                } = await supabaseClient.auth.signOut();
+                } =
+                    await supabaseClient
+                        .auth
+                        .signOut();
 
 
                 if (error) {
@@ -719,7 +1368,6 @@
                     );
 
                     return;
-
                 }
 
 
@@ -730,15 +1378,15 @@
         );
 
 
+        // =====================================================
+        // INICIAR
+        // =====================================================
 
-        /*
-         * Executar ao abrir a página
-         */
-
-        carregarAreaDoAluno();
+        carregarEspaco();
 
     </script>
 
 </body>
 
 </html>
+```

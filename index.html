@@ -1,8 +1,11 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
 
     <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>Plataforma de Estudos</title>
 
@@ -11,9 +14,360 @@
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <script src="supabase.js"></script>
 
+    <style>
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            background: #F5F8FC;
+            color: #07111F;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+
+        /* =========================
+           NAVBAR
+        ========================= */
+
+        .navbar {
+            height: 72px;
+            background: #07111F;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 6%;
+        }
+
+        .logo {
+            color: #FFFFFF;
+            font-size: 20px;
+            font-weight: 700;
+        }
+
+        .menu {
+            display: flex;
+            align-items: center;
+            gap: 28px;
+        }
+
+        .menu a {
+            color: #CBD5E1;
+            text-decoration: none;
+            font-size: 15px;
+            font-weight: 500;
+            transition: 0.2s;
+        }
+
+        .menu a:hover {
+            color: #FFFFFF;
+        }
+
+        .menu .botao-cadastro {
+            background: #007BFF;
+            color: #FFFFFF;
+            padding: 10px 18px;
+            border-radius: 8px;
+            font-weight: 600;
+        }
+
+        .menu .botao-cadastro:hover {
+            background: #0069D9;
+        }
+
+
+        /* =========================
+           HERO
+        ========================= */
+
+        .hero {
+            max-width: 1150px;
+            min-height: 430px;
+            margin: 0 auto;
+            padding: 70px 25px;
+            display: flex;
+            align-items: center;
+        }
+
+        .hero-text {
+            max-width: 720px;
+        }
+
+        .hero-text h1 {
+            margin: 0 0 22px;
+            font-size: 52px;
+            line-height: 1.1;
+            letter-spacing: -1.5px;
+            color: #07111F;
+        }
+
+        .hero-text h1::after {
+            content: "";
+            display: block;
+            width: 70px;
+            height: 5px;
+            background: #00A86B;
+            border-radius: 5px;
+            margin-top: 20px;
+        }
+
+        .hero-text p {
+            margin: 0 0 30px;
+            max-width: 650px;
+            color: #64748B;
+            font-size: 18px;
+            line-height: 1.7;
+        }
+
+        .primary-button {
+            border: none;
+            background: #007BFF;
+            color: #FFFFFF;
+            padding: 13px 23px;
+            border-radius: 9px;
+            font-size: 15px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        .primary-button:hover {
+            background: #0069D9;
+            transform: translateY(-1px);
+        }
+
+
+        /* =========================
+           TRILHAS
+        ========================= */
+
+        .trilhas {
+            max-width: 1150px;
+            margin: 0 auto;
+            padding: 25px 25px 80px;
+        }
+
+        .trilhas h2 {
+            margin: 0;
+            font-size: 30px;
+            color: #07111F;
+        }
+
+        .subtitle {
+            margin: 8px 0 30px;
+            color: #64748B;
+            font-size: 15px;
+        }
+
+        .trilhas-container {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 22px;
+        }
+
+
+        /* =========================
+           CARDS
+        ========================= */
+
+        .trilha-card {
+            background: #FFFFFF;
+            border: 1px solid #DCE4EE;
+            border-radius: 16px;
+            padding: 30px;
+            min-height: 300px;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            box-shadow: 0 5px 18px rgba(7, 17, 31, 0.04);
+            transition:
+                transform 0.2s,
+                box-shadow 0.2s,
+                border-color 0.2s;
+        }
+
+        .trilha-card:hover {
+            transform: translateY(-4px);
+            border-color: #B9DBFF;
+            box-shadow: 0 12px 28px rgba(7, 17, 31, 0.08);
+        }
+
+        .icon {
+            width: 55px;
+            height: 55px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #EAF4FF;
+            border: 1px solid #B9DBFF;
+            border-radius: 14px;
+            font-size: 27px;
+            margin-bottom: 20px;
+        }
+
+        .trilha-card h3 {
+            margin: 0 0 10px;
+            font-size: 21px;
+            color: #07111F;
+        }
+
+        .trilha-card p {
+            margin: 0 0 24px;
+            color: #64748B;
+            font-size: 14px;
+            line-height: 1.7;
+            flex: 1;
+        }
+
+
+        /* =========================
+           BOTÃO DAS TRILHAS
+        ========================= */
+
+        .trilha-button,
+        .trilha-card button {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            border: none;
+            background: #007BFF;
+            color: #FFFFFF;
+            text-decoration: none;
+            padding: 11px 18px;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        .trilha-button:hover,
+        .trilha-card button:hover {
+            background: #0069D9;
+        }
+
+
+        /* =========================
+           TRILHAS EM BREVE
+        ========================= */
+
+        .trilha-card button {
+            background: #E2E8F0;
+            color: #64748B;
+            cursor: not-allowed;
+        }
+
+        .trilha-card button:hover {
+            background: #E2E8F0;
+        }
+
+
+        /* =========================
+           FOOTER
+        ========================= */
+
+        footer {
+            background: #FFFFFF;
+            border-top: 1px solid #DCE4EE;
+            padding: 25px;
+            text-align: center;
+        }
+
+        footer p {
+            margin: 0;
+            color: #64748B;
+            font-size: 13px;
+        }
+
+
+        /* =========================
+           RESPONSIVIDADE
+        ========================= */
+
+        @media (max-width: 850px) {
+
+            .hero {
+                min-height: auto;
+                padding-top: 55px;
+                padding-bottom: 55px;
+            }
+
+            .hero-text h1 {
+                font-size: 42px;
+            }
+
+            .trilhas-container {
+                grid-template-columns: 1fr;
+            }
+
+            .trilha-card {
+                min-height: auto;
+            }
+
+        }
+
+
+        @media (max-width: 600px) {
+
+            .navbar {
+                height: auto;
+                min-height: 68px;
+                padding: 15px 18px;
+            }
+
+            .logo {
+                font-size: 17px;
+            }
+
+            .menu {
+                gap: 10px;
+            }
+
+            .menu a {
+                display: none;
+            }
+
+            .menu .botao-cadastro {
+                display: inline-flex;
+                padding: 9px 14px;
+            }
+
+            .hero {
+                padding: 45px 18px 50px;
+            }
+
+            .hero-text h1 {
+                font-size: 36px;
+                letter-spacing: -1px;
+            }
+
+            .hero-text p {
+                font-size: 16px;
+            }
+
+            .trilhas {
+                padding: 20px 18px 60px;
+            }
+
+            .trilhas h2 {
+                font-size: 25px;
+            }
+
+        }
+
+    </style>
+
 </head>
 
+
 <body>
+
+
+    <!-- =========================
+         NAVBAR
+    ========================= -->
 
     <header class="navbar">
 
@@ -21,32 +375,36 @@
             Plataforma de Estudos
         </div>
 
-        <div class="menu">
-            <nav class="menu">
+        <nav class="menu">
 
-                <a href="index.html">
-                    Início
-                </a>
-            
-                <a href="index.html#trilhas">
-                    Trilhas
-                </a>
-            
-                <a href="login.html">
-                    Entrar
-                </a>
-            
-                <a href="cadastro.html" class="botao-cadastro">
-                    Criar conta
-                </a>
+            <a href="index.html">
+                Início
+            </a>
 
-            </nav>
-        </div>
+            <a href="index.html#trilhas">
+                Trilhas
+            </a>
+
+            <a href="login.html">
+                Entrar
+            </a>
+
+            <a href="cadastro.html" class="botao-cadastro">
+                Criar conta
+            </a>
+
+        </nav>
 
     </header>
 
 
+
     <main>
+
+
+        <!-- =========================
+             HERO
+        ========================= -->
 
         <section class="hero">
 
@@ -61,7 +419,10 @@
                     e desenvolva novas habilidades.
                 </p>
 
-                <button class="primary-button">
+                <button
+                    class="primary-button"
+                    onclick="window.location.href='cadastro.html'"
+                >
                     Começar a estudar
                 </button>
 
@@ -70,7 +431,15 @@
         </section>
 
 
-        <section class="trilhas">
+
+        <!-- =========================
+             TRILHAS
+        ========================= -->
+
+        <section
+            class="trilhas"
+            id="trilhas"
+        >
 
             <h2>
                 Trilhas de estudo
@@ -83,6 +452,8 @@
 
             <div class="trilhas-container">
 
+
+                <!-- EXCEL -->
 
                 <div class="trilha-card">
 
@@ -99,12 +470,18 @@
                         até ferramentas mais avançadas.
                     </p>
 
-                    <a href="excel.html" class="trilha-button">
+                    <a
+                        href="excel.html"
+                        class="trilha-button"
+                    >
                         Ver trilha
                     </a>
 
                 </div>
 
+
+
+                <!-- PYTHON -->
 
                 <div class="trilha-card">
 
@@ -121,12 +498,15 @@
                         de forma prática.
                     </p>
 
-                    <button>
-                        Ver trilha
+                    <button disabled>
+                        Em breve
                     </button>
 
                 </div>
 
+
+
+                <!-- SQL -->
 
                 <div class="trilha-card">
 
@@ -143,8 +523,8 @@
                         e consultas SQL.
                     </p>
 
-                    <button>
-                        Ver trilha
+                    <button disabled>
+                        Em breve
                     </button>
 
                 </div>
@@ -157,6 +537,11 @@
     </main>
 
 
+
+    <!-- =========================
+         FOOTER
+    ========================= -->
+
     <footer>
 
         <p>
@@ -164,6 +549,7 @@
         </p>
 
     </footer>
+
 
 
     <script src="script.js"></script>

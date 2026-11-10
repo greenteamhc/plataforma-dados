@@ -1,4 +1,3 @@
-```html
 <!DOCTYPE html>
 <html lang="pt-BR">
 
@@ -12,10 +11,487 @@
 
     <link rel="stylesheet" href="style.css">
 
+    <style>
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            background: #F5F8FC;
+            color: #07111F;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+
+        /* =========================
+           NAVBAR
+        ========================= */
+
+        .navbar {
+            height: 72px;
+            background: #07111F;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 6%;
+        }
+
+        .logo {
+            color: #FFFFFF;
+            font-size: 20px;
+            font-weight: 700;
+        }
+
+        .menu {
+            display: flex;
+            align-items: center;
+            gap: 28px;
+        }
+
+        .menu a {
+            color: #CBD5E1;
+            text-decoration: none;
+            font-size: 15px;
+            font-weight: 500;
+            transition: 0.2s;
+        }
+
+        .menu a:hover {
+            color: #FFFFFF;
+        }
+
+        .menu button {
+            border: none;
+            background: #007BFF;
+            color: #FFFFFF;
+            padding: 10px 20px;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        .menu button:hover {
+            background: #0069D9;
+        }
+
+
+        /* =========================
+           CONTEÚDO
+        ========================= */
+
+        main {
+            width: 100%;
+            max-width: 1150px;
+            margin: 0 auto;
+            padding: 55px 25px 70px;
+        }
+
+
+        /* =========================
+           CABEÇALHO DA TRILHA
+        ========================= */
+
+        .trilha-header {
+            background: #FFFFFF;
+            border: 1px solid #DCE4EE;
+            border-radius: 18px;
+            padding: 35px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 50px;
+            margin-bottom: 50px;
+            box-shadow: 0 8px 25px rgba(7, 17, 31, 0.05);
+        }
+
+        .trilha-header > div:first-child {
+            flex: 1;
+        }
+
+        .trilha-icon {
+            width: 54px;
+            height: 54px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #EAF4FF;
+            border: 1px solid #B9DBFF;
+            border-radius: 14px;
+            font-size: 27px;
+            margin-bottom: 18px;
+        }
+
+        .trilha-header h1 {
+            margin: 0 0 12px;
+            font-size: 32px;
+            line-height: 1.2;
+            color: #07111F;
+        }
+
+        .trilha-header p {
+            margin: 0;
+            color: #64748B;
+            font-size: 16px;
+            line-height: 1.7;
+            max-width: 650px;
+        }
+
+
+        /* =========================
+           PROGRESSO
+        ========================= */
+
+        .progresso {
+            width: 290px;
+            min-width: 290px;
+            background: #F5F8FC;
+            border: 1px solid #DCE4EE;
+            border-radius: 14px;
+            padding: 20px;
+        }
+
+        .progresso-info {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 12px;
+        }
+
+        .progresso-info span {
+            color: #64748B;
+            font-size: 14px;
+        }
+
+        .progresso-info strong {
+            color: #007BFF;
+            font-size: 20px;
+        }
+
+        .barra {
+            width: 100%;
+            height: 9px;
+            background: #E2E8F0;
+            border-radius: 20px;
+            overflow: hidden;
+        }
+
+        .barra-preenchida {
+            width: 0%;
+            height: 100%;
+            background: #00A86B;
+            border-radius: 20px;
+            transition: width 0.3s ease;
+        }
+
+
+        /* =========================
+           AULAS
+        ========================= */
+
+        .aulas h2 {
+            margin: 0;
+            font-size: 25px;
+            color: #07111F;
+        }
+
+        .subtitle {
+            margin: 8px 0 28px;
+            color: #64748B;
+            font-size: 15px;
+        }
+
+
+        /* =========================
+           CARD DA AULA
+        ========================= */
+
+        .aula-card {
+            background: #FFFFFF;
+            border: 1px solid #DCE4EE;
+            border-radius: 16px;
+            padding: 28px;
+            display: flex;
+            align-items: flex-start;
+            gap: 22px;
+            margin-bottom: 18px;
+            box-shadow: 0 5px 18px rgba(7, 17, 31, 0.04);
+            transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
+        }
+
+        .aula-card:hover {
+            transform: translateY(-2px);
+            border-color: #B9DBFF;
+            box-shadow: 0 10px 25px rgba(7, 17, 31, 0.07);
+        }
+
+
+        /* =========================
+           NÚMERO
+        ========================= */
+
+        .aula-numero {
+            width: 52px;
+            height: 52px;
+            min-width: 52px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 13px;
+            background: #EAF4FF;
+            border: 1px solid #B9DBFF;
+            color: #007BFF;
+            font-size: 17px;
+            font-weight: 700;
+        }
+
+
+        /* =========================
+           INFORMAÇÕES
+        ========================= */
+
+        .aula-info {
+            flex: 1;
+            min-width: 0;
+        }
+
+        .aula-info h3 {
+            margin: 2px 0 14px;
+            color: #07111F;
+            font-size: 19px;
+            line-height: 1.4;
+        }
+
+        .aula-info p {
+            margin: 0 0 15px;
+            color: #64748B;
+            line-height: 1.6;
+            font-size: 14px;
+        }
+
+        .aula-info ul {
+            margin: 0 0 18px;
+            padding-left: 19px;
+            color: #475569;
+            line-height: 1.8;
+            font-size: 14px;
+        }
+
+        .aula-info li::marker {
+            color: #007BFF;
+        }
+
+
+        /* =========================
+           STATUS
+        ========================= */
+
+        .status {
+            display: inline-flex;
+            align-items: center;
+            padding: 6px 11px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 700;
+        }
+
+        .status.liberada {
+            background: #E8F8F1;
+            color: #00875A;
+        }
+
+        .status.em-breve {
+            background: #F1F5F9;
+            color: #64748B;
+        }
+
+
+        /* =========================
+           BOTÕES DAS AULAS
+        ========================= */
+
+        .aula-button {
+            align-self: center;
+            flex-shrink: 0;
+            border: none;
+            background: #007BFF;
+            color: #FFFFFF;
+            text-decoration: none;
+            padding: 11px 18px;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        .aula-button:hover {
+            background: #0069D9;
+        }
+
+        .aula-button:disabled {
+            background: #E2E8F0;
+            color: #94A3B8;
+            cursor: not-allowed;
+        }
+
+
+        /* =========================
+           PROJETO
+        ========================= */
+
+        .aula-card.projeto .aula-numero {
+            background: #E8F8F1;
+            border-color: #B7E8D3;
+            color: #00A86B;
+        }
+
+
+        /* =========================
+           FOOTER
+        ========================= */
+
+        footer {
+            border-top: 1px solid #DCE4EE;
+            background: #FFFFFF;
+            padding: 25px;
+            text-align: center;
+        }
+
+        footer p {
+            margin: 0;
+            color: #64748B;
+            font-size: 13px;
+        }
+
+
+        /* =========================
+           RESPONSIVIDADE
+        ========================= */
+
+        @media (max-width: 800px) {
+
+            .navbar {
+                padding: 0 25px;
+            }
+
+            .menu {
+                gap: 15px;
+            }
+
+            .menu a:first-child {
+                display: none;
+            }
+
+            .trilha-header {
+                flex-direction: column;
+                align-items: stretch;
+                padding: 28px;
+                gap: 25px;
+            }
+
+            .progresso {
+                width: 100%;
+                min-width: 0;
+            }
+
+            .trilha-header h1 {
+                font-size: 27px;
+            }
+
+            .aula-card {
+                flex-wrap: wrap;
+            }
+
+            .aula-button {
+                margin-left: 74px;
+            }
+        }
+
+
+        @media (max-width: 550px) {
+
+            .navbar {
+                height: auto;
+                min-height: 68px;
+                padding: 15px 18px;
+            }
+
+            .logo {
+                font-size: 17px;
+            }
+
+            .menu {
+                gap: 10px;
+            }
+
+            .menu a {
+                display: none;
+            }
+
+            .menu button {
+                padding: 9px 15px;
+            }
+
+            main {
+                padding: 30px 16px 50px;
+            }
+
+            .trilha-header {
+                padding: 24px;
+                border-radius: 14px;
+                margin-bottom: 35px;
+            }
+
+            .trilha-header h1 {
+                font-size: 24px;
+            }
+
+            .trilha-header p {
+                font-size: 14px;
+            }
+
+            .aulas h2 {
+                font-size: 22px;
+            }
+
+            .aula-card {
+                padding: 22px;
+                gap: 16px;
+            }
+
+            .aula-numero {
+                width: 46px;
+                height: 46px;
+                min-width: 46px;
+            }
+
+            .aula-info {
+                width: calc(100% - 62px);
+            }
+
+            .aula-info h3 {
+                font-size: 17px;
+            }
+
+            .aula-button {
+                width: 100%;
+                margin-left: 0;
+                text-align: center;
+            }
+
+        }
+
+    </style>
+
 </head>
 
 
 <body>
+
 
 <header class="navbar">
 
@@ -33,7 +509,7 @@
             Trilhas
         </a>
 
-        <button>
+        <button onclick="window.location.href='login.html'">
             Entrar
         </button>
 
@@ -42,7 +518,9 @@
 </header>
 
 
+
 <main>
+
 
     <!-- CABEÇALHO DA TRILHA -->
 
@@ -103,6 +581,7 @@
         <p class="subtitle">
             Confira os conteúdos que fazem parte da trilha.
         </p>
+
 
 
         <!-- AULA 1 -->
@@ -388,4 +867,3 @@
 </body>
 
 </html>
-```

@@ -2,235 +2,677 @@
 <html lang="pt-BR">
 
 <head>
+
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Aula 1 - Fundamentos | Plataforma de Estudos</title>
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
 
-    <link rel="stylesheet" href="style.css">
+    <title>
+        Aula 1 - Fundamentos | Plataforma de Estudos
+    </title>
 
-    <!-- Supabase -->
+    <link
+        rel="stylesheet"
+        href="style.css"
+    >
+
+    <!-- SUPABASE -->
+
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
-    <!-- Seu arquivo de configuração do Supabase -->
     <script src="supabase.js"></script>
 
+
     <style>
-        body {
-            margin: 0;
-            font-family: Arial, Helvetica, sans-serif;
-            background: #f5f7fb;
-            color: #222;
+
+        * {
+            box-sizing: border-box;
         }
 
+
+        body {
+            margin: 0;
+
+            font-family:
+                Arial,
+                Helvetica,
+                sans-serif;
+
+            background: #F5F8FC;
+
+            color: #07111F;
+        }
+
+
+        /* =====================================================
+           CABEÇALHO
+        ===================================================== */
+
         header {
-            background: white;
-            border-bottom: 1px solid #ddd;
+            background: #07111F;
+
+            border-bottom:
+                1px solid #15263A;
+
             padding: 18px 30px;
         }
 
+
         header .container {
             max-width: 1100px;
+
             margin: auto;
         }
 
+
         header h1 {
             margin: 0 0 8px 0;
+
             font-size: 22px;
         }
 
-        header a {
-            color: #4b4b4b;
+
+        header h1 a {
+            color: #FFFFFF;
+
             text-decoration: none;
-            margin-right: 15px;
+
+            transition: 0.2s;
         }
 
-        header a:hover {
-            text-decoration: underline;
+
+        header h1 a:hover {
+            color: #00A86B;
         }
+
+
+        header nav {
+            display: flex;
+
+            gap: 20px;
+
+            align-items: center;
+        }
+
+
+        header nav a {
+            color: #CBD5E1;
+
+            text-decoration: none;
+
+            margin-right: 15px;
+
+            font-size: 14px;
+
+            transition: 0.2s;
+        }
+
+
+        header nav a:hover {
+            color: #00A86B;
+        }
+
+
+        /* =====================================================
+           CONTEÚDO PRINCIPAL
+        ===================================================== */
 
         main {
             max-width: 1100px;
+
             margin: 40px auto;
+
             padding: 0 20px;
         }
 
+
+        /* =====================================================
+           BREADCRUMB
+        ===================================================== */
+
         .breadcrumb {
-            color: #666;
+            color: #007BFF;
+
             font-size: 14px;
+
+            font-weight: bold;
+
             margin-bottom: 10px;
         }
 
+
+        /* =====================================================
+           TÍTULO
+        ===================================================== */
+
         .titulo {
-            background: white;
-            border-radius: 12px;
+            background: #FFFFFF;
+
+            border-radius: 16px;
+
             padding: 30px;
-            margin-bottom: 30px;
-            border: 1px solid #ddd;
+
+            margin-bottom: 35px;
+
+            border:
+                1px solid #DCE4EE;
+
+            box-shadow:
+                0 6px 20px
+                rgba(7, 17, 31, 0.05);
         }
+
 
         .titulo h2 {
             margin-top: 0;
+
+            margin-bottom: 12px;
+
             font-size: 32px;
+
+            color: #07111F;
         }
 
+
         .titulo p {
-            color: #666;
+            color: #64748B;
+
             line-height: 1.6;
+
+            margin-bottom: 0;
         }
+
+
+        /* =====================================================
+           TÓPICOS
+        ===================================================== */
 
         .topicos {
             display: flex;
+
             flex-wrap: wrap;
+
             gap: 10px;
-            margin-top: 20px;
+
+            margin-top: 22px;
         }
+
 
         .topico {
-            background: #f1f1f1;
-            border: 1px solid #ddd;
+            background: #EAF4FF;
+
+            border:
+                1px solid #B9DBFF;
+
+            color: #0069D9;
+
             border-radius: 20px;
+
             padding: 8px 14px;
+
             font-size: 14px;
+
+            font-weight: 500;
         }
 
+
+        /* =====================================================
+           SEÇÕES
+        ===================================================== */
+
         .secao {
-            margin-bottom: 35px;
+            margin-bottom: 40px;
         }
+
 
         .secao h3 {
             font-size: 24px;
+
             margin-bottom: 8px;
+
+            color: #07111F;
         }
 
+
         .secao-subtitulo {
-            color: #666;
-            margin-bottom: 20px;
+            color: #64748B;
+
+            margin-bottom: 22px;
         }
+
+
+        /* =====================================================
+           MATERIAIS
+        ===================================================== */
 
         .materiais {
             display: flex;
+
             flex-direction: column;
+
             gap: 14px;
         }
 
+
         .material {
-            background: white;
-            border: 1px solid #ddd;
-            border-radius: 12px;
+            background: #FFFFFF;
+
+            border:
+                1px solid #DCE4EE;
+
+            border-radius: 14px;
+
             padding: 20px;
+
             display: flex;
+
             align-items: center;
+
             justify-content: space-between;
+
             gap: 20px;
+
+            box-shadow:
+                0 4px 14px
+                rgba(7, 17, 31, 0.04);
+
+            transition:
+                transform 0.2s,
+                box-shadow 0.2s,
+                border-color 0.2s;
         }
+
+
+        .material:hover {
+            transform: translateY(-2px);
+
+            border-color: #B9DBFF;
+
+            box-shadow:
+                0 8px 20px
+                rgba(7, 17, 31, 0.07);
+        }
+
 
         .material-info {
             display: flex;
+
             align-items: center;
+
             gap: 18px;
+
+            min-width: 0;
         }
 
+
         .material-icone {
-            font-size: 28px;
-            width: 40px;
-            text-align: center;
+            width: 48px;
+
+            height: 48px;
+
+            min-width: 48px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            background: #EAF4FF;
+
+            border:
+                1px solid #B9DBFF;
+
+            border-radius: 12px;
+
+            font-size: 25px;
         }
+
 
         .material h4 {
             margin: 0 0 5px 0;
+
             font-size: 17px;
+
+            color: #07111F;
         }
+
 
         .material p {
             margin: 0;
-            color: #666;
+
+            color: #64748B;
+
             font-size: 14px;
+
+            line-height: 1.5;
         }
 
-        .botao-indisponivel {
-            background: #f1f1f1;
-            border: 1px solid #ddd;
-            color: #888;
-            padding: 9px 18px;
+
+        /* =====================================================
+           BOTÕES DOS MATERIAIS
+        ===================================================== */
+
+        .material-button {
+            flex-shrink: 0;
+
+            display: inline-flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            background: #007BFF;
+
+            color: #FFFFFF;
+
+            padding: 10px 17px;
+
             border-radius: 8px;
-            cursor: not-allowed;
+
+            text-decoration: none;
+
+            border: none;
+
+            font-size: 14px;
+
+            font-weight: 600;
+
+            cursor: pointer;
+
+            transition: 0.2s;
         }
+
+
+        .material-button:hover {
+            background: #0069D9;
+
+            transform: translateY(-1px);
+        }
+
+
+        .material-button.verde {
+            background: #00A86B;
+        }
+
+
+        .material-button.verde:hover {
+            background: #008F5B;
+        }
+
+
+        /* =====================================================
+           VIDEO
+        ===================================================== */
+
+        .video-card {
+            background: #FFFFFF;
+
+            border:
+                1px solid #DCE4EE;
+
+            border-radius: 16px;
+
+            padding: 20px;
+
+            box-shadow:
+                0 4px 14px
+                rgba(7, 17, 31, 0.04);
+        }
+
+
+        .video-card h4 {
+            margin:
+                0 0 8px 0;
+
+            font-size: 18px;
+
+            color: #07111F;
+        }
+
+
+        .video-card > p {
+            color: #64748B;
+
+            font-size: 14px;
+
+            margin:
+                0 0 20px 0;
+        }
+
+
+        .video-container {
+            position: relative;
+
+            width: 100%;
+
+            padding-bottom: 56.25%;
+
+            height: 0;
+
+            overflow: hidden;
+
+            border-radius: 12px;
+
+            background: #07111F;
+        }
+
+
+        .video-container iframe {
+            position: absolute;
+
+            top: 0;
+
+            left: 0;
+
+            width: 100%;
+
+            height: 100%;
+
+            border: 0;
+        }
+
+
+        /* =====================================================
+           AVISO DO VÍDEO
+        ===================================================== */
+
+        .video-placeholder {
+            background: #F5F8FC;
+
+            border:
+                1px dashed #B9DBFF;
+
+            border-radius: 12px;
+
+            padding: 35px 20px;
+
+            text-align: center;
+
+            color: #64748B;
+        }
+
+
+        .video-placeholder strong {
+            display: block;
+
+            color: #07111F;
+
+            margin-bottom: 8px;
+
+            font-size: 16px;
+        }
+
+
+        /* =====================================================
+           CONCLUSÃO
+        ===================================================== */
 
         .conclusao {
-            background: white;
-            border: 1px solid #ddd;
-            border-radius: 12px;
+            background: #FFFFFF;
+
+            border:
+                1px solid #DCE4EE;
+
+            border-radius: 16px;
+
             padding: 35px;
+
             text-align: center;
-            margin-top: 40px;
+
+            margin-top: 45px;
+
+            box-shadow:
+                0 6px 20px
+                rgba(7, 17, 31, 0.05);
         }
+
 
         .conclusao h3 {
             margin-top: 0;
+
             font-size: 24px;
+
+            color: #07111F;
         }
 
+
         .conclusao p {
-            color: #666;
+            color: #64748B;
+
+            line-height: 1.6;
         }
+
+
+        /* =====================================================
+           BOTÃO CONCLUIR
+        ===================================================== */
 
         #btnConcluir {
             width: 100%;
+
             max-width: 600px;
+
             padding: 15px;
+
             border: none;
+
             border-radius: 8px;
-            background: #222;
-            color: white;
+
+            background: #007BFF;
+
+            color: #FFFFFF;
+
             font-size: 16px;
+
+            font-weight: bold;
+
             cursor: pointer;
+
             margin-top: 10px;
+
+            transition:
+                background 0.2s,
+                transform 0.2s;
         }
+
 
         #btnConcluir:hover {
-            background: #000;
+            background: #0069D9;
+
+            transform: translateY(-1px);
         }
 
+
         #btnConcluir:disabled {
-            background: #888;
+            background: #00A86B;
+
+            color: #FFFFFF;
+
             cursor: not-allowed;
+
+            transform: none;
         }
+
+
+        /* =====================================================
+           MENSAGENS
+        ===================================================== */
 
         #mensagem {
             margin-top: 18px;
+
             font-size: 14px;
         }
 
+
         .sucesso {
-            color: #168534;
+            color: #00A86B;
+
+            font-weight: bold;
         }
 
+
         .erro {
-            color: red;
+            color: #B00020;
+
+            font-weight: bold;
         }
+
+
+        /* =====================================================
+           VOLTAR
+        ===================================================== */
 
         .voltar {
             margin-top: 30px;
         }
 
+
         .voltar a {
-            color: #222;
+            color: #007BFF;
+
             text-decoration: none;
+
             font-weight: bold;
+
+            transition: 0.2s;
         }
 
+
         .voltar a:hover {
+            color: #0069D9;
+
             text-decoration: underline;
         }
 
+
+        /* =====================================================
+           FOOTER
+        ===================================================== */
+
         footer {
             text-align: center;
-            color: #777;
+
+            color: #64748B;
+
             padding: 30px;
+
             margin-top: 50px;
-            border-top: 1px solid #ddd;
+
+            border-top:
+                1px solid #DCE4EE;
+
+            background: #FFFFFF;
         }
+
+
+        /* =====================================================
+           RESPONSIVO
+        ===================================================== */
 
         @media (max-width: 700px) {
 
@@ -238,49 +680,103 @@
                 margin-top: 20px;
             }
 
+
+            header {
+                padding: 18px 20px;
+            }
+
+
+            header nav {
+                gap: 5px;
+
+                flex-wrap: wrap;
+            }
+
+
             .material {
                 flex-direction: column;
+
                 align-items: flex-start;
             }
 
-            .material button {
+
+            .material-button {
                 width: 100%;
             }
+
 
             .titulo h2 {
                 font-size: 26px;
             }
+
+
+            .titulo {
+                padding: 22px;
+            }
+
+
+            .conclusao {
+                padding: 25px 20px;
+            }
+
         }
+
     </style>
+
 </head>
+
 
 <body>
 
+
+    <!-- =====================================================
+         CABEÇALHO
+    ===================================================== -->
+
     <header>
+
         <div class="container">
 
             <h1>
+
                 <a href="index.html">
                     Plataforma de Estudos
                 </a>
+
             </h1>
 
+
             <nav>
-                <a href="area-aluno.html">Meu espaço</a>
-                <a href="#" id="btnSair">Sair</a>
+
+                <a href="area-aluno.html">
+                    Meu espaço
+                </a>
+
+                <a href="#" id="btnSair">
+                    Sair
+                </a>
+
             </nav>
 
         </div>
+
     </header>
 
 
+
+    <!-- =====================================================
+         CONTEÚDO
+    ===================================================== -->
+
     <main>
+
 
         <!-- CABEÇALHO DA AULA -->
 
         <div class="breadcrumb">
             TRILHA 1 — EXCEL
         </div>
+
 
         <section class="titulo">
 
@@ -292,6 +788,7 @@
                 Nesta aula, você aprenderá os fundamentos necessários
                 para começar a trabalhar com planilhas no Excel.
             </p>
+
 
             <div class="topicos">
 
@@ -328,7 +825,10 @@
         </section>
 
 
-        <!-- MATERIAIS -->
+
+        <!-- =================================================
+             MATERIAIS
+        ================================================== -->
 
         <section class="secao">
 
@@ -344,7 +844,9 @@
             <div class="materiais">
 
 
-                <!-- SLIDES -->
+                <!-- =================================================
+                     SLIDES
+                ================================================== -->
 
                 <div class="material">
 
@@ -368,16 +870,22 @@
 
                     </div>
 
-                    <button
-                        class="botao-indisponivel"
-                        disabled>
-                        Em breve
-                    </button>
+
+                    <a
+                        href="aula1-excel-materiais/TRILHA%201%20-%20EXCEL.pdf"
+                        target="_blank"
+                        class="material-button"
+                    >
+                        Abrir slides
+                    </a>
 
                 </div>
 
 
-                <!-- MATERIAL DE APOIO -->
+
+                <!-- =================================================
+                     MATERIAL DE APOIO
+                ================================================== -->
 
                 <div class="material">
 
@@ -394,118 +902,60 @@
                             </h4>
 
                             <p>
-                                Livro ou material complementar para aprofundamento.
+                                Apostila para aprofundar os conteúdos da aula.
                             </p>
 
                         </div>
 
                     </div>
 
-                    <button
-                        class="botao-indisponivel"
-                        disabled>
-                        Em breve
-                    </button>
+
+                    <a
+                        href="aula1-excel-materiais/apostila_excel365_basico_CB.pdf"
+                        target="_blank"
+                        class="material-button"
+                    >
+                        Abrir material
+                    </a>
 
                 </div>
 
 
-                <!-- VIDEO -->
+
+                <!-- =================================================
+                     ARQUIVO EXCEL
+                ================================================== -->
 
                 <div class="material">
 
                     <div class="material-info">
 
                         <div class="material-icone">
-                            🎥
+                            📈
                         </div>
 
                         <div>
 
                             <h4>
-                                Videoaula
+                                Exercícios no Excel
                             </h4>
 
                             <p>
-                                Vídeo complementar para acompanhar o conteúdo.
+                                Baixe a planilha e pratique os conteúdos da aula.
                             </p>
 
                         </div>
 
                     </div>
 
-                    <button
-                        class="botao-indisponivel"
-                        disabled>
-                        Em breve
-                    </button>
 
-                </div>
-
-
-                <!-- ARQUIVO EXCEL -->
-
-                <div class="material">
-
-                    <div class="material-info">
-
-                        <div class="material-icone">
-                            📁
-                        </div>
-
-                        <div>
-
-                            <h4>
-                                Arquivo Excel
-                            </h4>
-
-                            <p>
-                                Arquivo utilizado para acompanhar os exemplos
-                                e realizar as atividades.
-                            </p>
-
-                        </div>
-
-                    </div>
-
-                    <button
-                        class="botao-indisponivel"
-                        disabled>
-                        Em breve
-                    </button>
-
-                </div>
-
-
-                <!-- EXERCÍCIOS -->
-
-                <div class="material">
-
-                    <div class="material-info">
-
-                        <div class="material-icone">
-                            📝
-                        </div>
-
-                        <div>
-
-                            <h4>
-                                Exercícios
-                            </h4>
-
-                            <p>
-                                Exercícios para praticar o conteúdo aprendido.
-                            </p>
-
-                        </div>
-
-                    </div>
-
-                    <button
-                        class="botao-indisponivel"
-                        disabled>
-                        Em breve
-                    </button>
+                    <a
+                        href="aula1-excel-materiais/Exercicios_Excel_Aula_1_GTHC.xlsx"
+                        download
+                        class="material-button verde"
+                    >
+                        Baixar Excel
+                    </a>
 
                 </div>
 
@@ -514,7 +964,70 @@
         </section>
 
 
-        <!-- CONCLUSÃO -->
+
+        <!-- =================================================
+             VIDEOAULA
+        ================================================== -->
+
+        <section class="secao">
+
+            <h3>
+                Videoaula
+            </h3>
+
+            <p class="secao-subtitulo">
+                Assista à explicação complementar da Aula 1.
+            </p>
+
+
+            <div class="video-card">
+
+                <h4>
+                    🎥 Aula de Excel — Fundamentos
+                </h4>
+
+                <p>
+                    O vídeo será disponibilizado aqui.
+                </p>
+
+
+                <!--
+                    QUANDO VOCÊ ME PASSAR O LINK DO YOUTUBE,
+                    VAMOS COLOCAR O IFRAME AQUI.
+
+                    Exemplo:
+
+                    <div class="video-container">
+
+                        <iframe
+                            src="https://www.youtube.com/embed/ID_DO_VIDEO"
+                            title="Videoaula de Excel"
+                            allowfullscreen>
+                        </iframe>
+
+                    </div>
+                -->
+
+                <div class="video-placeholder">
+
+                    <strong>
+                        Videoaula em breve
+                    </strong>
+
+                    O vídeo do YouTube será disponibilizado
+                    nesta área.
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =================================================
+             CONCLUSÃO
+        ================================================== -->
 
         <section class="conclusao">
 
@@ -523,17 +1036,20 @@
             </h3>
 
             <p>
-                Depois de estudar os materiais e realizar as atividades,
-                marque a aula como concluída.
+                Depois de estudar os materiais, assistir à videoaula
+                e realizar os exercícios, marque a aula como concluída.
             </p>
+
 
             <button id="btnConcluir">
                 ✓ Marcar aula como concluída
             </button>
 
+
             <div id="mensagem"></div>
 
         </section>
+
 
 
         <!-- VOLTAR -->
@@ -549,6 +1065,11 @@
     </main>
 
 
+
+    <!-- =====================================================
+         FOOTER
+    ===================================================== -->
+
     <footer>
 
         © 2026 Plataforma de Estudos
@@ -556,13 +1077,20 @@
     </footer>
 
 
+
+    <!-- =====================================================
+         JAVASCRIPT
+    ===================================================== -->
+
     <script>
+
 
         // =====================================================
         // CONFIGURAÇÃO
         // =====================================================
 
-        const LESSON_ID = "aula1-excel";
+        const LESSON_ID =
+            "aula1-excel";
 
 
         // =====================================================
@@ -570,13 +1098,21 @@
         // =====================================================
 
         const btnConcluir =
-            document.getElementById("btnConcluir");
+            document.getElementById(
+                "btnConcluir"
+            );
+
 
         const mensagem =
-            document.getElementById("mensagem");
+            document.getElementById(
+                "mensagem"
+            );
+
 
         const btnSair =
-            document.getElementById("btnSair");
+            document.getElementById(
+                "btnSair"
+            );
 
 
         // =====================================================
@@ -588,7 +1124,10 @@
             const {
                 data,
                 error
-            } = await supabaseClient.auth.getSession();
+            } =
+                await supabaseClient
+                    .auth
+                    .getSession();
 
 
             if (error) {
@@ -598,20 +1137,25 @@
                     error
                 );
 
+
                 mostrarErro(
                     "Não foi possível verificar seu login."
                 );
+
 
                 return null;
             }
 
 
-            const session = data.session;
+            const session =
+                data.session;
 
 
             if (!session) {
 
-                window.location.href = "login.html";
+                window.location.href =
+                    "login.html";
+
 
                 return null;
             }
@@ -622,7 +1166,7 @@
 
 
         // =====================================================
-        // VERIFICAR SE A AULA JÁ FOI CONCLUÍDA
+        // VERIFICAR PROGRESSO
         // =====================================================
 
         async function verificarProgresso(user) {
@@ -630,12 +1174,19 @@
             const {
                 data,
                 error
-            } = await supabaseClient
-                .from("progress")
-                .select("completed")
-                .eq("user_id", user.id)
-                .eq("lesson_id", LESSON_ID)
-                .maybeSingle();
+            } =
+                await supabaseClient
+                    .from("progress")
+                    .select("completed")
+                    .eq(
+                        "user_id",
+                        user.id
+                    )
+                    .eq(
+                        "lesson_id",
+                        LESSON_ID
+                    )
+                    .maybeSingle();
 
 
             if (error) {
@@ -645,16 +1196,15 @@
                     error
                 );
 
-                /*
-                 * Não vamos bloquear a página caso a consulta
-                 * tenha algum problema.
-                 */
 
                 return;
             }
 
 
-            if (data && data.completed === true) {
+            if (
+                data &&
+                data.completed === true
+            ) {
 
                 aulaConcluida();
 
@@ -669,10 +1219,13 @@
 
         async function marcarComoConcluida() {
 
-            btnConcluir.disabled = true;
+            btnConcluir.disabled =
+                true;
+
 
             btnConcluir.textContent =
                 "Salvando...";
+
 
             limparMensagem();
 
@@ -682,21 +1235,31 @@
             const {
                 data: sessionData,
                 error: sessionError
-            } = await supabaseClient.auth.getSession();
+            } =
+                await supabaseClient
+                    .auth
+                    .getSession();
 
 
             if (sessionError) {
 
-                console.error(sessionError);
+                console.error(
+                    sessionError
+                );
+
 
                 mostrarErro(
                     "Não foi possível verificar seu login."
                 );
 
-                btnConcluir.disabled = false;
+
+                btnConcluir.disabled =
+                    false;
+
 
                 btnConcluir.textContent =
                     "✓ Marcar aula como concluída";
+
 
                 return;
             }
@@ -710,6 +1273,7 @@
 
                 window.location.href =
                     "login.html";
+
 
                 return;
             }
@@ -726,22 +1290,36 @@
             const {
                 data,
                 error
-            } = await supabaseClient
-                .from("progress")
-                .upsert(
-                    {
-                        user_id: user.id,
-                        lesson_id: LESSON_ID,
-                        completed: true,
-                        completed_at: new Date().toISOString(),
-                        updated_at: new Date().toISOString()
-                    },
-                    {
-                        onConflict:
-                            "user_id,lesson_id"
-                    }
-                )
-                .select();
+            } =
+                await supabaseClient
+                    .from("progress")
+                    .upsert(
+                        {
+
+                            user_id:
+                                user.id,
+
+                            lesson_id:
+                                LESSON_ID,
+
+                            completed:
+                                true,
+
+                            completed_at:
+                                new Date()
+                                    .toISOString(),
+
+                            updated_at:
+                                new Date()
+                                    .toISOString()
+
+                        },
+                        {
+                            onConflict:
+                                "user_id,lesson_id"
+                        }
+                    )
+                    .select();
 
 
             // =================================================
@@ -755,21 +1333,6 @@
                     error
                 );
 
-                console.error(
-                    "Mensagem:",
-                    error.message
-                );
-
-                console.error(
-                    "Detalhes:",
-                    error.details
-                );
-
-                console.error(
-                    "Hint:",
-                    error.hint
-                );
-
 
                 mostrarErro(
                     "Não foi possível salvar o progresso: "
@@ -777,10 +1340,13 @@
                 );
 
 
-                btnConcluir.disabled = false;
+                btnConcluir.disabled =
+                    false;
+
 
                 btnConcluir.textContent =
                     "✓ Marcar aula como concluída";
+
 
                 return;
             }
@@ -807,17 +1373,21 @@
 
         function aulaConcluida() {
 
-            btnConcluir.disabled = true;
+            btnConcluir.disabled =
+                true;
+
 
             btnConcluir.textContent =
                 "✓ Aula concluída";
 
+
             btnConcluir.style.background =
-                "#777";
+                "#00A86B";
 
 
             mensagem.textContent =
                 "Aula concluída e progresso salvo!";
+
 
             mensagem.className =
                 "sucesso";
@@ -834,6 +1404,7 @@
             mensagem.textContent =
                 texto;
 
+
             mensagem.className =
                 "erro";
 
@@ -842,9 +1413,12 @@
 
         function limparMensagem() {
 
-            mensagem.textContent = "";
+            mensagem.textContent =
+                "";
 
-            mensagem.className = "";
+
+            mensagem.className =
+                "";
 
         }
 
@@ -862,7 +1436,10 @@
 
                 const {
                     error
-                } = await supabaseClient.auth.signOut();
+                } =
+                    await supabaseClient
+                        .auth
+                        .signOut();
 
 
                 if (error) {
@@ -871,6 +1448,7 @@
                         "Erro ao sair:",
                         error
                     );
+
 
                     return;
                 }
@@ -915,7 +1493,9 @@
             );
 
 
-            await verificarProgresso(user);
+            await verificarProgresso(
+                user
+            );
 
         }
 
@@ -923,6 +1503,7 @@
         iniciarPagina();
 
     </script>
+
 
 </body>
 
