@@ -1,0 +1,545 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Atividade Final — Excel | Plataforma de Estudos</title>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="supabase.js"></script>
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, Helvetica, sans-serif;
+            background: #030B15;
+            color: #F8FAFC;
+        }
+
+        /* =========================
+           NAVBAR
+        ========================= */
+
+        .navbar {
+            height: 64px;
+            background: #07111F;
+            border-bottom: 1px solid #17263A;
+
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            padding: 0 7%;
+        }
+
+        .logo {
+            color: #F8FAFC;
+            font-size: 18px;
+            font-weight: 700;
+        }
+
+        .logo span {
+            color: #007BFF;
+        }
+
+        .menu a {
+            color: #CBD5E1;
+            text-decoration: none;
+            font-size: 14px;
+        }
+
+        .menu a:hover {
+            color: #00A86B;
+        }
+
+        /* =========================
+           QUADRADOS
+        ========================= */
+
+        .quadrados {
+            position: fixed;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .quadrados.esquerda {
+            top: 65px;
+            left: 0;
+        }
+
+        .quadrados.direita {
+            right: 0;
+            bottom: 0;
+        }
+
+        .quadrados span {
+            display: inline-block;
+            width: 14px;
+            height: 14px;
+            margin: 4px;
+            background: #007BFF;
+            opacity: .45;
+        }
+
+        .quadrados span:nth-child(3n) {
+            background: #00A86B;
+        }
+
+        .quadrados span:nth-child(4n) {
+            opacity: .2;
+        }
+
+        /* =========================
+           MAIN
+        ========================= */
+
+        main {
+            width: min(760px, 92%);
+            margin: 0 auto;
+            padding: 34px 0 70px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .voltar {
+            margin-bottom: 18px;
+        }
+
+        .voltar a {
+            color: #007BFF;
+            text-decoration: none;
+            font-size: 13px;
+            font-weight: 600;
+        }
+
+        .voltar a:hover {
+            color: #00A86B;
+        }
+
+        /* =========================
+           CABEÇALHO
+        ========================= */
+
+        .cabecalho {
+            background: #081522;
+            border: 1px solid #1B2C42;
+            border-radius: 12px;
+            padding: 25px;
+            margin-bottom: 16px;
+        }
+
+        .tag {
+            display: inline-block;
+            background: rgba(0, 123, 255, .12);
+            border: 1px solid #007BFF;
+            color: #38A3FF;
+            padding: 6px 11px;
+            border-radius: 20px;
+            font-size: 10px;
+            font-weight: 700;
+            margin-bottom: 12px;
+        }
+
+        .cabecalho h1 {
+            margin: 0 0 8px;
+            font-size: 25px;
+        }
+
+        .cabecalho p {
+            margin: 0;
+            color: #94A3B8;
+            font-size: 13px;
+            line-height: 1.6;
+        }
+
+        /* =========================
+           SEÇÕES
+        ========================= */
+
+        .secao {
+            background: #081522;
+            border: 1px solid #1B2C42;
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 16px;
+        }
+
+        .secao h2 {
+            margin: 0 0 12px;
+            font-size: 16px;
+        }
+
+        .secao p {
+            color: #94A3B8;
+            font-size: 13px;
+            line-height: 1.7;
+        }
+
+        /* =========================
+           LISTA
+        ========================= */
+
+        .tarefas {
+            display: grid;
+            gap: 9px;
+            margin-top: 15px;
+        }
+
+        .tarefa {
+            background: #06111E;
+            border: 1px solid #1B2C42;
+            border-radius: 8px;
+            padding: 12px;
+            color: #CBD5E1;
+            font-size: 12px;
+        }
+
+        .tarefa::before {
+            content: "✓";
+            color: #00A86B;
+            font-weight: bold;
+            margin-right: 9px;
+        }
+
+        /* =========================
+           ARQUIVO
+        ========================= */
+
+        .arquivo {
+            background: #06111E;
+            border: 1px solid #1B2C42;
+            border-radius: 9px;
+            padding: 18px;
+
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 15px;
+        }
+
+        .arquivo h3 {
+            margin: 0 0 5px;
+            font-size: 14px;
+        }
+
+        .arquivo p {
+            margin: 0;
+            font-size: 11px;
+            color: #64748B;
+        }
+
+        .botao {
+            display: inline-block;
+            background: #007BFF;
+            color: white;
+            text-decoration: none;
+            border: none;
+            border-radius: 7px;
+            padding: 10px 15px;
+            font-size: 11px;
+            font-weight: 600;
+            white-space: nowrap;
+            cursor: pointer;
+        }
+
+        .botao:hover {
+            background: #0069D9;
+        }
+
+        .botao-verde {
+            background: #00A86B;
+        }
+
+        .botao-verde:hover {
+            background: #008F5B;
+        }
+
+        /* =========================
+           ENTREGA
+        ========================= */
+
+        .entrega {
+            text-align: center;
+        }
+
+        .entrega p {
+            max-width: 600px;
+            margin: 0 auto 18px;
+        }
+
+        #mensagem {
+            margin-top: 15px;
+            font-size: 12px;
+        }
+
+        .sucesso {
+            color: #00A86B;
+        }
+
+        /* =========================
+           FOOTER
+        ========================= */
+
+        footer {
+            background: #07111F;
+            border-top: 1px solid #17263A;
+            text-align: center;
+            padding: 25px;
+            color: #64748B;
+            font-size: 11px;
+        }
+
+        /* =========================
+           RESPONSIVO
+        ========================= */
+
+        @media (max-width: 600px) {
+
+            .navbar {
+                padding: 0 20px;
+            }
+
+            .arquivo {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .botao {
+                width: 100%;
+                text-align: center;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+    <!-- QUADRADOS -->
+
+    <div class="quadrados esquerda">
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+    </div>
+
+    <div class="quadrados direita">
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+    </div>
+
+
+    <!-- NAVBAR -->
+
+    <header class="navbar">
+
+        <div class="logo">
+            GREEN <span>TEAM</span>
+        </div>
+
+        <nav class="menu">
+            <a href="area-aluno.html">
+                Área do aluno
+            </a>
+        </nav>
+
+    </header>
+
+
+    <main>
+
+        <div class="voltar">
+            <a href="excel.html">
+                ← Voltar para Trilha 1 — Excel
+            </a>
+        </div>
+
+
+        <!-- CABEÇALHO -->
+
+        <section class="cabecalho">
+
+            <span class="tag">
+                TRILHA 1 • ATIVIDADE FINAL
+            </span>
+
+            <h1>
+                Atividade Final — Excel
+            </h1>
+
+            <p>
+                Coloque em prática os conhecimentos desenvolvidos
+                durante as três aulas da trilha.
+            </p>
+
+        </section>
+
+
+        <!-- OBJETIVO -->
+
+        <section class="secao">
+
+            <h2>
+                Sobre a atividade
+            </h2>
+
+            <p>
+                Nesta atividade, você deverá realizar uma análise
+                completa de dados utilizando os recursos estudados
+                ao longo da Trilha 1 — Excel.
+            </p>
+
+            <div class="tarefas">
+
+                <div class="tarefa">
+                    Realizar a limpeza e organização dos dados
+                </div>
+
+                <div class="tarefa">
+                    Criar métricas utilizando funções do Excel
+                </div>
+
+                <div class="tarefa">
+                    Criar tabelas dinâmicas
+                </div>
+
+                <div class="tarefa">
+                    Utilizar filtros e segmentações
+                </div>
+
+                <div class="tarefa">
+                    Criar gráficos adequados para a análise
+                </div>
+
+                <div class="tarefa">
+                    Interpretar os resultados encontrados
+                </div>
+
+                <div class="tarefa">
+                    Apresentar conclusões a partir dos dados
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ARQUIVO -->
+
+        <section class="secao">
+
+            <h2>
+                Arquivo da atividade
+            </h2>
+
+            <p>
+                Baixe o arquivo disponibilizado para realizar
+                a atividade.
+            </p>
+
+            <div class="arquivo">
+
+                <div>
+
+                    <h3>
+                        📊 Atividade Final — Excel
+                    </h3>
+
+                    <p>
+                        Arquivo para realização da atividade.
+                    </p>
+
+                </div>
+
+                <!--
+                    TROQUE O NOME DO ARQUIVO ABAIXO
+                    caso o seu arquivo tenha outro nome.
+                -->
+
+                <a
+                    class="botao"
+                    href="aula3-excel-materiais/Exercicios_Excel_Aula_3_GTHC.xlsx"
+                    download
+                >
+                    Baixar arquivo
+                </a>
+
+            </div>
+
+        </section>
+
+
+        <!-- ENTREGA -->
+
+        <section class="secao entrega">
+
+            <h2>
+                Entrega da atividade
+            </h2>
+
+            <p>
+                Depois de finalizar a atividade, envie o arquivo
+                preenchido para a equipe responsável.
+            </p>
+
+            <button
+                class="botao botao-verde"
+                onclick="mostrarMensagem()"
+            >
+                ✓ Enviar atividade
+            </button>
+
+            <div id="mensagem"></div>
+
+        </section>
+
+
+    </main>
+
+
+    <footer>
+        © 2026 Plataforma de Estudos — GTHC
+    </footer>
+
+
+    <script>
+
+        function mostrarMensagem() {
+
+            const mensagem =
+                document.getElementById("mensagem");
+
+            mensagem.textContent =
+                "A entrega da atividade será disponibilizada em breve.";
+
+            mensagem.className =
+                "sucesso";
+        }
+
+    </script>
+
+</body>
+
+</html>

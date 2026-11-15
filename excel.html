@@ -1,364 +1,658 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
     <link rel="icon" type="image/x-icon" href="favicon-plataforma.ico">
     <meta charset="UTF-8">
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Trilha de Excel | Plataforma de Estudos</title>
-
-    <link rel="stylesheet" href="style.css">
+    <title>Trilha 1 — Excel | Green Team</title>
 
     <style>
+
         * {
-            box-sizing: border-box;
             margin: 0;
             padding: 0;
+            box-sizing: border-box;
         }
+
 
         body {
+            min-height: 100vh;
+
             font-family: Arial, Helvetica, sans-serif;
-            background: #F5F8FC;
-            color: #0F172A;
+
+            background:
+                radial-gradient(
+                    circle at 15% 80%,
+                    rgba(0, 168, 107, 0.07),
+                    transparent 28%
+                ),
+                radial-gradient(
+                    circle at 85% 20%,
+                    rgba(0, 123, 255, 0.08),
+                    transparent 30%
+                ),
+                #050B12;
+
+            color: #FFFFFF;
+
+            overflow-x: hidden;
         }
 
-        /* NAVBAR */
 
-        nav {
-            background: #07111F;
-            padding: 18px 7%;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
+        /* =========================
+           QUADRADOS AZUIS
+        ========================= */
 
-        .logo {
-            color: white;
-            text-decoration: none;
-            font-size: 21px;
-            font-weight: bold;
-        }
+        .pixel {
+            position: fixed;
 
-        .nav-links {
-            display: flex;
-            align-items: center;
-            gap: 25px;
-        }
+            width: 18px;
+            height: 18px;
 
-        .nav-links a {
-            color: white;
-            text-decoration: none;
-            font-size: 15px;
-        }
+            background: #087CFF;
 
-        .nav-links a:hover {
-            color: #B9DBFF;
-        }
+            opacity: 0.65;
 
-        /* CONTAINER */
+            z-index: 0;
 
-        .container {
-            width: 90%;
-            max-width: 1050px;
-            margin: 45px auto 70px;
-        }
-
-        /* HEADER */
-
-        .track-header {
-            background: white;
-            border: 1px solid #DCE4EE;
-            border-radius: 16px;
-            padding: 35px;
-            margin-bottom: 25px;
-        }
-
-        .tag {
-            display: inline-block;
-            background: #EAF4FF;
-            color: #007BFF;
-            padding: 7px 13px;
-            border-radius: 20px;
-            font-size: 13px;
-            font-weight: bold;
-            margin-bottom: 15px;
-        }
-
-        .track-header h1 {
-            font-size: 30px;
-            margin-bottom: 10px;
-        }
-
-        .track-header p {
-            color: #64748B;
-            line-height: 1.7;
-        }
-
-        /* PROGRESSO */
-
-        .progress-card {
-            background: white;
-            border: 1px solid #DCE4EE;
-            border-radius: 16px;
-            padding: 25px;
-            margin-bottom: 30px;
-        }
-
-        .progress-top {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 12px;
-        }
-
-        .progress-top strong {
-            font-size: 16px;
-        }
-
-        .progress-percent {
-            color: #007BFF;
-            font-weight: bold;
-        }
-
-        .progress-bar {
-            width: 100%;
-            height: 10px;
-            background: #E2E8F0;
-            border-radius: 20px;
-            overflow: hidden;
-        }
-
-        .progress-fill {
-            height: 100%;
-            width: 0%;
-            background: #007BFF;
-            border-radius: 20px;
-            transition: width 0.3s ease;
-        }
-
-        /* AULAS */
-
-        .section-title {
-            font-size: 22px;
-            margin-bottom: 18px;
-        }
-
-        .aulas {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 20px;
-        }
-
-        .aula-card {
-            background: white;
-            border: 1px solid #DCE4EE;
-            border-radius: 16px;
-            padding: 25px;
-            transition: 0.2s;
-        }
-
-        .aula-card:hover {
-            transform: translateY(-2px);
-            border-color: #B9DBFF;
-        }
-
-        .aula-number {
-            color: #007BFF;
-            font-size: 13px;
-            font-weight: bold;
-            margin-bottom: 10px;
-        }
-
-        .aula-card h3 {
-            font-size: 19px;
-            margin-bottom: 10px;
-        }
-
-        .aula-card p {
-            color: #64748B;
-            line-height: 1.6;
-            font-size: 14px;
-            margin-bottom: 18px;
-        }
-
-        .status {
-            display: inline-block;
-            padding: 6px 10px;
-            border-radius: 20px;
-            font-size: 12px;
-            font-weight: bold;
-            margin-bottom: 15px;
-        }
-
-        .disponivel {
-            background: #EAF8F2;
-            color: #00A86B;
-        }
-
-        .em-breve {
-            background: #F1F5F9;
-            color: #64748B;
-        }
-
-        .aula-button {
-            display: inline-block;
-            text-decoration: none;
-            padding: 11px 17px;
-            border-radius: 8px;
-            background: #007BFF;
-            color: white;
-            font-size: 14px;
-            font-weight: bold;
-        }
-
-        .aula-button:hover {
-            background: #0069D9;
-        }
-
-        .aula-button.disabled {
-            background: #E2E8F0;
-            color: #94A3B8;
-            cursor: not-allowed;
             pointer-events: none;
         }
 
-        /* ATIVIDADE */
-
-        .atividade-card {
-            margin-top: 25px;
-            background: #F0FDF8;
-            border: 1px solid #B7E8D5;
-            border-radius: 16px;
-            padding: 28px;
+        .pixel.soft {
+            opacity: 0.25;
         }
 
-        .atividade-card h3 {
-            color: #00A86B;
+        .pixel.green {
+            background: #00A86B;
+
+            opacity: 0.35;
+        }
+
+
+        .p1 {
+            top: 80px;
+            left: 0;
+        }
+
+        .p2 {
+            top: 98px;
+            left: 18px;
+        }
+
+        .p3 {
+            top: 116px;
+            left: 36px;
+        }
+
+        .p4 {
+            top: 134px;
+            left: 18px;
+        }
+
+        .p5 {
+            top: 80px;
+            left: 54px;
+        }
+
+        .p6 {
+            top: 152px;
+            left: 0;
+        }
+
+
+        .p7 {
+            right: 0;
+            bottom: 70px;
+        }
+
+        .p8 {
+            right: 18px;
+            bottom: 88px;
+        }
+
+        .p9 {
+            right: 36px;
+            bottom: 106px;
+        }
+
+        .p10 {
+            right: 18px;
+            bottom: 124px;
+        }
+
+        .p11 {
+            right: 54px;
+            bottom: 70px;
+        }
+
+        .p12 {
+            right: 0;
+            bottom: 142px;
+        }
+
+
+        /* =========================
+           NAVBAR
+        ========================= */
+
+        nav {
+            height: 58px;
+
+            background: #07111F;
+
+            border-bottom: 1px solid #1E293B;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: space-between;
+
+            padding: 0 7%;
+
+            position: relative;
+
+            z-index: 10;
+        }
+
+
+        .logo {
+            color: #FFFFFF;
+
+            text-decoration: none;
+
+            font-size: 18px;
+
+            font-weight: 800;
+        }
+
+
+        .logo span {
+            color: #087CFF;
+        }
+
+
+        .nav-link {
+            color: #CBD5E1;
+
+            text-decoration: none;
+
+            font-size: 12px;
+
+            transition: 0.2s;
+        }
+
+
+        .nav-link:hover {
+            color: #FFFFFF;
+        }
+
+
+        /* =========================
+           CONTEÚDO
+        ========================= */
+
+        main {
+            width: 100%;
+
+            max-width: 1000px;
+
+            margin: 0 auto;
+
+            padding: 36px 20px 70px;
+
+            position: relative;
+
+            z-index: 1;
+        }
+
+
+        /* =========================
+           CABEÇALHO
+        ========================= */
+
+        .header-card {
+            background: #0B1522;
+
+            border: 1px solid #1E293B;
+
+            border-radius: 13px;
+
+            padding: 30px;
+
+            margin-bottom: 20px;
+
+            box-shadow:
+                0 15px 45px rgba(0, 0, 0, 0.25);
+        }
+
+
+        .tag {
+            display: inline-block;
+
+            background: rgba(8, 124, 255, 0.12);
+
+            border: 1px solid rgba(8, 124, 255, 0.25);
+
+            color: #4DA3FF;
+
+            border-radius: 20px;
+
+            padding: 6px 11px;
+
+            font-size: 10px;
+
+            font-weight: 800;
+
+            letter-spacing: 0.4px;
+
+            margin-bottom: 13px;
+        }
+
+
+        .header-card h1 {
+            font-size: 27px;
+
+            margin-bottom: 8px;
+        }
+
+
+        .header-card p {
+            color: #94A3B8;
+
+            font-size: 13px;
+
+            line-height: 1.6;
+        }
+
+
+        /* =========================
+           PROGRESSO
+        ========================= */
+
+        .progress-card {
+            background: #0B1522;
+
+            border: 1px solid #1E293B;
+
+            border-radius: 13px;
+
+            padding: 22px;
+
+            margin-bottom: 28px;
+        }
+
+
+        .progress-header {
+            display: flex;
+
+            justify-content: space-between;
+
+            align-items: center;
+
             margin-bottom: 10px;
         }
 
-        .atividade-card p {
-            color: #64748B;
-            line-height: 1.6;
-            margin-bottom: 18px;
+
+        .progress-title {
+            font-size: 13px;
+
+            font-weight: 700;
         }
 
-        .atividade-button {
+
+        .progress-percent {
+            color: #087CFF;
+
+            font-size: 13px;
+
+            font-weight: 800;
+        }
+
+
+        .progress-bar {
+            width: 100%;
+
+            height: 8px;
+
+            background: #1E293B;
+
+            border-radius: 10px;
+
+            overflow: hidden;
+        }
+
+
+        .progress-fill {
+            height: 100%;
+
+            width: 0%;
+
+            background: linear-gradient(
+                90deg,
+                #087CFF,
+                #00A86B
+            );
+
+            border-radius: 10px;
+
+            transition: width 0.5s ease;
+        }
+
+
+        /* =========================
+           TÍTULO
+        ========================= */
+
+        .section-title {
+            font-size: 20px;
+
+            margin-bottom: 15px;
+        }
+
+
+        /* =========================
+           AULAS
+        ========================= */
+
+        .lessons {
+            display: grid;
+
+            grid-template-columns:
+                repeat(2, 1fr);
+
+            gap: 16px;
+        }
+
+
+        .lesson-card {
+            background: #0B1522;
+
+            border: 1px solid #1E293B;
+
+            border-radius: 12px;
+
+            padding: 23px;
+
+            min-height: 210px;
+
+            display: flex;
+
+            flex-direction: column;
+
+            transition: 0.2s;
+        }
+
+
+        .lesson-card:hover {
+            border-color: #087CFF;
+
+            transform: translateY(-2px);
+
+            box-shadow:
+                0 12px 35px rgba(0, 123, 255, 0.08);
+        }
+
+
+        .lesson-number {
+            color: #087CFF;
+
+            font-size: 10px;
+
+            font-weight: 800;
+
+            letter-spacing: 0.5px;
+
+            margin-bottom: 9px;
+        }
+
+
+        .lesson-card h3 {
+            color: #FFFFFF;
+
+            font-size: 18px;
+
+            margin-bottom: 9px;
+        }
+
+
+        .lesson-card p {
+            color: #94A3B8;
+
+            font-size: 12px;
+
+            line-height: 1.55;
+
+            margin-bottom: 17px;
+        }
+
+
+        .status {
             display: inline-block;
-            background: #00A86B;
-            color: white;
+
+            width: fit-content;
+
+            padding: 6px 10px;
+
+            border-radius: 20px;
+
+            font-size: 10px;
+
+            font-weight: 700;
+
+            margin-bottom: 12px;
+        }
+
+
+        .status.available {
+            background: rgba(0, 168, 107, 0.12);
+
+            color: #00C985;
+
+            border: 1px solid rgba(0, 168, 107, 0.20);
+        }
+
+
+        .lesson-button {
+            display: inline-block;
+
+            width: fit-content;
+
+            margin-top: auto;
+
+            padding: 9px 14px;
+
+            border-radius: 7px;
+
+            background: #087CFF;
+
+            color: #FFFFFF;
+
             text-decoration: none;
-            padding: 12px 18px;
-            border-radius: 8px;
-            font-weight: bold;
-            font-size: 14px;
+
+            font-size: 11px;
+
+            font-weight: 700;
+
+            transition: 0.2s;
         }
 
-        .atividade-button:hover {
-            background: #008F5B;
+
+        .lesson-button:hover {
+            background: #0069D9;
+
+            transform: translateY(-1px);
         }
 
-        /* FOOTER */
+
+        /* =========================
+           FOOTER
+        ========================= */
 
         footer {
+            min-height: 58px;
+
             background: #07111F;
-            color: #94A3B8;
-            text-align: center;
-            padding: 25px;
-            font-size: 13px;
+
+            border-top: 1px solid #1E293B;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            color: #64748B;
+
+            font-size: 11px;
+
+            position: relative;
+
+            z-index: 2;
         }
 
-        /* RESPONSIVO */
 
-        @media (max-width: 750px) {
+        /* =========================
+           RESPONSIVO
+        ========================= */
 
-            nav {
-                padding: 16px 5%;
-            }
+        @media (max-width: 800px) {
 
-            .nav-links {
-                gap: 12px;
-            }
-
-            .container {
-                width: 94%;
-                margin-top: 25px;
-            }
-
-            .track-header {
-                padding: 25px;
-            }
-
-            .track-header h1 {
-                font-size: 25px;
-            }
-
-            .aulas {
+            .lessons {
                 grid-template-columns: 1fr;
             }
+
+            nav {
+                padding: 0 20px;
+            }
+
+            main {
+                padding-top: 25px;
+            }
+
         }
+
+
+        @media (max-width: 500px) {
+
+            .logo {
+                font-size: 16px;
+            }
+
+            .header-card {
+                padding: 23px;
+            }
+
+            .header-card h1 {
+                font-size: 23px;
+            }
+
+        }
+
     </style>
+
 </head>
 
+
 <body>
+
+
+    <!-- QUADRADOS DECORATIVOS -->
+
+    <div class="pixel p1"></div>
+    <div class="pixel soft p2"></div>
+    <div class="pixel p3"></div>
+    <div class="pixel soft p4"></div>
+    <div class="pixel p5"></div>
+    <div class="pixel green p6"></div>
+
+    <div class="pixel p7"></div>
+    <div class="pixel soft p8"></div>
+    <div class="pixel p9"></div>
+    <div class="pixel soft p10"></div>
+    <div class="pixel p11"></div>
+    <div class="pixel green p12"></div>
+
 
     <!-- NAVBAR -->
 
     <nav>
 
-        <a href="area-aluno.html" class="logo">
-            Plataforma de Estudos
+        <a
+            href="area-aluno.html"
+            class="logo"
+        >
+            GREEN <span>TEAM</span>
         </a>
 
-        <div class="nav-links">
-            <a href="area-aluno.html">Área do aluno</a>
-        </div>
+
+        <a
+            href="area-aluno.html"
+            class="nav-link"
+        >
+            Área do aluno
+        </a>
 
     </nav>
 
 
-    <main class="container">
+    <!-- CONTEÚDO -->
+
+    <main>
+
 
         <!-- CABEÇALHO -->
 
-        <section class="track-header">
+        <section class="header-card">
 
-            <span class="tag">TRILHA 1</span>
+            <span class="tag">
+                TRILHA 1
+            </span>
 
-            <h1>Excel</h1>
+
+            <h1>
+                Excel
+            </h1>
+
 
             <p>
-                Aprenda os principais recursos do Excel para organizar,
-                analisar e apresentar dados de forma eficiente.
+                Aprenda os principais recursos do Excel para
+                organizar, analisar e apresentar dados de forma eficiente.
             </p>
 
         </section>
+
 
 
         <!-- PROGRESSO -->
 
         <section class="progress-card">
 
-            <div class="progress-top">
+            <div class="progress-header">
 
-                <strong>
+                <span class="progress-title">
                     Seu progresso
-                </strong>
+                </span>
+
 
                 <span
-                    id="progressPercent"
                     class="progress-percent"
+                    id="progressPercent"
                 >
                     0%
                 </span>
 
             </div>
 
+
             <div class="progress-bar">
 
                 <div
-                    id="progressFill"
                     class="progress-fill"
+                    id="progressFill"
                 ></div>
 
             </div>
@@ -366,184 +660,183 @@
         </section>
 
 
-        <!-- AULAS -->
 
         <h2 class="section-title">
             Aulas
         </h2>
 
 
-        <section class="aulas">
+
+        <!-- AULAS -->
+
+        <section class="lessons">
+
 
             <!-- AULA 1 -->
 
-            <div class="aula-card">
+            <article class="lesson-card">
 
-                <div class="aula-number">
+                <span class="lesson-number">
                     AULA 1
-                </div>
+                </span>
+
 
                 <h3>
                     Fundamentos
                 </h3>
 
+
                 <p>
-                    Conheça a estrutura de uma planilha, referências,
-                    tipos de dados, filtros, ordenação, formatação e tabelas.
+                    Conheça a estrutura de uma planilha,
+                    referências, tipos de dados, filtros,
+                    ordenação, formatação e tabelas.
                 </p>
 
-                <span class="status disponivel">
+
+                <span class="status available">
                     Disponível
                 </span>
 
-                <br>
 
                 <a
                     href="aula1-excel.html"
-                    class="aula-button"
+                    class="lesson-button"
                 >
                     Acessar aula
                 </a>
 
-            </div>
+            </article>
+
 
 
             <!-- AULA 2 -->
 
-            <div class="aula-card">
+            <article class="lesson-card">
 
-                <div class="aula-number">
+                <span class="lesson-number">
                     AULA 2
-                </div>
+                </span>
+
 
                 <h3>
                     Funções
                 </h3>
 
+
                 <p>
-                    Aprenda funções como SOMA, MÉDIA, CONT.SE,
-                    SOMASE, SE, E, OU e funções de texto e data.
+                    Aprenda funções como SOMA, MÉDIA,
+                    CONT.SE, CONT.SES, SOMASE, SE, OU
+                    e funções de texto e data.
                 </p>
 
-                <span class="status disponivel">
+
+                <span class="status available">
                     Disponível
                 </span>
 
-                <br>
 
                 <a
                     href="aula2-excel.html"
-                    class="aula-button"
+                    class="lesson-button"
                 >
                     Acessar aula
                 </a>
 
-            </div>
+            </article>
+
 
 
             <!-- AULA 3 -->
 
-            <div class="aula-card">
+            <article class="lesson-card">
 
-                <div class="aula-number">
+                <span class="lesson-number">
                     AULA 3
-                </div>
+                </span>
+
 
                 <h3>
                     Tabela dinâmica + gráficos
                 </h3>
 
+
                 <p>
-                    Aprenda a criar tabelas dinâmicas, utilizar filtros,
-                    segmentações e criar gráficos adequados para análise.
+                    Aprenda a criar tabelas dinâmicas,
+                    utilizar filtros, segmentações e criar
+                    gráficos adequados para análise.
                 </p>
 
-                <span class="status disponivel">
+
+                <span class="status available">
                     Disponível
                 </span>
 
-                <br>
 
                 <a
                     href="aula3-excel.html"
-                    class="aula-button"
+                    class="lesson-button"
                 >
                     Acessar aula
                 </a>
 
-            </div>
+            </article>
 
 
-            <!-- PROJETO -->
 
-            <div class="aula-card">
+            <!-- ATIVIDADE -->
 
-                <div class="aula-number">
+            <article class="lesson-card">
+
+                <span class="lesson-number">
                     ATIVIDADE
-                </div>
+                </span>
+
 
                 <h3>
                     Atividade Final
                 </h3>
 
+
                 <p>
-                    Coloque em prática os conhecimentos das três aulas
-                    realizando uma análise completa de dados.
+                    Coloque em prática os conhecimentos das
+                    três aulas realizando uma análise completa
+                    de dados.
                 </p>
 
-                <span class="status disponivel">
+
+                <span class="status available">
                     Disponível
                 </span>
 
-                <br>
 
                 <a
                     href="atividade-excel.html"
-                    class="aula-button"
+                    class="lesson-button"
                 >
                     Acessar atividade
                 </a>
 
-            </div>
+            </article>
+
 
         </section>
 
-
-        <!-- ATIVIDADE -->
-
-        <section class="atividade-card">
-
-            <h3>
-                Projeto final da trilha
-            </h3>
-
-            <p>
-                Depois de concluir as três aulas, realize a atividade final
-                para aplicar os conhecimentos aprendidos durante a trilha.
-            </p>
-
-            <a
-                href="atividade-excel.html"
-                class="atividade-button"
-            >
-                Ir para atividade final
-            </a>
-
-        </section>
 
     </main>
 
 
+    <!-- FOOTER -->
+
     <footer>
-
         Plataforma de Estudos — GTHC
-
     </footer>
+
 
 
     <!-- SUPABASE -->
 
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
     <script src="supabase.js"></script>
 
 
@@ -560,20 +853,22 @@
         async function carregarProgresso() {
 
             const {
-                data: { session },
-                error: sessionError
-            } = await supabaseClient.auth.getSession();
+                data: {
+                    session
+                }
+            } = await supabaseClient
+                .auth
+                .getSession();
 
 
-            if (sessionError || !session) {
+            if (!session) {
 
-                window.location.href = "login.html";
+                window.location.href =
+                    "login.html";
 
                 return;
+
             }
-
-
-            const userId = session.user.id;
 
 
             const {
@@ -581,8 +876,13 @@
                 error
             } = await supabaseClient
                 .from("progress")
-                .select("lesson_id, completed")
-                .eq("user_id", userId);
+                .select(
+                    "lesson_id, completed"
+                )
+                .eq(
+                    "user_id",
+                    session.user.id
+                );
 
 
             if (error) {
@@ -593,28 +893,38 @@
                 );
 
                 return;
+
             }
 
 
-            const concluidas = (data || []).filter(
-                item =>
-                    item.completed &&
-                    AULAS_EXCEL.includes(item.lesson_id)
-            ).length;
+            const concluidas =
+                (data || []).filter(
+                    item =>
+                        item.completed === true &&
+                        AULAS_EXCEL.includes(
+                            item.lesson_id
+                        )
+                ).length;
 
 
             const percentual =
                 Math.round(
-                    (concluidas / AULAS_EXCEL.length) * 100
+                    (concluidas /
+                        AULAS_EXCEL.length) *
+                    100
                 );
 
 
-            document.getElementById("progressPercent")
-                .textContent = percentual + "%";
+            document.getElementById(
+                "progressPercent"
+            ).textContent =
+                `${percentual}%`;
 
 
-            document.getElementById("progressFill")
-                .style.width = percentual + "%";
+            document.getElementById(
+                "progressFill"
+            ).style.width =
+                `${percentual}%`;
 
         }
 
@@ -623,5 +933,7 @@
 
     </script>
 
+
 </body>
+
 </html>

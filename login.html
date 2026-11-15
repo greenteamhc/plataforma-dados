@@ -2,262 +2,463 @@
 <html lang="pt-BR">
 
 <head>
-    <link rel="icon" type="image/x-icon" href="favicon-plataforma.ico">
+
     <meta charset="UTF-8">
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Entrar - Plataforma de Estudos</title>
+    <title>Entrar | Green Team</title>
 
-    <link rel="stylesheet" href="style.css">
+    <link rel="icon" type="image/x-icon" href="favicon-plataforma.ico">
+
 
     <style>
 
         * {
+            margin: 0;
+            padding: 0;
             box-sizing: border-box;
         }
 
         body {
-            margin: 0;
-            background: #F5F8FC;
-            color: #07111F;
+            min-height: 100vh;
+
             font-family: Arial, Helvetica, sans-serif;
+
+            background:
+                radial-gradient(
+                    circle at 85% 20%,
+                    rgba(0, 123, 255, 0.10),
+                    transparent 30%
+                ),
+                #050B12;
+
+            color: #FFFFFF;
+
+            overflow-x: hidden;
         }
 
 
-        /* =========================
+        /* =====================================
+           QUADRADOS
+        ===================================== */
+
+        .pixel {
+            position: fixed;
+
+            width: 18px;
+            height: 18px;
+
+            background: #087CFF;
+
+            opacity: 0.65;
+
+            z-index: 0;
+        }
+
+        .pixel.soft {
+            opacity: 0.25;
+        }
+
+        .pixel.green {
+            background: #00A86B;
+
+            opacity: 0.35;
+        }
+
+
+        /* superior esquerdo */
+
+        .p1 {
+            top: 90px;
+            left: 0;
+        }
+
+        .p2 {
+            top: 108px;
+            left: 18px;
+        }
+
+        .p3 {
+            top: 126px;
+            left: 36px;
+        }
+
+        .p4 {
+            top: 144px;
+            left: 18px;
+        }
+
+        .p5 {
+            top: 90px;
+            left: 54px;
+        }
+
+        .p6 {
+            top: 162px;
+            left: 0;
+        }
+
+
+        /* inferior direito */
+
+        .p7 {
+            right: 0;
+            bottom: 75px;
+        }
+
+        .p8 {
+            right: 18px;
+            bottom: 93px;
+        }
+
+        .p9 {
+            right: 36px;
+            bottom: 111px;
+        }
+
+        .p10 {
+            right: 18px;
+            bottom: 129px;
+        }
+
+        .p11 {
+            right: 54px;
+            bottom: 75px;
+        }
+
+        .p12 {
+            right: 0;
+            bottom: 147px;
+        }
+
+
+        /* =====================================
            NAVBAR
-        ========================= */
+        ===================================== */
 
-        .navbar {
-            height: 72px;
+        nav {
+            height: 58px;
+
             background: #07111F;
-            display: flex;
-            align-items: center;
-            padding: 0 6%;
-        }
 
-        .container {
-            width: 100%;
-        }
+            border-bottom: 1px solid #1E293B;
 
-        .navbar-content {
             display: flex;
+
             align-items: center;
+
             justify-content: space-between;
+
+            padding: 0 6%;
+
+            position: relative;
+
+            z-index: 5;
         }
 
         .logo {
+            text-decoration: none;
+
             color: #FFFFFF;
-            text-decoration: none;
-            font-size: 20px;
-            font-weight: 700;
+
+            font-size: 18px;
+
+            font-weight: 800;
         }
 
-        .logo:hover {
-            color: #00A86B;
+        .logo span {
+            color: #087CFF;
         }
 
-        .navbar nav {
+        .nav-links {
             display: flex;
-            align-items: center;
-            gap: 28px;
+
+            gap: 24px;
         }
 
-        .navbar nav a {
+        .nav-links a {
             color: #CBD5E1;
+
             text-decoration: none;
-            font-size: 15px;
-            font-weight: 500;
+
+            font-size: 13px;
+
             transition: 0.2s;
         }
 
-        .navbar nav a:hover {
+        .nav-links a:hover {
             color: #FFFFFF;
         }
 
 
-        /* =========================
-           ÁREA DE LOGIN
-        ========================= */
+        /* =====================================
+           ÁREA PRINCIPAL
+        ===================================== */
 
-        .auth-page {
-            min-height: calc(100vh - 72px);
+        .page {
+            min-height: calc(100vh - 58px);
+
             display: flex;
+
             align-items: center;
+
             justify-content: center;
+
             padding: 50px 20px;
+
+            position: relative;
+
+            z-index: 1;
         }
+
+
+        /* =====================================
+           CARD
+        ===================================== */
 
         .auth-card {
             width: 100%;
-            max-width: 430px;
-            background: #FFFFFF;
-            border: 1px solid #DCE4EE;
-            border-radius: 18px;
-            padding: 40px;
-            box-shadow: 0 10px 30px rgba(7, 17, 31, 0.06);
+
+            max-width: 390px;
+
+            background: #0B1522;
+
+            border: 1px solid #1E293B;
+
+            border-radius: 12px;
+
+            padding: 36px 30px;
+
+            box-shadow:
+                0 20px 60px rgba(0, 0, 0, 0.35);
         }
 
 
-        /* =========================
-           TÍTULO
-        ========================= */
+        .auth-card::before {
+            content: "";
+
+            display: block;
+
+            width: 45px;
+
+            height: 3px;
+
+            background: #087CFF;
+
+            margin-bottom: 25px;
+        }
+
 
         .auth-card h1 {
-            margin: 0 0 10px;
-            color: #07111F;
-            font-size: 30px;
+            font-size: 27px;
+
+            margin-bottom: 8px;
         }
 
-        .auth-subtitle {
-            margin: 0 0 30px;
-            color: #64748B;
-            font-size: 15px;
+        .subtitle {
+            color: #94A3B8;
+
+            font-size: 13px;
+
             line-height: 1.6;
+
+            margin-bottom: 27px;
         }
 
 
-        /* =========================
+        /* =====================================
            FORMULÁRIO
-        ========================= */
+        ===================================== */
 
-        .form-group {
+        .field {
             margin-bottom: 20px;
         }
 
-        .form-group label {
+        label {
             display: block;
-            margin-bottom: 8px;
-            color: #07111F;
-            font-size: 14px;
-            font-weight: 600;
+
+            color: #CBD5E1;
+
+            font-size: 12px;
+
+            font-weight: 700;
+
+            margin-bottom: 7px;
         }
 
-        .form-group input {
+        input {
             width: 100%;
-            height: 46px;
-            padding: 0 14px;
-            border: 1px solid #CBD5E1;
-            border-radius: 8px;
-            background: #FFFFFF;
-            color: #07111F;
-            font-size: 14px;
-            outline: none;
-            transition: 0.2s;
-        }
 
-        .form-group input::placeholder {
-            color: #94A3B8;
-        }
+            height: 43px;
 
-        .form-group input:focus {
-            border-color: #007BFF;
-            box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.10);
-        }
+            padding: 0 13px;
 
+            border-radius: 7px;
 
-        /* =========================
-           BOTÃO
-        ========================= */
+            border: 1px solid #334155;
 
-        .btn-primary {
-            width: 100%;
-            height: 46px;
-            border: none;
-            border-radius: 8px;
-            background: #007BFF;
+            background: #07111F;
+
             color: #FFFFFF;
-            font-size: 14px;
-            font-weight: 600;
-            cursor: pointer;
+
+            outline: none;
+
+            font-size: 13px;
+
             transition: 0.2s;
         }
 
-        .btn-primary:hover {
+        input::placeholder {
+            color: #64748B;
+        }
+
+        input:focus {
+            border-color: #087CFF;
+
+            box-shadow:
+                0 0 0 2px rgba(8, 124, 255, 0.12);
+        }
+
+
+        /* =====================================
+           BOTÃO
+        ===================================== */
+
+        button {
+            width: 100%;
+
+            height: 45px;
+
+            border: none;
+
+            border-radius: 7px;
+
+            background: #087CFF;
+
+            color: white;
+
+            font-size: 13px;
+
+            font-weight: 700;
+
+            cursor: pointer;
+
+            transition: 0.2s;
+        }
+
+        button:hover {
             background: #0069D9;
+
+            transform: translateY(-1px);
         }
 
-        .btn-primary:disabled {
-            background: #E2E8F0;
-            color: #94A3B8;
+        button:disabled {
+            opacity: 0.6;
+
             cursor: not-allowed;
+
+            transform: none;
         }
 
 
-        /* =========================
-           MENSAGEM
-        ========================= */
+        /* =====================================
+           MENSAGENS
+        ===================================== */
 
-        .form-message {
-            min-height: 22px;
-            margin: 18px 0 0;
-            font-size: 14px;
+        #mensagem {
+            display: none;
+
+            margin-top: 18px;
+
+            padding: 12px;
+
+            border-radius: 7px;
+
+            background: rgba(0, 168, 107, 0.10);
+
+            border: 1px solid rgba(0, 168, 107, 0.35);
+
+            color: #00C98B;
+
+            font-size: 12px;
+
             line-height: 1.5;
         }
 
 
-        /* =========================
+        #erro {
+            display: none;
+
+            margin-top: 18px;
+
+            padding: 12px;
+
+            border-radius: 7px;
+
+            background: rgba(239, 68, 68, 0.08);
+
+            border: 1px solid rgba(239, 68, 68, 0.30);
+
+            color: #FCA5A5;
+
+            font-size: 12px;
+
+            line-height: 1.5;
+        }
+
+
+        /* =====================================
            RODAPÉ DO CARD
-        ========================= */
+        ===================================== */
 
         .auth-footer {
-            margin: 28px 0 0;
-            padding-top: 22px;
-            border-top: 1px solid #E2E8F0;
-            color: #64748B;
-            font-size: 14px;
+            margin-top: 25px;
+
+            padding-top: 20px;
+
+            border-top: 1px solid #1E293B;
+
             text-align: center;
+
+            color: #64748B;
+
+            font-size: 12px;
         }
 
         .auth-footer a {
-            color: #007BFF;
-            font-weight: 600;
+            color: #087CFF;
+
             text-decoration: none;
+
+            font-weight: 700;
         }
 
         .auth-footer a:hover {
-            color: #0069D9;
-            text-decoration: underline;
+            color: #4DA3FF;
         }
 
 
-        /* =========================
-           RESPONSIVIDADE
-        ========================= */
+        /* =====================================
+           RESPONSIVO
+        ===================================== */
 
         @media (max-width: 600px) {
 
-            .navbar {
-                height: auto;
-                min-height: 68px;
-                padding: 15px 18px;
+            nav {
+                padding: 0 20px;
             }
 
             .logo {
-                font-size: 17px;
+                font-size: 16px;
             }
 
-            .navbar nav {
-                gap: 12px;
-            }
-
-            .navbar nav a {
-                font-size: 13px;
-            }
-
-            .auth-page {
-                min-height: calc(100vh - 68px);
-                padding: 30px 16px;
+            .page {
+                padding: 35px 15px;
             }
 
             .auth-card {
-                padding: 28px 22px;
-                border-radius: 14px;
-            }
-
-            .auth-card h1 {
-                font-size: 26px;
+                padding: 30px 24px;
             }
 
         }
@@ -270,44 +471,53 @@
 <body>
 
 
-    <!-- =========================
-         CABEÇALHO
-    ========================= -->
+    <!-- QUADRADOS -->
 
-    <header class="navbar">
+    <div class="pixel p1"></div>
+    <div class="pixel soft p2"></div>
+    <div class="pixel p3"></div>
+    <div class="pixel soft p4"></div>
+    <div class="pixel p5"></div>
+    <div class="pixel green p6"></div>
 
-        <div class="container navbar-content">
+    <div class="pixel p7"></div>
+    <div class="pixel soft p8"></div>
+    <div class="pixel p9"></div>
+    <div class="pixel soft p10"></div>
+    <div class="pixel p11"></div>
+    <div class="pixel green p12"></div>
 
-            <a
-                href="index.html"
-                class="logo"
-            >
-                Plataforma de Estudos
+
+    <!-- NAVBAR -->
+
+    <nav>
+
+        <a
+            href="index.html"
+            class="logo"
+        >
+            GREEN <span>TEAM</span>
+        </a>
+
+
+        <div class="nav-links">
+
+            <a href="index.html">
+                Início
             </a>
 
-            <nav>
-
-                <a href="index.html">
-                    Início
-                </a>
-
-                <a href="cadastro.html">
-                    Criar conta
-                </a>
-
-            </nav>
+            <a href="cadastro.html">
+                Criar conta
+            </a>
 
         </div>
 
-    </header>
+    </nav>
 
 
+    <!-- CONTEÚDO -->
 
-    <!-- =========================
-         ÁREA DE LOGIN
-    ========================= -->
-
-    <main class="auth-page">
+    <main class="page">
 
         <div class="auth-card">
 
@@ -315,16 +525,14 @@
                 Entrar
             </h1>
 
-            <p class="auth-subtitle">
+            <p class="subtitle">
                 Entre com seu e-mail para acessar seus estudos.
             </p>
 
 
-            <!-- FORMULÁRIO -->
-
             <form id="loginForm">
 
-                <div class="form-group">
+                <div class="field">
 
                     <label for="email">
                         E-mail
@@ -334,7 +542,6 @@
                         type="email"
                         id="email"
                         placeholder="seu.email@universidade.edu.br"
-                        autocomplete="email"
                         required
                     >
 
@@ -343,7 +550,6 @@
 
                 <button
                     type="submit"
-                    class="btn-primary"
                     id="btnLogin"
                 >
                     Enviar link de acesso
@@ -352,17 +558,12 @@
             </form>
 
 
-            <!-- MENSAGEM -->
+            <div id="mensagem"></div>
 
-            <p
-                id="mensagem"
-                class="form-message"
-            ></p>
+            <div id="erro"></div>
 
 
-            <!-- CADASTRO -->
-
-            <p class="auth-footer">
+            <div class="auth-footer">
 
                 Ainda não possui uma conta?
 
@@ -370,33 +571,33 @@
                     Criar conta
                 </a>
 
-            </p>
+            </div>
 
         </div>
 
     </main>
 
 
-
-    <!-- =========================
-         SUPABASE
-    ========================= -->
+    <!-- SUPABASE -->
 
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
     <script src="supabase.js"></script>
 
 
-
-    <!-- =========================
-         LOGIN
-    ========================= -->
-
     <script>
 
-        const form = document.getElementById("loginForm");
-        const mensagem = document.getElementById("mensagem");
-        const btnLogin = document.getElementById("btnLogin");
+        const form =
+            document.getElementById("loginForm");
+
+        const btn =
+            document.getElementById("btnLogin");
+
+        const mensagem =
+            document.getElementById("mensagem");
+
+        const erro =
+            document.getElementById("erro");
 
 
         form.addEventListener("submit", async function(event) {
@@ -404,89 +605,79 @@
             event.preventDefault();
 
 
-            const email = document
-                .getElementById("email")
-                .value
-                .trim();
+            mensagem.style.display = "none";
+
+            erro.style.display = "none";
+
+
+            const email =
+                document
+                    .getElementById("email")
+                    .value
+                    .trim();
 
 
             if (!email) {
+
+                erro.textContent =
+                    "Digite seu e-mail.";
+
+                erro.style.display = "block";
+
                 return;
             }
 
 
-            /* Estado de carregamento */
+            btn.disabled = true;
 
-            btnLogin.disabled = true;
-
-            btnLogin.textContent =
-                "Enviando...";
-
-            mensagem.textContent =
-                "Enviando link de acesso...";
-
-            mensagem.style.color =
-                "#64748B";
+            btn.textContent = "Enviando...";
 
 
-            try {
+            const { data, error } =
+                await supabaseClient.auth.signInWithOtp({
 
-                const { data, error } =
-                    await supabaseClient.auth.signInWithOtp({
+                    email: email,
 
-                        email: email,
+                    options: {
 
-                        options: {
-                            shouldCreateUser: false,
-                            emailRedirectTo:
-                                "https://greenteamhc.github.io/plataforma-dados/area-aluno.html"
-                        }
+                        shouldCreateUser: false,
 
-                    });
+                        emailRedirectTo:
+                            window.location.origin +
+                            "/area-aluno.html"
 
+                    }
 
-                if (error) {
-
-                    throw error;
-
-                }
+                });
 
 
-                /* Sucesso */
+            if (error) {
 
-                mensagem.textContent =
-                    "Link de acesso enviado! Verifique seu e-mail.";
-
-                mensagem.style.color =
-                    "#00A86B";
-
-
-                btnLogin.textContent =
-                    "Link enviado";
-
-
-            } catch (error) {
-
-                console.error(
-                    "Erro no login:",
-                    error
-                );
-
-
-                mensagem.textContent =
-                    "Não foi possível entrar: " +
+                erro.textContent =
+                    "Não foi possível enviar o link: " +
                     error.message;
 
-                mensagem.style.color =
-                    "#B00020";
+                erro.style.display = "block";
 
+                btn.disabled = false;
 
-                btnLogin.disabled = false;
-
-                btnLogin.textContent =
+                btn.textContent =
                     "Enviar link de acesso";
 
+                return;
             }
+
+
+            mensagem.textContent =
+                "Link de acesso enviado! Verifique seu e-mail institucional.";
+
+            mensagem.style.display = "block";
+
+
+            btn.disabled = false;
+
+            btn.textContent =
+                "Enviar link de acesso";
 
         });
 

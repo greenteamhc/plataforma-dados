@@ -7,355 +7,589 @@
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Aula 2 - Funções | Plataforma de Estudos</title>
-
-    <link rel="stylesheet" href="style.css">
-
-    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-    <script src="supabase.js"></script>
+    <title>Aula 2 — Excel | Green Team</title>
 
     <style>
 
         * {
+            margin: 0;
+            padding: 0;
             box-sizing: border-box;
         }
 
         body {
-            margin: 0;
-            background: #F5F8FC;
-            color: #07111F;
+            min-height: 100vh;
             font-family: Arial, Helvetica, sans-serif;
+
+            background:
+                radial-gradient(
+                    circle at 15% 80%,
+                    rgba(0, 168, 107, 0.07),
+                    transparent 28%
+                ),
+                radial-gradient(
+                    circle at 85% 20%,
+                    rgba(0, 123, 255, 0.08),
+                    transparent 30%
+                ),
+                #050B12;
+
+            color: #FFFFFF;
+            overflow-x: hidden;
         }
 
-        .navbar {
-            height: 72px;
+
+        /* =========================
+           QUADRADOS
+        ========================= */
+
+        .pixel {
+            position: fixed;
+            width: 18px;
+            height: 18px;
+            background: #087CFF;
+            opacity: 0.65;
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        .pixel.soft {
+            opacity: 0.25;
+        }
+
+        .pixel.green {
+            background: #00A86B;
+            opacity: 0.35;
+        }
+
+        .p1 {
+            top: 80px;
+            left: 0;
+        }
+
+        .p2 {
+            top: 98px;
+            left: 18px;
+        }
+
+        .p3 {
+            top: 116px;
+            left: 36px;
+        }
+
+        .p4 {
+            top: 134px;
+            left: 18px;
+        }
+
+        .p5 {
+            top: 80px;
+            left: 54px;
+        }
+
+        .p6 {
+            top: 152px;
+            left: 0;
+        }
+
+        .p7 {
+            right: 0;
+            bottom: 70px;
+        }
+
+        .p8 {
+            right: 18px;
+            bottom: 88px;
+        }
+
+        .p9 {
+            right: 36px;
+            bottom: 106px;
+        }
+
+        .p10 {
+            right: 18px;
+            bottom: 124px;
+        }
+
+        .p11 {
+            right: 54px;
+            bottom: 70px;
+        }
+
+        .p12 {
+            right: 0;
+            bottom: 142px;
+        }
+
+
+        /* =========================
+           NAVBAR
+        ========================= */
+
+        nav {
+            height: 58px;
+
             background: #07111F;
+
+            border-bottom: 1px solid #1E293B;
+
             display: flex;
             align-items: center;
             justify-content: space-between;
-            padding: 0 6%;
+
+            padding: 0 7%;
+
+            position: relative;
+            z-index: 10;
         }
 
         .logo {
             color: #FFFFFF;
-            font-size: 20px;
-            font-weight: 700;
+            text-decoration: none;
+
+            font-size: 18px;
+            font-weight: 800;
         }
 
-        .menu {
-            display: flex;
-            align-items: center;
-            gap: 28px;
+        .logo span {
+            color: #087CFF;
         }
 
-        .menu a {
+        .nav-link {
             color: #CBD5E1;
             text-decoration: none;
-            font-size: 15px;
-            font-weight: 500;
+
+            font-size: 12px;
+
+            transition: 0.2s;
         }
 
-        .menu a:hover {
+        .nav-link:hover {
             color: #FFFFFF;
         }
 
-        .menu button {
-            border: none;
-            background: #007BFF;
-            color: #FFFFFF;
-            padding: 10px 20px;
-            border-radius: 8px;
-            font-size: 14px;
-            font-weight: 600;
-            cursor: pointer;
-        }
 
-        .menu button:hover {
-            background: #0069D9;
-        }
+        /* =========================
+           CONTEÚDO
+        ========================= */
 
         main {
+            width: 100%;
             max-width: 1000px;
+
             margin: 0 auto;
-            padding: 55px 25px 70px;
+
+            padding: 36px 20px 70px;
+
+            position: relative;
+            z-index: 1;
         }
 
-        .aula-header {
-            background: #FFFFFF;
-            border: 1px solid #DCE4EE;
-            border-radius: 18px;
-            padding: 35px;
-            margin-bottom: 25px;
-            box-shadow: 0 8px 25px rgba(7, 17, 31, 0.05);
-        }
 
-        .voltar {
-            display: inline-block;
-            color: #007BFF;
-            text-decoration: none;
-            font-size: 14px;
-            font-weight: 600;
-            margin-bottom: 25px;
-        }
+        /* =========================
+           CABEÇALHO
+        ========================= */
 
-        .voltar:hover {
-            color: #0069D9;
-        }
+        .header-card {
+            background: #0B1522;
 
-        .aula-tag {
-            display: inline-block;
-            padding: 6px 11px;
-            background: #EAF4FF;
-            border: 1px solid #B9DBFF;
-            color: #007BFF;
-            border-radius: 20px;
-            font-size: 12px;
-            font-weight: 700;
-            margin-bottom: 15px;
-        }
+            border: 1px solid #1E293B;
 
-        .aula-header h1 {
-            margin: 0 0 12px;
-            font-size: 32px;
-        }
+            border-radius: 13px;
 
-        .aula-header p {
-            margin: 0;
-            color: #64748B;
-            font-size: 16px;
-            line-height: 1.7;
-        }
-
-        .conteudo-card {
-            background: #FFFFFF;
-            border: 1px solid #DCE4EE;
-            border-radius: 16px;
             padding: 30px;
+
             margin-bottom: 20px;
-            box-shadow: 0 5px 18px rgba(7, 17, 31, 0.04);
+
+            box-shadow:
+                0 15px 45px rgba(0, 0, 0, 0.25);
         }
 
-        .conteudo-card h2 {
-            margin: 0 0 18px;
-            font-size: 21px;
+        .tag {
+            display: inline-block;
+
+            background: rgba(8, 124, 255, 0.12);
+
+            border: 1px solid rgba(8, 124, 255, 0.25);
+
+            color: #4DA3FF;
+
+            border-radius: 20px;
+
+            padding: 6px 11px;
+
+            font-size: 10px;
+            font-weight: 800;
+
+            letter-spacing: 0.4px;
+
+            margin-bottom: 13px;
         }
 
-        .topicos {
+        .header-card h1 {
+            font-size: 27px;
+            margin-bottom: 8px;
+        }
+
+        .header-card p {
+            color: #94A3B8;
+
+            font-size: 13px;
+
+            line-height: 1.6;
+        }
+
+
+        /* =========================
+           CARDS
+        ========================= */
+
+        .card {
+            background: #0B1522;
+
+            border: 1px solid #1E293B;
+
+            border-radius: 13px;
+
+            padding: 25px;
+
+            margin-bottom: 18px;
+
+            box-shadow:
+                0 12px 35px rgba(0, 0, 0, 0.18);
+        }
+
+        .card h2 {
+            font-size: 18px;
+
+            margin-bottom: 16px;
+
+            color: #FFFFFF;
+        }
+
+
+        /* =========================
+           TÓPICOS
+        ========================= */
+
+        .topics {
             display: grid;
-            grid-template-columns: repeat(2, 1fr);
+
+            grid-template-columns:
+                repeat(2, 1fr);
+
             gap: 10px;
-            padding: 0;
-            margin: 0;
+
             list-style: none;
         }
 
-        .topicos li {
-            background: #F5F8FC;
-            border: 1px solid #DCE4EE;
-            border-radius: 9px;
+        .topics li {
+            background: #07111F;
+
+            border: 1px solid #1E293B;
+
+            border-radius: 8px;
+
             padding: 12px 14px;
-            color: #475569;
-            font-size: 14px;
+
+            color: #CBD5E1;
+
+            font-size: 12px;
+
+            line-height: 1.4;
         }
 
-        .topicos li::before {
+        .topics li::before {
             content: "✓";
-            color: #007BFF;
-            font-weight: 700;
+
+            color: #00A86B;
+
+            font-weight: bold;
+
             margin-right: 8px;
         }
 
-        .materiais {
-            display: flex;
-            flex-direction: column;
+
+        /* =========================
+           MATERIAIS
+        ========================= */
+
+        .materials {
+            display: grid;
+
+            grid-template-columns:
+                repeat(3, 1fr);
+
             gap: 12px;
         }
 
         .material {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 20px;
-            padding: 16px;
-            background: #F5F8FC;
-            border: 1px solid #DCE4EE;
+            background: #07111F;
+
+            border: 1px solid #1E293B;
+
             border-radius: 10px;
-        }
 
-        .material-info {
+            padding: 17px;
+
             display: flex;
-            align-items: center;
-            gap: 12px;
+
+            flex-direction: column;
         }
 
-        .material-icon {
-            width: 40px;
-            height: 40px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: #EAF4FF;
-            border-radius: 9px;
-            font-size: 19px;
+        .material-title {
+            color: #FFFFFF;
+
+            font-size: 13px;
+
+            font-weight: 700;
+
+            margin-bottom: 7px;
         }
 
-        .material-info strong {
-            display: block;
-            margin-bottom: 4px;
-            font-size: 14px;
-        }
-
-        .material-info span {
+        .material-description {
             color: #64748B;
-            font-size: 12px;
+
+            font-size: 11px;
+
+            line-height: 1.5;
+
+            margin-bottom: 14px;
         }
 
         .material-button {
-            flex-shrink: 0;
-            background: #007BFF;
-            color: #FFFFFF;
-            text-decoration: none;
-            padding: 9px 14px;
+            display: inline-block;
+
+            margin-top: auto;
+
+            width: fit-content;
+
+            padding: 8px 12px;
+
             border-radius: 7px;
-            font-size: 13px;
-            font-weight: 600;
+
+            background: #087CFF;
+
+            color: #FFFFFF;
+
+            text-decoration: none;
+
+            font-size: 11px;
+
+            font-weight: 700;
+
+            transition: 0.2s;
         }
 
         .material-button:hover {
             background: #0069D9;
+
+            transform: translateY(-1px);
         }
 
-        .video-box {
-            background: #F5F8FC;
-            border: 1px solid #DCE4EE;
-            border-radius: 12px;
-            padding: 18px;
+
+        /* =========================
+           VÍDEO
+        ========================= */
+
+        .video-container {
+            position: relative;
+
+            width: 100%;
+
+            padding-bottom: 56.25%;
+
+            height: 0;
+
+            overflow: hidden;
+
+            border-radius: 10px;
+
+            border: 1px solid #1E293B;
+
+            background: #07111F;
         }
 
-        .video-box p {
-            margin: 0 0 12px;
-            color: #475569;
-            font-size: 14px;
-            line-height: 1.6;
+        .video-container iframe {
+            position: absolute;
+
+            top: 0;
+            left: 0;
+
+            width: 100%;
+            height: 100%;
+
+            border: 0;
         }
 
-        .video-link {
-            color: #007BFF;
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 14px;
-        }
 
-        .video-link:hover {
-            color: #0069D9;
-            text-decoration: underline;
-        }
+        /* =========================
+           CONCLUSÃO
+        ========================= */
 
-        .conclusao {
-            background: #FFFFFF;
-            border: 1px solid #DCE4EE;
-            border-radius: 16px;
-            padding: 30px;
+        .completion-card {
+            background:
+                linear-gradient(
+                    135deg,
+                    rgba(8, 124, 255, 0.10),
+                    rgba(0, 168, 107, 0.07)
+                );
+
+            border: 1px solid #1E3A5F;
+
+            border-radius: 13px;
+
+            padding: 25px;
+
             text-align: center;
-            box-shadow: 0 5px 18px rgba(7, 17, 31, 0.04);
+
+            margin-top: 22px;
         }
 
-        .conclusao h2 {
-            margin: 0 0 10px;
-            font-size: 21px;
+        .completion-card h2 {
+            font-size: 18px;
+
+            margin-bottom: 8px;
         }
 
-        .conclusao p {
-            margin: 0 0 20px;
-            color: #64748B;
-            font-size: 14px;
-            line-height: 1.6;
+        .completion-card p {
+            color: #94A3B8;
+
+            font-size: 12px;
+
+            margin-bottom: 18px;
         }
 
-        #btnConcluir {
+        .complete-button {
             border: none;
-            background: #00A86B;
+
+            background: #087CFF;
+
             color: #FFFFFF;
-            padding: 12px 22px;
-            border-radius: 8px;
-            font-size: 14px;
+
+            padding: 11px 20px;
+
+            border-radius: 7px;
+
+            font-size: 12px;
+
             font-weight: 700;
+
             cursor: pointer;
+
+            transition: 0.2s;
         }
 
-        #btnConcluir:hover {
-            background: #008F5B;
+        .complete-button:hover {
+            background: #0069D9;
+
+            transform: translateY(-1px);
         }
 
-        #btnConcluir.concluida {
-            background: #E8F8F1;
-            color: #00875A;
+        .complete-button.completed {
+            background: #00A86B;
+
             cursor: default;
         }
 
-        #mensagemConclusao {
-            margin-top: 15px;
-            font-size: 14px;
-            color: #00A86B;
+        #status {
+            margin-top: 12px;
+
+            font-size: 12px;
+
+            color: #00C985;
         }
+
+
+        /* =========================
+           VOLTAR
+        ========================= */
+
+        .back-link {
+            display: inline-block;
+
+            margin-bottom: 18px;
+
+            color: #4DA3FF;
+
+            text-decoration: none;
+
+            font-size: 12px;
+
+            font-weight: 600;
+        }
+
+        .back-link:hover {
+            color: #FFFFFF;
+        }
+
+
+        /* =========================
+           FOOTER
+        ========================= */
 
         footer {
-            border-top: 1px solid #DCE4EE;
-            background: #FFFFFF;
-            padding: 25px;
-            text-align: center;
-        }
+            min-height: 58px;
 
-        footer p {
-            margin: 0;
+            background: #07111F;
+
+            border-top: 1px solid #1E293B;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
             color: #64748B;
-            font-size: 13px;
+
+            font-size: 11px;
+
+            position: relative;
+
+            z-index: 2;
         }
 
-        @media (max-width: 650px) {
 
-            .navbar {
-                padding: 0 20px;
-            }
+        /* =========================
+           RESPONSIVO
+        ========================= */
 
-            .menu {
-                gap: 10px;
-            }
+        @media (max-width: 800px) {
 
-            .menu a {
-                display: none;
-            }
-
-            main {
-                padding: 30px 16px 50px;
-            }
-
-            .aula-header {
-                padding: 25px;
-            }
-
-            .aula-header h1 {
-                font-size: 26px;
-            }
-
-            .conteudo-card {
-                padding: 22px;
-            }
-
-            .topicos {
+            .materials {
                 grid-template-columns: 1fr;
             }
 
-            .material {
-                align-items: flex-start;
-                flex-direction: column;
+            .topics {
+                grid-template-columns: 1fr;
             }
 
-            .material-button {
-                width: 100%;
-                text-align: center;
+            nav {
+                padding: 0 20px;
             }
 
+            main {
+                padding-top: 25px;
+            }
+        }
+
+
+        @media (max-width: 500px) {
+
+            .logo {
+                font-size: 16px;
+            }
+
+            .header-card,
+            .card {
+                padding: 20px;
+            }
+
+            .header-card h1 {
+                font-size: 23px;
+            }
         }
 
     </style>
@@ -366,452 +600,483 @@
 <body>
 
 
-<header class="navbar">
+    <!-- QUADRADOS DECORATIVOS -->
 
-    <div class="logo">
-        Plataforma de Estudos
-    </div>
+    <div class="pixel p1"></div>
+    <div class="pixel soft p2"></div>
+    <div class="pixel p3"></div>
+    <div class="pixel soft p4"></div>
+    <div class="pixel p5"></div>
+    <div class="pixel green p6"></div>
 
-    <nav class="menu">
+    <div class="pixel p7"></div>
+    <div class="pixel soft p8"></div>
+    <div class="pixel p9"></div>
+    <div class="pixel soft p10"></div>
+    <div class="pixel p11"></div>
+    <div class="pixel green p12"></div>
 
-        <a href="index.html">
-            Início
+
+    <!-- NAVBAR -->
+
+    <nav>
+
+        <a
+            href="area-aluno.html"
+            class="logo"
+        >
+            GREEN <span>TEAM</span>
         </a>
 
-        <a href="excel.html">
-            Trilha Excel
-        </a>
 
-        <a href="area-aluno.html">
-            Meu espaço
+        <a
+            href="area-aluno.html"
+            class="nav-link"
+        >
+            Área do aluno
         </a>
-
-        <button onclick="window.location.href='login.html'">
-            Entrar
-        </button>
 
     </nav>
 
-</header>
+
+    <main>
 
 
-
-<main>
-
-
-    <section class="aula-header">
+        <!-- VOLTAR -->
 
         <a
             href="excel.html"
-            class="voltar"
+            class="back-link"
         >
-            ← Voltar para a Trilha Excel
+            ← Voltar para Trilha 1 — Excel
         </a>
 
-        <br>
 
-        <span class="aula-tag">
-            AULA 2
-        </span>
+        <!-- CABEÇALHO -->
 
-        <h1>
-            Funções do Excel
-        </h1>
+        <section class="header-card">
 
-        <p>
-            Nesta aula, você irá aprender a utilizar funções do Excel
-            para realizar cálculos, análises e tratamento de informações.
-        </p>
+            <span class="tag">
+                TRILHA 1 • AULA 2
+            </span>
 
-    </section>
 
+            <h1>
+                Funções
+            </h1>
 
-
-    <section class="conteudo-card">
-
-        <h2>
-            O que você vai aprender
-        </h2>
-
-        <ul class="topicos">
-
-            <li>SOMA</li>
-
-            <li>MÉDIA</li>
-
-            <li>MÍNIMO</li>
-
-            <li>MÁXIMO</li>
-
-            <li>CONT.SE</li>
-
-            <li>CONT.SES</li>
-
-            <li>SOMASE</li>
-
-            <li>SOMASES</li>
-
-            <li>MÉDIASE</li>
-
-            <li>SE</li>
-
-            <li>E</li>
-
-            <li>OU</li>
-
-            <li>Funções de texto</li>
-
-            <li>Funções de data</li>
-
-        </ul>
-
-    </section>
-
-
-
-    <section class="conteudo-card">
-
-        <h2>
-            Materiais da aula
-        </h2>
-
-        <div class="materiais">
-
-
-            <div class="material">
-
-                <div class="material-info">
-
-                    <div class="material-icon">
-                        📊
-                    </div>
-
-                    <div>
-
-                        <strong>
-                            Slides da aula
-                        </strong>
-
-                        <span>
-                            Material utilizado durante a aula.
-                        </span>
-
-                    </div>
-
-                </div>
-
-                <a
-                    href="aula2-excel-materiais/Aula%202%20-%20Formulas%20%281%29.pdf"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    class="material-button"
-                >
-                    Abrir material
-                </a>
-
-            </div>
-
-
-
-            <div class="material">
-
-                <div class="material-info">
-
-                    <div class="material-icon">
-                        📖
-                    </div>
-
-                    <div>
-
-                        <strong>
-                            Livro / material de apoio
-                        </strong>
-
-                        <span>
-                            Material complementar para aprofundamento.
-                        </span>
-
-                    </div>
-
-                </div>
-
-                <a
-                    href="aula1-excel-materiais/apostila_excel365_basico_CB.pdf"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    class="material-button"
-                >
-                    Abrir material
-                </a>
-
-            </div>
-
-
-
-            <div class="material">
-
-                <div class="material-info">
-
-                    <div class="material-icon">
-                        📝
-                    </div>
-
-                    <div>
-
-                        <strong>
-                            Exercícios da aula
-                        </strong>
-
-                        <span>
-                            Pratique os conteúdos apresentados na aula.
-                        </span>
-
-                    </div>
-
-                </div>
-
-                <a
-                    href="aula2-excel-materiais/Exercicios_Excel_Aula_2_GTHC.xlsx"
-                    class="material-button"
-                >
-                    Abrir exercícios
-                </a>
-
-            </div>
-
-
-        </div>
-
-    </section>
-
-
-
-    <section class="conteudo-card">
-
-        <h2>
-            🎥 Vídeo recomendado
-        </h2>
-
-        <div class="video-box">
 
             <p>
-                Como complemento à aula, recomendamos o seguinte
-                vídeo no YouTube:
+                Aprenda a utilizar funções do Excel para
+                realizar cálculos, análises e automatizar
+                tarefas em suas planilhas.
             </p>
 
-            <a
-                href="https://youtu.be/Pas4D2tiE9c?si=KeBnproQfJbfon4u"
-                target="_blank"
-                rel="noopener noreferrer"
-                class="video-link"
+        </section>
+
+
+        <!-- CONTEÚDO -->
+
+        <section class="card">
+
+            <h2>
+                O que você vai aprender
+            </h2>
+
+
+            <ul class="topics">
+
+                <li>
+                    SOMA
+                </li>
+
+                <li>
+                    MÉDIA
+                </li>
+
+                <li>
+                    MÍNIMO
+                </li>
+
+                <li>
+                    MÁXIMO
+                </li>
+
+                <li>
+                    CONT.SE
+                </li>
+
+                <li>
+                    CONT.SES
+                </li>
+
+                <li>
+                    SOMASE
+                </li>
+
+                <li>
+                    SOMASES
+                </li>
+
+                <li>
+                    MÉDIASE
+                </li>
+
+                <li>
+                    SE
+                </li>
+
+                <li>
+                    E
+                </li>
+
+                <li>
+                    OU
+                </li>
+
+                <li>
+                    Funções de texto
+                </li>
+
+                <li>
+                    Funções de data
+                </li>
+
+            </ul>
+
+        </section>
+
+
+        <!-- MATERIAIS -->
+
+        <section class="card">
+
+            <h2>
+                Materiais da aula
+            </h2>
+
+
+            <div class="materials">
+
+
+                <div class="material">
+
+                    <div class="material-title">
+                        Slides da Aula
+                    </div>
+
+                    <div class="material-description">
+                        Material utilizado durante a Aula 2.
+                    </div>
+
+                    <a
+                        href="aula2-excel-materiais/Aula%202%20-%20Formulas%20%281%29.pdf"
+                        target="_blank"
+                        class="material-button"
+                    >
+                        Abrir PDF
+                    </a>
+
+                </div>
+
+
+                <div class="material">
+
+                    <div class="material-title">
+                        Apostila
+                    </div>
+
+                    <div class="material-description">
+                        Material de apoio para acompanhar os conteúdos.
+                    </div>
+
+                    <a
+                        href="aula1-excel-materiais/apostila_excel365_basico_CB.pdf"
+                        target="_blank"
+                        class="material-button"
+                    >
+                        Abrir apostila
+                    </a>
+
+                </div>
+
+
+                <div class="material">
+
+                    <div class="material-title">
+                        Exercícios
+                    </div>
+
+                    <div class="material-description">
+                        Pratique as funções apresentadas nesta aula.
+                    </div>
+
+                    <a
+                        href="aula2-excel-materiais/Exercicios_Excel_Aula_2_GTHC.xlsx"
+                        download
+                        class="material-button"
+                    >
+                        Baixar exercícios
+                    </a>
+
+                </div>
+
+
+            </div>
+
+        </section>
+
+
+        <!-- VÍDEO -->
+
+        <section class="card">
+
+            <h2>
+                Vídeo da aula
+            </h2>
+
+
+            <div class="video-container">
+
+                <iframe
+                    src="https://www.youtube.com/embed/Pas4D2tiE9c"
+                    title="Aula 2 — Excel"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                    allowfullscreen>
+                </iframe>
+
+            </div>
+
+        </section>
+
+
+        <!-- CONCLUSÃO -->
+
+        <section class="completion-card">
+
+            <h2>
+                Terminou a aula?
+            </h2>
+
+
+            <p>
+                Marque a aula como concluída para atualizar
+                seu progresso na plataforma.
+            </p>
+
+
+            <button
+                id="completeButton"
+                class="complete-button"
             >
-                Assistir ao vídeo recomendado no YouTube →
-            </a>
-
-        </div>
-
-    </section>
+                Marcar como concluída
+            </button>
 
 
+            <div id="status"></div>
 
-    <section class="conclusao">
-
-        <h2>
-            Terminou a aula?
-        </h2>
-
-        <p>
-            Depois de estudar o conteúdo e consultar os materiais,
-            marque a aula como concluída.
-        </p>
-
-        <button
-            id="btnConcluir"
-            onclick="concluirAula()"
-        >
-            Marcar aula como concluída
-        </button>
-
-        <div id="mensagemConclusao"></div>
-
-    </section>
+        </section>
 
 
-</main>
+    </main>
 
 
+    <!-- FOOTER -->
 
-<footer>
+    <footer>
 
-    <p>
-        © 2026 Plataforma de Estudos
-    </p>
+        Plataforma de Estudos — GTHC
 
-</footer>
-
+    </footer>
 
 
-<script>
+    <!-- SUPABASE -->
 
-    const LESSON_ID = "aula2-excel";
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
-    const btnConcluir =
-        document.getElementById("btnConcluir");
-
-    const mensagemConclusao =
-        document.getElementById("mensagemConclusao");
+    <script src="supabase.js"></script>
 
 
-    async function verificarLogin() {
+    <script>
 
-        const {
-            data,
-            error
-        } = await supabaseClient.auth.getSession();
-
-        if (error) {
-
-            console.error(error);
-
-            return null;
-
-        }
-
-        if (!data.session) {
-
-            window.location.href = "login.html";
-
-            return null;
-
-        }
-
-        return data.session;
-
-    }
+        const LESSON_ID = "aula2-excel";
 
 
-
-    async function verificarProgresso() {
-
-        const session =
-            await verificarLogin();
-
-        if (!session) {
-            return;
-        }
-
-        const {
-            data,
-            error
-        } = await supabaseClient
-            .from("progress")
-            .select("completed")
-            .eq("user_id", session.user.id)
-            .eq("lesson_id", LESSON_ID)
-            .maybeSingle();
-
-        if (error) {
-
-            console.error(
-                "Erro ao verificar progresso:",
-                error
+        const completeButton =
+            document.getElementById(
+                "completeButton"
             );
 
-            return;
 
-        }
-
-        if (data && data.completed === true) {
-
-            marcarComoConcluida();
-
-        }
-
-    }
+        const status =
+            document.getElementById(
+                "status"
+            );
 
 
+        async function verificarSessao() {
 
-    async function concluirAula() {
-
-        const session =
-            await verificarLogin();
-
-        if (!session) {
-            return;
-        }
-
-        btnConcluir.disabled = true;
-
-        btnConcluir.textContent =
-            "Salvando...";
-
-        const {
-            error
-        } = await supabaseClient
-            .from("progress")
-            .upsert(
-                {
-                    user_id: session.user.id,
-                    lesson_id: LESSON_ID,
-                    completed: true,
-                    completed_at: new Date().toISOString(),
-                    updated_at: new Date().toISOString()
-                },
-                {
-                    onConflict: "user_id,lesson_id"
+            const {
+                data: {
+                    session
                 }
-            );
+            } = await supabaseClient
+                .auth
+                .getSession();
 
-        if (error) {
 
-            console.error(
-                "Erro ao salvar progresso:",
-                error
-            );
+            if (!session) {
 
-            btnConcluir.disabled = false;
+                window.location.href =
+                    "login.html";
 
-            btnConcluir.textContent =
-                "Marcar aula como concluída";
+                return null;
 
-            mensagemConclusao.style.color =
-                "#B00020";
+            }
 
-            mensagemConclusao.textContent =
-                "Não foi possível salvar o progresso. Tente novamente.";
 
-            return;
+            return session;
 
         }
 
-        marcarComoConcluida();
 
-    }
+        async function verificarConclusao() {
 
-
-
-    function marcarComoConcluida() {
-
-        btnConcluir.disabled = true;
-
-        btnConcluir.classList.add("concluida");
-
-        btnConcluir.textContent =
-            "✓ Aula concluída";
-
-        mensagemConclusao.style.color =
-            "#00A86B";
-
-        mensagemConclusao.textContent =
-            "Seu progresso foi salvo com sucesso!";
-
-    }
+            const session =
+                await verificarSessao();
 
 
+            if (!session) return;
 
-    verificarProgresso();
 
-</script>
+            const {
+                data,
+                error
+            } = await supabaseClient
+                .from("progress")
+                .select("completed")
+                .eq(
+                    "user_id",
+                    session.user.id
+                )
+                .eq(
+                    "lesson_id",
+                    LESSON_ID
+                )
+                .maybeSingle();
+
+
+            if (error) {
+
+                console.error(
+                    "Erro ao verificar progresso:",
+                    error
+                );
+
+                return;
+
+            }
+
+
+            if (data && data.completed) {
+
+                completeButton.textContent =
+                    "✓ Aula concluída";
+
+                completeButton.classList.add(
+                    "completed"
+                );
+
+                completeButton.disabled = true;
+
+                status.textContent =
+                    "Esta aula já foi concluída.";
+
+            }
+
+        }
+
+
+        completeButton.addEventListener(
+            "click",
+            async function () {
+
+                const session =
+                    await verificarSessao();
+
+
+                if (!session) return;
+
+
+                completeButton.disabled = true;
+
+
+                const {
+                    error
+                } = await supabaseClient
+                    .from("progress")
+                    .upsert(
+                        {
+                            user_id:
+                                session.user.id,
+
+                            lesson_id:
+                                LESSON_ID,
+
+                            completed:
+                                true,
+
+                            completed_at:
+                                new Date().toISOString(),
+
+                            updated_at:
+                                new Date().toISOString()
+                        },
+                        {
+                            onConflict:
+                                "user_id,lesson_id"
+                        }
+                    );
+
+
+                if (error) {
+
+                    console.error(
+                        "Erro ao salvar progresso:",
+                        error
+                    );
+
+                    status.textContent =
+                        "Não foi possível salvar o progresso.";
+
+                    status.style.color =
+                        "#FF6B6B";
+
+                    completeButton.disabled =
+                        false;
+
+                    return;
+
+                }
+
+
+                completeButton.textContent =
+                    "✓ Aula concluída";
+
+                completeButton.classList.add(
+                    "completed"
+                );
+
+                status.textContent =
+                    "Seu progresso foi atualizado!";
+
+            }
+        );
+
+
+        verificarConclusao();
+
+    </script>
 
 
 </body>
