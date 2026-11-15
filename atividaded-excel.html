@@ -1,0 +1,719 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Atividade Final - Excel | Plataforma de Estudos</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background: #F5F8FC;
+            color: #0F172A;
+        }
+
+        nav {
+            background: #07111F;
+            padding: 18px 7%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo {
+            color: white;
+            font-size: 21px;
+            font-weight: bold;
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 25px;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-size: 15px;
+        }
+
+        .nav-links a:hover {
+            color: #B9DBFF;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1000px;
+            margin: 45px auto 70px;
+        }
+
+        .page-header {
+            background: white;
+            border: 1px solid #DCE4EE;
+            border-radius: 16px;
+            padding: 35px;
+            margin-bottom: 25px;
+        }
+
+        .tag {
+            display: inline-block;
+            background: #EAF4FF;
+            color: #007BFF;
+            font-size: 13px;
+            font-weight: bold;
+            padding: 7px 13px;
+            border-radius: 20px;
+            margin-bottom: 15px;
+        }
+
+        .page-header h1 {
+            font-size: 30px;
+            margin-bottom: 12px;
+        }
+
+        .page-header p {
+            color: #64748B;
+            line-height: 1.7;
+            font-size: 16px;
+        }
+
+        .card {
+            background: white;
+            border: 1px solid #DCE4EE;
+            border-radius: 16px;
+            padding: 30px;
+            margin-bottom: 22px;
+        }
+
+        .card h2 {
+            font-size: 21px;
+            margin-bottom: 16px;
+        }
+
+        .card p {
+            color: #64748B;
+            line-height: 1.7;
+            margin-bottom: 15px;
+        }
+
+        .objetivo {
+            border-left: 5px solid #00A86B;
+        }
+
+        ul {
+            padding-left: 22px;
+            color: #475569;
+            line-height: 2;
+        }
+
+        li {
+            margin-bottom: 4px;
+        }
+
+        .etapas {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .etapa {
+            background: #F5F8FC;
+            border: 1px solid #DCE4EE;
+            border-radius: 12px;
+            padding: 18px;
+        }
+
+        .etapa strong {
+            display: block;
+            margin-bottom: 7px;
+            color: #0F172A;
+        }
+
+        .etapa span {
+            color: #64748B;
+            font-size: 14px;
+            line-height: 1.5;
+        }
+
+        .button-area {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+            margin-top: 20px;
+        }
+
+        .button {
+            display: inline-block;
+            padding: 13px 20px;
+            border-radius: 9px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 14px;
+            cursor: pointer;
+            border: none;
+        }
+
+        .button-primary {
+            background: #007BFF;
+            color: white;
+        }
+
+        .button-primary:hover {
+            background: #0069D9;
+        }
+
+        .button-primary:disabled {
+            background: #94A3B8;
+            cursor: not-allowed;
+        }
+
+        .button-secondary {
+            background: #F1F5F9;
+            color: #0F172A;
+            border: 1px solid #DCE4EE;
+        }
+
+        .button-secondary:hover {
+            background: #E2E8F0;
+        }
+
+        .upload-area {
+            border: 2px dashed #B9DBFF;
+            background: #EAF4FF;
+            border-radius: 12px;
+            padding: 30px;
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .upload-area h3 {
+            margin-bottom: 8px;
+        }
+
+        .upload-area p {
+            margin-bottom: 18px;
+            font-size: 14px;
+        }
+
+        input[type="file"] {
+            display: block;
+            width: 100%;
+            max-width: 450px;
+            margin: 0 auto 18px;
+            padding: 12px;
+            background: white;
+            border: 1px solid #DCE4EE;
+            border-radius: 8px;
+        }
+
+        .mensagem {
+            margin-top: 15px;
+            font-size: 14px;
+            font-weight: bold;
+        }
+
+        .entrega-info {
+            display: none;
+            margin-top: 20px;
+            padding: 15px;
+            border-radius: 10px;
+            background: #F0FDF8;
+            border: 1px solid #B7E8D5;
+            color: #047857;
+            font-size: 14px;
+        }
+
+        .conclusao {
+            text-align: center;
+            border: 1px solid #B7E8D5;
+            background: #F0FDF8;
+        }
+
+        .conclusao h2 {
+            color: #00A86B;
+        }
+
+        @media (max-width: 700px) {
+
+            nav {
+                padding: 16px 5%;
+            }
+
+            .nav-links {
+                gap: 12px;
+            }
+
+            .container {
+                width: 94%;
+                margin-top: 25px;
+            }
+
+            .page-header,
+            .card {
+                padding: 22px;
+            }
+
+            .page-header h1 {
+                font-size: 25px;
+            }
+
+            .etapas {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <nav>
+        <a href="area-aluno.html" class="logo">
+            Plataforma de Estudos
+        </a>
+
+        <div class="nav-links">
+            <a href="area-aluno.html">Área do aluno</a>
+            <a href="excel.html">Trilha Excel</a>
+        </div>
+    </nav>
+
+
+    <main class="container">
+
+        <section class="page-header">
+
+            <span class="tag">TRILHA 1 — EXCEL</span>
+
+            <h1>Atividade Final</h1>
+
+            <p>
+                Agora é hora de colocar em prática os conhecimentos
+                trabalhados nas aulas da Trilha de Excel.
+            </p>
+
+        </section>
+
+
+        <section class="card objetivo">
+
+            <h2>Objetivo da atividade</h2>
+
+            <p>
+                Aplicar os conhecimentos aprendidos durante as três aulas
+                para realizar uma análise de dados utilizando o Excel.
+            </p>
+
+            <p>
+                A atividade reúne conceitos de organização e limpeza de dados,
+                funções, tabelas dinâmicas e gráficos.
+            </p>
+
+        </section>
+
+
+        <section class="card">
+
+            <h2>O que você deverá fazer?</h2>
+
+            <p>
+                Utilize o arquivo disponibilizado abaixo e realize as
+                atividades propostas seguindo as instruções presentes
+                na planilha.
+            </p>
+
+            <div class="etapas">
+
+                <div class="etapa">
+                    <strong>01 — Limpeza dos dados</strong>
+                    <span>
+                        Organize e prepare os dados para a análise.
+                    </span>
+                </div>
+
+                <div class="etapa">
+                    <strong>02 — Criar métricas</strong>
+                    <span>
+                        Utilize funções do Excel para realizar os cálculos
+                        solicitados.
+                    </span>
+                </div>
+
+                <div class="etapa">
+                    <strong>03 — Tabela dinâmica</strong>
+                    <span>
+                        Crie tabelas dinâmicas para analisar os dados.
+                    </span>
+                </div>
+
+                <div class="etapa">
+                    <strong>04 — Gráficos</strong>
+                    <span>
+                        Crie gráficos adequados para representar os resultados.
+                    </span>
+                </div>
+
+                <div class="etapa">
+                    <strong>05 — Interpretação</strong>
+                    <span>
+                        Analise os resultados encontrados.
+                    </span>
+                </div>
+
+                <div class="etapa">
+                    <strong>06 — Conclusões</strong>
+                    <span>
+                        Apresente as principais conclusões obtidas na análise.
+                    </span>
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <section class="card">
+
+            <h2>Conteúdos utilizados</h2>
+
+            <p>
+                Para realizar a atividade, você poderá utilizar os conhecimentos
+                desenvolvidos ao longo das aulas:
+            </p>
+
+            <ul>
+                <li>Organização de planilhas</li>
+                <li>Filtros e ordenação</li>
+                <li>Formatação</li>
+                <li>Funções do Excel</li>
+                <li>Funções condicionais</li>
+                <li>Funções de texto</li>
+                <li>Funções de data</li>
+                <li>Tabelas dinâmicas</li>
+                <li>Segmentação e filtros</li>
+                <li>Gráficos</li>
+                <li>Interpretação de dados</li>
+            </ul>
+
+        </section>
+
+
+        <section class="card">
+
+            <h2>Arquivo da atividade</h2>
+
+            <p>
+                Baixe o arquivo Excel abaixo e realize a atividade
+                diretamente na planilha.
+            </p>
+
+            <div class="button-area">
+
+                <a
+                    href="atividade-excel-materiais/Atividade_Final_Excel_GTHC.xlsx"
+                    class="button button-primary"
+                    download
+                >
+                    📊 Baixar atividade em Excel
+                </a>
+
+            </div>
+
+        </section>
+
+
+        <section class="card">
+
+            <h2>Entrega da atividade</h2>
+
+            <p>
+                Depois de concluir a atividade, envie o arquivo preenchido
+                utilizando o campo abaixo.
+            </p>
+
+            <div class="upload-area">
+
+                <h3>Enviar atividade</h3>
+
+                <p>
+                    Selecione o arquivo Excel preenchido.
+                </p>
+
+                <input
+                    type="file"
+                    id="arquivo"
+                    accept=".xlsx,.xls"
+                >
+
+                <button
+                    id="botaoEnviar"
+                    class="button button-primary"
+                    onclick="enviarAtividade()"
+                >
+                    Enviar atividade
+                </button>
+
+                <div
+                    id="mensagem"
+                    class="mensagem"
+                ></div>
+
+                <div
+                    id="entregaInfo"
+                    class="entrega-info"
+                ></div>
+
+            </div>
+
+        </section>
+
+
+        <section class="card conclusao">
+
+            <h2>Terminou?</h2>
+
+            <p>
+                Depois de concluir e enviar sua atividade, você pode voltar
+                para a Trilha de Excel.
+            </p>
+
+            <div
+                class="button-area"
+                style="justify-content: center;"
+            >
+
+                <a
+                    href="excel.html"
+                    class="button button-secondary"
+                >
+                    ← Voltar para a Trilha de Excel
+                </a>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- SUPABASE -->
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="supabase.js"></script>
+
+
+    <script>
+
+        const LESSON_ID = "projeto-excel";
+
+
+        // Verifica se o aluno está logado
+        async function verificarUsuario() {
+
+            const {
+                data: { session },
+                error
+            } = await supabaseClient.auth.getSession();
+
+            if (error || !session) {
+                window.location.href = "login.html";
+                return null;
+            }
+
+            return session.user;
+        }
+
+
+        // Envia a atividade
+        async function enviarAtividade() {
+
+            const arquivoInput =
+                document.getElementById("arquivo");
+
+            const mensagem =
+                document.getElementById("mensagem");
+
+            const botao =
+                document.getElementById("botaoEnviar");
+
+            const entregaInfo =
+                document.getElementById("entregaInfo");
+
+
+            const arquivo = arquivoInput.files[0];
+
+
+            // Verifica arquivo
+            if (!arquivo) {
+
+                mensagem.style.color = "#DC2626";
+
+                mensagem.textContent =
+                    "Selecione o arquivo da atividade antes de enviar.";
+
+                return;
+            }
+
+
+            // Verifica extensão
+            const extensao =
+                arquivo.name.split(".").pop().toLowerCase();
+
+            if (extensao !== "xlsx" && extensao !== "xls") {
+
+                mensagem.style.color = "#DC2626";
+
+                mensagem.textContent =
+                    "Envie somente arquivos Excel (.xlsx ou .xls).";
+
+                return;
+            }
+
+
+            // Limite de 10 MB
+            if (arquivo.size > 10 * 1024 * 1024) {
+
+                mensagem.style.color = "#DC2626";
+
+                mensagem.textContent =
+                    "O arquivo deve ter no máximo 10 MB.";
+
+                return;
+            }
+
+
+            // Verifica usuário
+            const usuario = await verificarUsuario();
+
+            if (!usuario) {
+                return;
+            }
+
+
+            try {
+
+                botao.disabled = true;
+
+                botao.textContent = "Enviando...";
+
+                mensagem.textContent = "";
+
+
+                /*
+                 * Criamos um nome único para o arquivo.
+                 *
+                 * Estrutura:
+                 *
+                 * atividades/
+                 *    ID_DO_USUARIO/
+                 *       projeto-excel/
+                 *           arquivo.xlsx
+                 */
+
+                const nomeSeguro =
+                    arquivo.name.replace(
+                        /[^a-zA-Z0-9._-]/g,
+                        "_"
+                    );
+
+                const caminho =
+                    `${usuario.id}/${LESSON_ID}/${Date.now()}_${nomeSeguro}`;
+
+
+                // Upload para o Storage
+                const {
+                    data: uploadData,
+                    error: uploadError
+                } = await supabaseClient.storage
+                    .from("atividades")
+                    .upload(
+                        caminho,
+                        arquivo,
+                        {
+                            cacheControl: "3600",
+                            upsert: false
+                        }
+                    );
+
+
+                if (uploadError) {
+                    throw uploadError;
+                }
+
+
+                // Registra a entrega no banco
+                const {
+                    error: submissionError
+                } = await supabaseClient
+                    .from("submissions")
+                    .insert({
+                        user_id: usuario.id,
+                        lesson_id: LESSON_ID,
+                        file_name: arquivo.name,
+                        file_path: uploadData.path
+                    });
+
+
+                if (submissionError) {
+                    throw submissionError;
+                }
+
+
+                // Sucesso
+                mensagem.style.color = "#00A86B";
+
+                mensagem.textContent =
+                    "Atividade enviada com sucesso!";
+
+
+                entregaInfo.style.display = "block";
+
+                entregaInfo.innerHTML = `
+                    <strong>Entrega registrada ✓</strong><br><br>
+                    Arquivo: ${arquivo.name}<br>
+                    Data: ${new Date().toLocaleString("pt-BR")}
+                `;
+
+
+                arquivoInput.value = "";
+
+
+            } catch (error) {
+
+                console.error("Erro ao enviar:", error);
+
+                mensagem.style.color = "#DC2626";
+
+                mensagem.textContent =
+                    "Não foi possível enviar a atividade. Tente novamente.";
+
+
+            } finally {
+
+                botao.disabled = false;
+
+                botao.textContent = "Enviar atividade";
+
+            }
+
+        }
+
+
+        // Verifica login ao abrir a página
+        verificarUsuario();
+
+    </script>
+
+</body>
+</html>

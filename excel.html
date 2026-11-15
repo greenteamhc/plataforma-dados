@@ -1,869 +1,626 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-
 <head>
-
     <meta charset="UTF-8">
-
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Trilha 1 - Excel | Plataforma de Estudos</title>
+    <title>Trilha de Excel | Plataforma de Estudos</title>
 
     <link rel="stylesheet" href="style.css">
 
     <style>
-
         * {
             box-sizing: border-box;
+            margin: 0;
+            padding: 0;
         }
 
         body {
-            margin: 0;
-            background: #F5F8FC;
-            color: #07111F;
             font-family: Arial, Helvetica, sans-serif;
+            background: #F5F8FC;
+            color: #0F172A;
         }
 
+        /* NAVBAR */
 
-        /* =========================
-           NAVBAR
-        ========================= */
-
-        .navbar {
-            height: 72px;
+        nav {
             background: #07111F;
+            padding: 18px 7%;
             display: flex;
-            align-items: center;
             justify-content: space-between;
-            padding: 0 6%;
+            align-items: center;
         }
 
         .logo {
-            color: #FFFFFF;
-            font-size: 20px;
-            font-weight: 700;
+            color: white;
+            text-decoration: none;
+            font-size: 21px;
+            font-weight: bold;
         }
 
-        .menu {
+        .nav-links {
             display: flex;
             align-items: center;
-            gap: 28px;
+            gap: 25px;
         }
 
-        .menu a {
-            color: #CBD5E1;
+        .nav-links a {
+            color: white;
             text-decoration: none;
             font-size: 15px;
-            font-weight: 500;
-            transition: 0.2s;
         }
 
-        .menu a:hover {
-            color: #FFFFFF;
+        .nav-links a:hover {
+            color: #B9DBFF;
         }
 
-        .menu button {
-            border: none;
-            background: #007BFF;
-            color: #FFFFFF;
-            padding: 10px 20px;
-            border-radius: 8px;
-            font-size: 14px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: 0.2s;
+        /* CONTAINER */
+
+        .container {
+            width: 90%;
+            max-width: 1050px;
+            margin: 45px auto 70px;
         }
 
-        .menu button:hover {
-            background: #0069D9;
-        }
+        /* HEADER */
 
-
-        /* =========================
-           CONTEÚDO
-        ========================= */
-
-        main {
-            width: 100%;
-            max-width: 1150px;
-            margin: 0 auto;
-            padding: 55px 25px 70px;
-        }
-
-
-        /* =========================
-           CABEÇALHO DA TRILHA
-        ========================= */
-
-        .trilha-header {
-            background: #FFFFFF;
+        .track-header {
+            background: white;
             border: 1px solid #DCE4EE;
-            border-radius: 18px;
-            padding: 35px 40px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            gap: 50px;
-            margin-bottom: 50px;
-            box-shadow: 0 8px 25px rgba(7, 17, 31, 0.05);
+            border-radius: 16px;
+            padding: 35px;
+            margin-bottom: 25px;
         }
 
-        .trilha-header > div:first-child {
-            flex: 1;
-        }
-
-        .trilha-icon {
-            width: 54px;
-            height: 54px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+        .tag {
+            display: inline-block;
             background: #EAF4FF;
-            border: 1px solid #B9DBFF;
-            border-radius: 14px;
-            font-size: 27px;
-            margin-bottom: 18px;
+            color: #007BFF;
+            padding: 7px 13px;
+            border-radius: 20px;
+            font-size: 13px;
+            font-weight: bold;
+            margin-bottom: 15px;
         }
 
-        .trilha-header h1 {
-            margin: 0 0 12px;
-            font-size: 32px;
-            line-height: 1.2;
-            color: #07111F;
+        .track-header h1 {
+            font-size: 30px;
+            margin-bottom: 10px;
         }
 
-        .trilha-header p {
-            margin: 0;
+        .track-header p {
             color: #64748B;
-            font-size: 16px;
             line-height: 1.7;
-            max-width: 650px;
         }
 
+        /* PROGRESSO */
 
-        /* =========================
-           PROGRESSO
-        ========================= */
-
-        .progresso {
-            width: 290px;
-            min-width: 290px;
-            background: #F5F8FC;
+        .progress-card {
+            background: white;
             border: 1px solid #DCE4EE;
-            border-radius: 14px;
-            padding: 20px;
+            border-radius: 16px;
+            padding: 25px;
+            margin-bottom: 30px;
         }
 
-        .progresso-info {
+        .progress-top {
             display: flex;
             justify-content: space-between;
             align-items: center;
             margin-bottom: 12px;
         }
 
-        .progresso-info span {
-            color: #64748B;
-            font-size: 14px;
+        .progress-top strong {
+            font-size: 16px;
         }
 
-        .progresso-info strong {
+        .progress-percent {
             color: #007BFF;
-            font-size: 20px;
+            font-weight: bold;
         }
 
-        .barra {
+        .progress-bar {
             width: 100%;
-            height: 9px;
+            height: 10px;
             background: #E2E8F0;
             border-radius: 20px;
             overflow: hidden;
         }
 
-        .barra-preenchida {
-            width: 0%;
+        .progress-fill {
             height: 100%;
-            background: #00A86B;
+            width: 0%;
+            background: #007BFF;
             border-radius: 20px;
             transition: width 0.3s ease;
         }
 
+        /* AULAS */
 
-        /* =========================
-           AULAS
-        ========================= */
-
-        .aulas h2 {
-            margin: 0;
-            font-size: 25px;
-            color: #07111F;
+        .section-title {
+            font-size: 22px;
+            margin-bottom: 18px;
         }
 
-        .subtitle {
-            margin: 8px 0 28px;
-            color: #64748B;
-            font-size: 15px;
+        .aulas {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
         }
-
-
-        /* =========================
-           CARD DA AULA
-        ========================= */
 
         .aula-card {
-            background: #FFFFFF;
+            background: white;
             border: 1px solid #DCE4EE;
             border-radius: 16px;
-            padding: 28px;
-            display: flex;
-            align-items: flex-start;
-            gap: 22px;
-            margin-bottom: 18px;
-            box-shadow: 0 5px 18px rgba(7, 17, 31, 0.04);
-            transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
+            padding: 25px;
+            transition: 0.2s;
         }
 
         .aula-card:hover {
             transform: translateY(-2px);
             border-color: #B9DBFF;
-            box-shadow: 0 10px 25px rgba(7, 17, 31, 0.07);
         }
 
-
-        /* =========================
-           NÚMERO
-        ========================= */
-
-        .aula-numero {
-            width: 52px;
-            height: 52px;
-            min-width: 52px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border-radius: 13px;
-            background: #EAF4FF;
-            border: 1px solid #B9DBFF;
+        .aula-number {
             color: #007BFF;
-            font-size: 17px;
-            font-weight: 700;
+            font-size: 13px;
+            font-weight: bold;
+            margin-bottom: 10px;
         }
 
-
-        /* =========================
-           INFORMAÇÕES
-        ========================= */
-
-        .aula-info {
-            flex: 1;
-            min-width: 0;
-        }
-
-        .aula-info h3 {
-            margin: 2px 0 14px;
-            color: #07111F;
+        .aula-card h3 {
             font-size: 19px;
-            line-height: 1.4;
+            margin-bottom: 10px;
         }
 
-        .aula-info p {
-            margin: 0 0 15px;
+        .aula-card p {
             color: #64748B;
             line-height: 1.6;
             font-size: 14px;
+            margin-bottom: 18px;
         }
-
-        .aula-info ul {
-            margin: 0 0 18px;
-            padding-left: 19px;
-            color: #475569;
-            line-height: 1.8;
-            font-size: 14px;
-        }
-
-        .aula-info li::marker {
-            color: #007BFF;
-        }
-
-
-        /* =========================
-           STATUS
-        ========================= */
 
         .status {
-            display: inline-flex;
-            align-items: center;
-            padding: 6px 11px;
+            display: inline-block;
+            padding: 6px 10px;
             border-radius: 20px;
             font-size: 12px;
-            font-weight: 700;
+            font-weight: bold;
+            margin-bottom: 15px;
         }
 
-        .status.liberada {
-            background: #E8F8F1;
-            color: #00875A;
+        .disponivel {
+            background: #EAF8F2;
+            color: #00A86B;
         }
 
-        .status.em-breve {
+        .em-breve {
             background: #F1F5F9;
             color: #64748B;
         }
 
-
-        /* =========================
-           BOTÕES DAS AULAS
-        ========================= */
-
         .aula-button {
-            align-self: center;
-            flex-shrink: 0;
-            border: none;
-            background: #007BFF;
-            color: #FFFFFF;
+            display: inline-block;
             text-decoration: none;
-            padding: 11px 18px;
+            padding: 11px 17px;
             border-radius: 8px;
+            background: #007BFF;
+            color: white;
             font-size: 14px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: 0.2s;
+            font-weight: bold;
         }
 
         .aula-button:hover {
             background: #0069D9;
         }
 
-        .aula-button:disabled {
+        .aula-button.disabled {
             background: #E2E8F0;
             color: #94A3B8;
             cursor: not-allowed;
+            pointer-events: none;
         }
 
+        /* ATIVIDADE */
 
-        /* =========================
-           PROJETO
-        ========================= */
+        .atividade-card {
+            margin-top: 25px;
+            background: #F0FDF8;
+            border: 1px solid #B7E8D5;
+            border-radius: 16px;
+            padding: 28px;
+        }
 
-        .aula-card.projeto .aula-numero {
-            background: #E8F8F1;
-            border-color: #B7E8D3;
+        .atividade-card h3 {
             color: #00A86B;
+            margin-bottom: 10px;
         }
 
+        .atividade-card p {
+            color: #64748B;
+            line-height: 1.6;
+            margin-bottom: 18px;
+        }
 
-        /* =========================
-           FOOTER
-        ========================= */
+        .atividade-button {
+            display: inline-block;
+            background: #00A86B;
+            color: white;
+            text-decoration: none;
+            padding: 12px 18px;
+            border-radius: 8px;
+            font-weight: bold;
+            font-size: 14px;
+        }
+
+        .atividade-button:hover {
+            background: #008F5B;
+        }
+
+        /* FOOTER */
 
         footer {
-            border-top: 1px solid #DCE4EE;
-            background: #FFFFFF;
-            padding: 25px;
+            background: #07111F;
+            color: #94A3B8;
             text-align: center;
-        }
-
-        footer p {
-            margin: 0;
-            color: #64748B;
+            padding: 25px;
             font-size: 13px;
         }
 
+        /* RESPONSIVO */
 
-        /* =========================
-           RESPONSIVIDADE
-        ========================= */
+        @media (max-width: 750px) {
 
-        @media (max-width: 800px) {
-
-            .navbar {
-                padding: 0 25px;
+            nav {
+                padding: 16px 5%;
             }
 
-            .menu {
-                gap: 15px;
+            .nav-links {
+                gap: 12px;
             }
 
-            .menu a:first-child {
-                display: none;
+            .container {
+                width: 94%;
+                margin-top: 25px;
             }
 
-            .trilha-header {
-                flex-direction: column;
-                align-items: stretch;
-                padding: 28px;
-                gap: 25px;
+            .track-header {
+                padding: 25px;
             }
 
-            .progresso {
-                width: 100%;
-                min-width: 0;
+            .track-header h1 {
+                font-size: 25px;
             }
 
-            .trilha-header h1 {
-                font-size: 27px;
-            }
-
-            .aula-card {
-                flex-wrap: wrap;
-            }
-
-            .aula-button {
-                margin-left: 74px;
+            .aulas {
+                grid-template-columns: 1fr;
             }
         }
-
-
-        @media (max-width: 550px) {
-
-            .navbar {
-                height: auto;
-                min-height: 68px;
-                padding: 15px 18px;
-            }
-
-            .logo {
-                font-size: 17px;
-            }
-
-            .menu {
-                gap: 10px;
-            }
-
-            .menu a {
-                display: none;
-            }
-
-            .menu button {
-                padding: 9px 15px;
-            }
-
-            main {
-                padding: 30px 16px 50px;
-            }
-
-            .trilha-header {
-                padding: 24px;
-                border-radius: 14px;
-                margin-bottom: 35px;
-            }
-
-            .trilha-header h1 {
-                font-size: 24px;
-            }
-
-            .trilha-header p {
-                font-size: 14px;
-            }
-
-            .aulas h2 {
-                font-size: 22px;
-            }
-
-            .aula-card {
-                padding: 22px;
-                gap: 16px;
-            }
-
-            .aula-numero {
-                width: 46px;
-                height: 46px;
-                min-width: 46px;
-            }
-
-            .aula-info {
-                width: calc(100% - 62px);
-            }
-
-            .aula-info h3 {
-                font-size: 17px;
-            }
-
-            .aula-button {
-                width: 100%;
-                margin-left: 0;
-                text-align: center;
-            }
-
-        }
-
     </style>
-
 </head>
-
 
 <body>
 
+    <!-- NAVBAR -->
 
-<header class="navbar">
+    <nav>
 
-    <div class="logo">
-        Plataforma de Estudos
-    </div>
-
-    <nav class="menu">
-
-        <a href="index.html">
-            Início
+        <a href="area-aluno.html" class="logo">
+            Plataforma de Estudos
         </a>
 
-        <a href="index.html#trilhas">
-            Trilhas
-        </a>
-
-        <button onclick="window.location.href='login.html'">
-            Entrar
-        </button>
+        <div class="nav-links">
+            <a href="area-aluno.html">Área do aluno</a>
+        </div>
 
     </nav>
 
-</header>
 
+    <main class="container">
 
+        <!-- CABEÇALHO -->
 
-<main>
+        <section class="track-header">
 
+            <span class="tag">TRILHA 1</span>
 
-    <!-- CABEÇALHO DA TRILHA -->
-
-    <section class="trilha-header">
-
-        <div>
-
-            <div class="trilha-icon">
-                📊
-            </div>
-
-            <h1>
-                Trilha 1 - Excel
-            </h1>
+            <h1>Excel</h1>
 
             <p>
-                Aprenda Excel desde os fundamentos até a criação
-                de análises utilizando tabelas dinâmicas e gráficos.
+                Aprenda os principais recursos do Excel para organizar,
+                analisar e apresentar dados de forma eficiente.
             </p>
 
-        </div>
+        </section>
 
 
-        <div class="progresso">
+        <!-- PROGRESSO -->
 
-            <div class="progresso-info">
+        <section class="progress-card">
 
-                <span>
-                    Seu progresso
-                </span>
+            <div class="progress-top">
 
                 <strong>
-                    0%
+                    Seu progresso
                 </strong>
 
+                <span
+                    id="progressPercent"
+                    class="progress-percent"
+                >
+                    0%
+                </span>
+
             </div>
 
-            <div class="barra">
+            <div class="progress-bar">
 
-                <div class="barra-preenchida"></div>
+                <div
+                    id="progressFill"
+                    class="progress-fill"
+                ></div>
 
             </div>
 
-        </div>
-
-    </section>
+        </section>
 
 
+        <!-- AULAS -->
 
-    <!-- AULAS -->
-
-    <section class="aulas">
-
-        <h2>
-            Conteúdo da trilha
+        <h2 class="section-title">
+            Aulas
         </h2>
 
-        <p class="subtitle">
-            Confira os conteúdos que fazem parte da trilha.
-        </p>
 
+        <section class="aulas">
 
+            <!-- AULA 1 -->
 
-        <!-- AULA 1 -->
+            <div class="aula-card">
 
-        <div class="aula-card">
-
-            <div class="aula-numero">
-                01
-            </div>
-
-
-            <div class="aula-info">
+                <div class="aula-number">
+                    AULA 1
+                </div>
 
                 <h3>
-                    Aula 1 - Fundamentos
-                </h3>
-
-                <ul>
-
-                    <li>
-                        Estrutura de uma planilha
-                    </li>
-
-                    <li>
-                        Linhas, colunas e células
-                    </li>
-
-                    <li>
-                        Tipos de dados
-                    </li>
-
-                    <li>
-                        Referências
-                    </li>
-
-                    <li>
-                        Filtros e ordenação
-                    </li>
-
-                    <li>
-                        Formatação
-                    </li>
-
-                    <li>
-                        Tabelas
-                    </li>
-
-                </ul>
-
-
-                <span class="status liberada">
-                    Disponível
-                </span>
-
-            </div>
-
-
-            <a
-                href="aula1-excel.html"
-                class="aula-button"
-            >
-                Acessar aula
-            </a>
-
-        </div>
-
-
-
-        <!-- AULA 2 -->
-
-        <div class="aula-card">
-
-            <div class="aula-numero">
-                02
-            </div>
-
-
-            <div class="aula-info">
-
-                <h3>
-                    Aula 2 - Funções
-                </h3>
-
-                <ul>
-
-                    <li>SOMA</li>
-
-                    <li>MÉDIA</li>
-
-                    <li>MÍNIMO</li>
-
-                    <li>MÁXIMO</li>
-
-                    <li>CONT.SE</li>
-
-                    <li>CONT.SES</li>
-
-                    <li>SOMASE</li>
-
-                    <li>SOMASES</li>
-
-                    <li>MÉDIASE</li>
-
-                    <li>SE</li>
-
-                    <li>E</li>
-
-                    <li>OU</li>
-
-                    <li>Funções de texto</li>
-
-                    <li>Funções de data</li>
-
-                </ul>
-
-
-                <span class="status em-breve">
-                    Em breve
-                </span>
-
-            </div>
-
-
-            <button
-                class="aula-button"
-                disabled
-            >
-                Em breve
-            </button>
-
-        </div>
-
-
-
-        <!-- AULA 3 -->
-
-        <div class="aula-card">
-
-            <div class="aula-numero">
-                03
-            </div>
-
-
-            <div class="aula-info">
-
-                <h3>
-                    Aula 3 - Tabela dinâmica + gráficos
-                </h3>
-
-                <ul>
-
-                    <li>
-                        Tabela dinâmica
-                    </li>
-
-                    <li>
-                        Agrupamento
-                    </li>
-
-                    <li>
-                        Filtros
-                    </li>
-
-                    <li>
-                        Segmentação
-                    </li>
-
-                    <li>
-                        Gráficos
-                    </li>
-
-                    <li>
-                        Escolha do gráfico adequado
-                    </li>
-
-                    <li>
-                        Interpretação
-                    </li>
-
-                    <li>
-                        Acessibilidade
-                        (escolha da paleta de cores etc.)
-                    </li>
-
-                </ul>
-
-
-                <span class="status em-breve">
-                    Em breve
-                </span>
-
-            </div>
-
-
-            <button
-                class="aula-button"
-                disabled
-            >
-                Em breve
-            </button>
-
-        </div>
-
-
-
-        <!-- PROJETO -->
-
-        <div class="aula-card projeto">
-
-            <div class="aula-numero">
-                📁
-            </div>
-
-
-            <div class="aula-info">
-
-                <h3>
-                    Projeto
+                    Fundamentos
                 </h3>
 
                 <p>
-                    Projeto prático para aplicar os conhecimentos
-                    desenvolvidos durante a trilha.
+                    Conheça a estrutura de uma planilha, referências,
+                    tipos de dados, filtros, ordenação, formatação e tabelas.
                 </p>
 
-                <ul>
-
-                    <li>
-                        Limpeza de dados
-                    </li>
-
-                    <li>
-                        Criar métricas
-                    </li>
-
-                    <li>
-                        Fazer tabelas dinâmicas
-                    </li>
-
-                    <li>
-                        Criar gráficos
-                    </li>
-
-                    <li>
-                        Tirar conclusões
-                    </li>
-
-                </ul>
-
-
-                <span class="status em-breve">
-                    Em breve
+                <span class="status disponivel">
+                    Disponível
                 </span>
+
+                <br>
+
+                <a
+                    href="aula1-excel.html"
+                    class="aula-button"
+                >
+                    Acessar aula
+                </a>
 
             </div>
 
 
-            <button
-                class="aula-button"
-                disabled
+            <!-- AULA 2 -->
+
+            <div class="aula-card">
+
+                <div class="aula-number">
+                    AULA 2
+                </div>
+
+                <h3>
+                    Funções
+                </h3>
+
+                <p>
+                    Aprenda funções como SOMA, MÉDIA, CONT.SE,
+                    SOMASE, SE, E, OU e funções de texto e data.
+                </p>
+
+                <span class="status disponivel">
+                    Disponível
+                </span>
+
+                <br>
+
+                <a
+                    href="aula2-excel.html"
+                    class="aula-button"
+                >
+                    Acessar aula
+                </a>
+
+            </div>
+
+
+            <!-- AULA 3 -->
+
+            <div class="aula-card">
+
+                <div class="aula-number">
+                    AULA 3
+                </div>
+
+                <h3>
+                    Tabela dinâmica + gráficos
+                </h3>
+
+                <p>
+                    Aprenda a criar tabelas dinâmicas, utilizar filtros,
+                    segmentações e criar gráficos adequados para análise.
+                </p>
+
+                <span class="status disponivel">
+                    Disponível
+                </span>
+
+                <br>
+
+                <a
+                    href="aula3-excel.html"
+                    class="aula-button"
+                >
+                    Acessar aula
+                </a>
+
+            </div>
+
+
+            <!-- PROJETO -->
+
+            <div class="aula-card">
+
+                <div class="aula-number">
+                    ATIVIDADE
+                </div>
+
+                <h3>
+                    Atividade Final
+                </h3>
+
+                <p>
+                    Coloque em prática os conhecimentos das três aulas
+                    realizando uma análise completa de dados.
+                </p>
+
+                <span class="status disponivel">
+                    Disponível
+                </span>
+
+                <br>
+
+                <a
+                    href="atividade-excel.html"
+                    class="aula-button"
+                >
+                    Acessar atividade
+                </a>
+
+            </div>
+
+        </section>
+
+
+        <!-- ATIVIDADE -->
+
+        <section class="atividade-card">
+
+            <h3>
+                Projeto final da trilha
+            </h3>
+
+            <p>
+                Depois de concluir as três aulas, realize a atividade final
+                para aplicar os conhecimentos aprendidos durante a trilha.
+            </p>
+
+            <a
+                href="atividade-excel.html"
+                class="atividade-button"
             >
-                Em breve
-            </button>
+                Ir para atividade final
+            </a>
 
-        </div>
+        </section>
 
-
-    </section>
-
-</main>
+    </main>
 
 
+    <footer>
 
-<footer>
+        Plataforma de Estudos — GTHC
 
-    <p>
-        © 2026 Plataforma de Estudos
-    </p>
+    </footer>
 
-</footer>
 
+    <!-- SUPABASE -->
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="supabase.js"></script>
+
+
+    <script>
+
+        const AULAS_EXCEL = [
+            "aula1-excel",
+            "aula2-excel",
+            "aula3-excel",
+            "projeto-excel"
+        ];
+
+
+        async function carregarProgresso() {
+
+            const {
+                data: { session },
+                error: sessionError
+            } = await supabaseClient.auth.getSession();
+
+
+            if (sessionError || !session) {
+
+                window.location.href = "login.html";
+
+                return;
+            }
+
+
+            const userId = session.user.id;
+
+
+            const {
+                data,
+                error
+            } = await supabaseClient
+                .from("progress")
+                .select("lesson_id, completed")
+                .eq("user_id", userId);
+
+
+            if (error) {
+
+                console.error(
+                    "Erro ao carregar progresso:",
+                    error
+                );
+
+                return;
+            }
+
+
+            const concluidas = (data || []).filter(
+                item =>
+                    item.completed &&
+                    AULAS_EXCEL.includes(item.lesson_id)
+            ).length;
+
+
+            const percentual =
+                Math.round(
+                    (concluidas / AULAS_EXCEL.length) * 100
+                );
+
+
+            document.getElementById("progressPercent")
+                .textContent = percentual + "%";
+
+
+            document.getElementById("progressFill")
+                .style.width = percentual + "%";
+
+        }
+
+
+        carregarProgresso();
+
+    </script>
 
 </body>
-
 </html>
