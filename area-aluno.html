@@ -658,11 +658,19 @@
                 <a href="area-aluno.html">
                     Meu espaço
                 </a>
-
+            
+                <a
+                    href="admin.html"
+                    id="btnAdmin"
+                    style="display: none;"
+                >
+                    Painel administrativo
+                </a>
+            
                 <a href="#" id="btnSair">
                     Sair
                 </a>
-
+            
             </nav>
 
         </div>
@@ -1032,6 +1040,8 @@
 
         const btnSair =
             document.getElementById("btnSair");
+        const btnAdmin =
+            document.getElementById("btnAdmin");
 
 
         // =====================================================
@@ -1101,6 +1111,25 @@
                     "Aluno logado:",
                     user.email
                 );
+                const {
+                    data: ehAdmin,
+                    error: adminError
+                } = await supabaseClient.rpc("is_admin");
+                
+                
+                if (adminError) {
+                
+                    console.error(
+                        "Erro ao verificar administrador:",
+                        adminError
+                    );
+                
+                } else if (ehAdmin === true) {
+                
+                    btnAdmin.style.display =
+                        "inline-block";
+                
+                }
 
 
                 // ---------------------------------------------
@@ -1389,4 +1418,3 @@
 </body>
 
 </html>
-```
