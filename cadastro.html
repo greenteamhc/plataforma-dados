@@ -668,20 +668,15 @@
 
             const { data, error } =
                 await supabaseClient.auth.signInWithOtp({
-
                     email: email,
-
                     options: {
-
                         shouldCreateUser: true,
-
+                        emailRedirectTo: "https://greenteamhc.github.io/plataforma-dados/area-aluno.html",
                         data: {
                             nome: nome,
                             whatsapp: whatsapp
                         }
-
                     }
-
                 });
 
 
